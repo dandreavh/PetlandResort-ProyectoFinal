@@ -1,25 +1,23 @@
-# PetlandResort-ProyectoFinal
- Repositorio para el Proyecto Final del Ciclo Formativo de DAW
-## Índice
-- [PetlandResort-ProyectoFinal](#petlandresort-proyectofinal)
-  - [Índice](#índice)
-  - [Contenido](#contenido)
-  - [1. Introducción](#1-introducción)
-  - [2. Objetivos y motivación](#2-objetivos-y-motivación)
-  - [3. Análisis de las alternativas del mercado](#3-análisis-de-las-alternativas-del-mercado)
-  - [4. Tecnologías empleadas](#4-tecnologías-empleadas)
-  - [5. Diseño de la aplicación](#5-diseño-de-la-aplicación)
-    - [5.1. Funcionalidades](#51-funcionalidades)
-    - [5.2. Diseño de la base de datos](#52-diseño-de-la-base-de-datos)
-      - [5.2.1. Esquema](#521-esquema)
-      - [5.2.2. Modelado de datos](#522-modelado-de-datos)
-    - [5.3. Vistas](#53-vistas)
-      - [5.3.1. Wireframe](#531-wireframe)
-      - [5.3.2. Mockup](#532-mockup)
-  - [6. Manual de despliegue](#6-manual-de-despliegue)
-  - [7. Postmortem y conclusiones](#7-postmortem-y-conclusiones)
+Repositorio para el Proyecto Final del Ciclo Formativo de DAW
+PETLAND RESORT
+
+Índice
+- [1. Introducción](#1-introducción)
+- [2. Objetivos y motivación](#2-objetivos-y-motivación)
+- [3. Análisis de las alternativas del mercado](#3-análisis-de-las-alternativas-del-mercado)
+- [4. Tecnologías empleadas](#4-tecnologías-empleadas)
+- [5. Diseño de la aplicación](#5-diseño-de-la-aplicación)
+  - [5.1. Funcionalidades](#51-funcionalidades)
+  - [5.2. Diseño de la base de datos](#52-diseño-de-la-base-de-datos)
+    - [5.2.1. Esquema](#521-esquema)
+    - [5.2.2. Modelado de datos](#522-modelado-de-datos)
+  - [5.3. Vistas](#53-vistas)
+    - [5.3.1. Wireframe](#531-wireframe)
+    - [5.3.2. Mockup](#532-mockup)
+- [6. Manual de despliegue](#6-manual-de-despliegue)
+- [7. Postmortem y conclusiones](#7-postmortem-y-conclusiones)
   
-## Contenido
+CONTENIDO
 <a name="introduccion"></a>						     		
 ## 1. Introducción
 
