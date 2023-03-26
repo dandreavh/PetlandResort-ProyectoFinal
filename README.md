@@ -1,7 +1,7 @@
-Repositorio para el Proyecto Final del Ciclo Formativo de DAW
-PETLAND RESORT
-
-Índice
+PROYECTO FINAL - PETLAND RESORT
+* * *
+ÍNDICE
+* * *
 - [1. Introducción](#1-introducción)
 - [2. Objetivos y motivación](#2-objetivos-y-motivación)
 - [3. Análisis de las alternativas del mercado](#3-análisis-de-las-alternativas-del-mercado)
@@ -16,8 +16,9 @@ PETLAND RESORT
     - [5.3.2. Mockup](#532-mockup)
 - [6. Manual de despliegue](#6-manual-de-despliegue)
 - [7. Postmortem y conclusiones](#7-postmortem-y-conclusiones)
-  
+
 CONTENIDO
+* * *
 <a name="introduccion"></a>						     		
 ## 1. Introducción
 
