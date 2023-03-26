@@ -1,5 +1,5 @@
-PROYECTO FINAL - PETLAND RESORT
-* * *
+***PROYECTO FINAL - PETLAND RESORT***
+
 ÍNDICE
 * * *
 - [1. Introducción](#1-introducción)
