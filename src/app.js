@@ -7,6 +7,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// ODM configuration - database
+var mongoose = require('mongoose');
+mongoose.set('strictQuery', false);
+mongoose.connect(process.env.DB_URI,)
+  .then(() => console.log('connection successful'))
+  .catch((err) => console.error(err));
+
 // Import routing
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
