@@ -6,6 +6,16 @@
 - [2. Objetivos y motivación](#2-objetivos-y-motivación)
 - [3. Análisis de las alternativas del mercado](#3-análisis-de-las-alternativas-del-mercado)
 - [4. Tecnologías empleadas](#4-tecnologías-empleadas)
+  - [4.1. Desarrollo](#41-desarrollo)
+    - [4.1.1. Back](#411-back)
+    - [4.1.2. Front](#412-front)
+  - [4.2. Despliegue](#42-despliegue)
+  - [4.3. Útiles](#43-útiles)
+    - [4.3.1. Construcción](#431-construcción)
+    - [4.3.2. Control](#432-control)
+    - [4.3.3. Diseño](#433-diseño)
+    - [4.3.4. Pruebas](#434-pruebas)
+    - [4.3.5. Otros](#435-otros)
 - [5. Diseño de la aplicación](#5-diseño-de-la-aplicación)
   - [5.1. Funcionalidades](#51-funcionalidades)
   - [5.2. Diseño de la base de datos](#52-diseño-de-la-base-de-datos)
@@ -30,6 +40,34 @@ CONTENIDO
 
 <a name="tecnologias"></a>						     		
 ## 4. Tecnologías empleadas
+
+<a name="desarrollo"></a>						     		
+### 4.1. Desarrollo
+<a name="back"></a>						     		
+#### 4.1.1. Back
+
+<a name="front"></a>						     		
+#### 4.1.2. Front
+
+<a name="despliegue"></a>						     		
+### 4.2. Despliegue
+
+<a name="utiles"></a>						     		
+### 4.3. Útiles
+
+<a name="construccion"></a>						     		
+#### 4.3.1. Construcción
+<a name="control"></a>						     		
+#### 4.3.2. Control
+
+<a name="dis"></a>						     		
+#### 4.3.3. Diseño
+
+<a name="pruebas"></a>						     		
+#### 4.3.4. Pruebas
+
+<a name="otros"></a>						     		
+#### 4.3.5. Otros
 
 <a name="diseño"></a>						     		
 ## 5. Diseño de la aplicación
