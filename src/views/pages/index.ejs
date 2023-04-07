@@ -3,7 +3,140 @@
   <%- include('../partials/head'); %>
   <body>
     <div class="container">
-      <h1>PÁGINA DE INICIO</h1>
+      <%- include('../partials/header'); %>
+      <!-- Hero -->
+      <div class="row row-cols-md-2 row-cols-1 gx-0">
+        <div class="col">
+          <img src="/images/place.jpg" alt="Piscina exterior" class="w-100" height="">
+        </div>
+        <div class="col bg-grey">
+          <div class="text-center px-4">
+            <h1 class="font-brand my-4">PETLAND RESORT</h1>
+            <p>Un complejo cinco huesos dedicado al bienestar físico y mental de los animales. <br> 
+              No te pierdas nuestra oferta de servicios</p>
+              <a href="" class="btn bg-blue text-light my-3">Reservar ahora</a>
+          </div>
+        </div>
+      </div>
+      <!-- Us -->
+      <div class="row row-cols-md-2 row-cols-1 gx-0">
+        <div class="col bg-dark">
+          <div class="p-5 text-light">
+            <h2 class="font-brand">Quiénes somos</h2>
+            <p class="fw-light mt-3">
+              PETLAND RESORT nace de la mano de amantes de los animales con la inquietud de dar la solución perfecta para quienes tengan mascotas y no quieran que estén solas durante su ausencia...
+            </p>
+            <a href="" class="text-decoration-none fst-italic text-light font-brand">Saber más</a>
+          </div>
+        </div>
+        <div class="col">
+          <img src="/images/juegos.jpg" alt="Miembros del equipo jugando con perros" class="w-100">
+        </div>
+      </div>
+      <!-- Rooms -->
+      <div class="bg-grey p-5">
+        <h2 class="font-brand text-center">Nuestras habitaciones</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-4">
+          <div class="col">
+            <div class="card h-100 text-center bg-dark text-light shadow-lg border-0">
+              <img src="/images/habitaciones.jpg" class="card-img-top" alt="Habitación individual" height="70%">
+              <div class="card-body p-2">
+                <h6 class="card-title">Suite individual</h6>
+                <a href="#" class="btn bg-blue text-light">Reservar</a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 text-center bg-dark text-light shadow-lg border-0">
+              <img src="/images/habitaciondoble.jpg" class="card-img-top" alt="Habitación familiar" height="70%">
+              <div class="card-body p-2">
+                <h6 class="card-title">Suite familiar</h6>
+                <a href="#" class="btn bg-blue text-light">Reservar</a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 text-center bg-dark text-light shadow-lg border-0">
+              <img src="/images/habitacion.jpg" class="card-img-top" alt="Habitación lujosa individual" height="70%">
+              <div class="card-body p-2">
+                <h6 class="card-title">Deluxe individual</h6>
+                <a href="#" class="btn bg-blue text-light">Reservar</a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 text-center bg-dark text-light shadow-lg border-0">
+              <img src="/images/habitacion2.jpg" class="card-img-top" alt="Habitación lujosa familiar" height="70%">
+              <div class="card-body p-2">
+                <h6 class="card-title">Deluxe familiar</h5>
+                <a href="#" class="btn bg-blue text-light">Reservar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Services -->
+      <div class="bg-dark p-5">
+        <h2 class="font-brand text-center text-light">Nuestros servicios</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-4">
+          <div class="col">
+            <div class="card h-100 text-center shadow-lg border-0">
+              <img src="/images/habitaciones.jpg" class="card-img-top" alt="servicio de veterinaria" height="70%">
+              <div class="card-body p-2">
+                <h6 class="card-title">Veterinaria</h6>
+                <a href="#" class="btn bg-blue text-light">Reservar</a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 text-center shadow-lg border-0">
+              <img src="/images/habitaciondoble.jpg" class="card-img-top" alt="servicio de entrenamiento" height="70%">
+              <div class="card-body p-2">
+                <h6 class="card-title">Entrenamiento</h6>
+                <a href="#" class="btn bg-blue text-light">Reservar</a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 text-center shadow-lg border-0">
+              <img src="/images/habitacion.jpg" class="card-img-top" alt="servicio de belleza" height="70%">
+              <div class="card-body p-2">
+                <h6 class="card-title">Belleza</h6>
+                <a href="#" class="btn bg-blue text-light">Reservar</a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 text-center shadow-lg border-0">
+              <img src="/images/habitacion2.jpg" class="card-img-top" alt="servicio personalizado" height="70%">
+              <div class="card-body p-2">
+                <h6 class="card-title">Personalizado</h5>
+                <a href="#" class="btn bg-blue text-light">Reservar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Info -->
+      <div class="bg-grey p-5">
+        <h2 class="font-brand text-center">Nuestras cifras</h2>
+        <div class="row row-cols-md-2 row-cols-1 gx-0 mt-4">
+          <div class="col bg-dark text-center text-light">
+            <div class="bg-blue p-2 m-3">
+              <p>Valoración de nuestros clientes</p>
+            </div>
+            <div class="bg-blue p-2 m-3">
+              <p>Reservas anuales</p>
+            </div>
+            <div class="bg-blue p-2 m-3">
+              <p>Eventos celebrados</p>
+            </div>
+          </div>
+          <div class="col">
+            <img src="/images/animallovers.png" alt="Personas con animales" class="w-100">
+          </div>
+        </div>
+      </div>
       <%- include('../partials/footer'); %>
     </div>
   </body>

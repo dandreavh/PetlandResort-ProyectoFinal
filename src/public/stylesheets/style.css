@@ -1,7 +1,40 @@
+/*____________________________________________________________________
+  Project: Petland Resort - Proyecto final DAW
+  Version: 1.0
+  Last change: 07/04/2023
+  Author: Andrea Vieira Hernández (dandreavh)
+---------------------[TABLE OF CONTENTS]---------------------
+
+---------------------[COLOR PALETTE]---------------------                                                                                                                                                                
+______________________________________________________________________
+*/
+
+/* ----- Fonts -----*/
+/* General */
 body {
   font-family: 'Montserrat', sans-serif;
 }
+/* Brand */
+.font-brand{
+  font-family: 'Cormorant Garamond';
+}
 
+/* ----- Colors -----*/
+/* Light grey for backgrounds */
 .bg-grey{
   background-color: rgba(244, 244, 244, 1);
+}
+/* Dark turquoise for backgrounds */
+.bg-blue{
+  background-color: rgba(3, 138, 162, 1);
+}
+
+.btn .bg-blue:hover{
+  background-color: rgb(2, 79, 93) !important;
+}
+
+/* ----- Navbar -----*/
+.navbar-collapse a:hover, .active{
+  border-bottom: 1px solid #000;
+  padding-bottom: 3px;
 }
