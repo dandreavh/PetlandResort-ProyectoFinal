@@ -1,10 +1,10 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 // To encrypt password
-var bcrypt = require('bcryptjs');
-var SALT_WORK_FACTOR = 10;
-// Modelado de datos para users
-var UserSchema = new mongoose.Schema({
+const bcrypt = require('bcryptjs');
+const SALT_WORK_FACTOR = 10;
+// Users model
+const UserSchema = new mongoose.Schema({
     username: {type: String, required: true, index: {unique: true}}, 
     name: {type: String, required: true}, 
     surnames: {type: String, required: true}, 
@@ -18,18 +18,17 @@ var UserSchema = new mongoose.Schema({
     avatar: {type: String, default:'xxx'}, 
     status: {type: String, enum: ['inactive', 'active'], default: 'active'}, 
     role: {type: String, enum: ['client', 'employee'], default: 'client'}, 
-    // —------------- Si el ‘role’ es ‘client’: —---------------------------
+    // —------------- if role is client: —---------------------------
     pets: [{type: mongoose.Schema.Types.ObjectId, ref: Pet, default: null}], 
-    // —------------- Si el ‘role’ es ‘employee’: —---------------------------
+    // —------------- if role is employee: —---------------------------
     start_date: {type: Date, default: Date.now}, 
     end_date: {type: Date}, 
     studies: [{type: String}], 
-/*     position: {{
+    position: {
         title: {type: String},
         salary: {type: Number},
         reportsTo: {type: mongoose.Schema.Types.ObjectId},
-        }
-    } */
+    }
 })
 
 UserSchema.pre('save', function(next) {
@@ -48,7 +47,7 @@ UserSchema.pre('save', function(next) {
         });
     });
     });
-    // Method to compare password and log user if matches
+    // Method to compare password (if it's loging properly)
     UserSchema.methods.comparePassword = function(candidatePassword, cb) {
         bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
             if (err) return cb(err);

@@ -11,8 +11,8 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 mongoose.connect(process.env.DB_URI,)
-  .then(() => console.log('connection successful'))
-  .catch((err) => console.error(err));
+  .then(() => console.log('DB connection successful'))
+  .catch((err) => console.error('DB error connection: ' + err));
 
 // Import routing
 var indexRouter = require('./routes/index');
