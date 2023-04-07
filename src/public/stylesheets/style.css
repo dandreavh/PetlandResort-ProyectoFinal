@@ -1,8 +1,7 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.bg-grey{
+  background-color: rgba(244, 244, 244, 1);
 }
