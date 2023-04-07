@@ -32,9 +32,9 @@ const UserSchema = new mongoose.Schema({
         reportsTo: {type: mongoose.Schema.Types.ObjectId},
     }
 })
-
+// Hashing password
 UserSchema.pre('save', function(next) {
-    var user = this;
+    const user = this;
     // evaluates if it has hashed password or is modified
     if (!user.isModified('password')) return next();
     // creates salt
@@ -48,12 +48,13 @@ UserSchema.pre('save', function(next) {
             next();
         });
     });
+});
+// Method to compare password (if it's loging properly)
+UserSchema.methods.comparePassword = function(candidatePassword, cb) {
+    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+        if (err) return cb(err);
+        cb(null, isMatch);
     });
-    // Method to compare password (if it's loging properly)
-    UserSchema.methods.comparePassword = function(candidatePassword, cb) {
-        bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-            if (err) return cb(err);
-            cb(null, isMatch);
-        });
-    };
+};
+
 module.exports = mongoose.model('User', UserSchema);
