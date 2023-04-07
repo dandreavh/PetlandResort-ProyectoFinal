@@ -3,6 +3,8 @@ const Schema = mongoose.Schema;
 // To encrypt password
 const bcrypt = require('bcryptjs');
 const SALT_WORK_FACTOR = 10;
+// Refered model
+const Pet = require('../models/Pet.js');
 // Users model
 const UserSchema = new mongoose.Schema({
     username: {type: String, required: true, index: {unique: true}}, 
@@ -19,7 +21,7 @@ const UserSchema = new mongoose.Schema({
     status: {type: String, enum: ['inactive', 'active'], default: 'active'}, 
     role: {type: String, enum: ['client', 'employee'], default: 'client'}, 
     // —------------- if role is client: —---------------------------
-    //pets: [{type: mongoose.Schema.Types.ObjectId, ref: Pet, default: null}], 
+    pets: [{type: mongoose.Schema.Types.ObjectId, ref: Pet, default: null}], 
     // —------------- if role is employee: —---------------------------
     start_date: {type: Date, default: Date.now}, 
     end_date: {type: Date}, 
@@ -54,4 +56,4 @@ UserSchema.pre('save', function(next) {
             cb(null, isMatch);
         });
     };
-    module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema);
