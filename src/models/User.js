@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema({
     status: {type: String, enum: ['inactive', 'active'], default: 'active'}, 
     role: {type: String, enum: ['client', 'employee'], default: 'client'}, 
     // —------------- if role is client: —---------------------------
-    pets: [{type: mongoose.Schema.Types.ObjectId, ref: Pet, default: null}], 
+    //pets: [{type: mongoose.Schema.Types.ObjectId, ref: Pet, default: null}], 
     // —------------- if role is employee: —---------------------------
     start_date: {type: Date, default: Date.now}, 
     end_date: {type: Date}, 
