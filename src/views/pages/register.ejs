@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('../partials/head'); %>
+    <body>
+        <div class="container">
+            <%- include('../partials/header'); %>
+            <div class="row bg-grey">
+                <div class="col">
+                    <form action="">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+                            <label for="email">Correo electrónico</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
+                            <label for="password">Contraseña de acceso</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="col">
+                    <img src="/images/place.jpg" alt="Piscina exterior" class="w-100" height="">
+                </div>
+            </div>
+            <%- include('../partials/footer'); %>
+        </div>
+    </body>
+</html>
