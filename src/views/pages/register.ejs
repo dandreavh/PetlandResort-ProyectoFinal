@@ -5,20 +5,54 @@
         <div class="container">
             <%- include('../partials/header'); %>
             <div class="row bg-grey">
-                <div class="col">
+                <div class="col p-5">
+                    <h1 class="font-brand text-center mb-4">Regístrate</h1>
                     <form action="">
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" autofocus required minlength="2">
+                            <label for="name">Nombre</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="surname" name="surname" placeholder="Apellidos" required minlength="2">
+                            <label for="surname">Apellidos</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="DNI/NIE/Pasaporte" required minlength="9">
+                            <label for="idnumber">DNI/NIE/Pasaporte</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Fecha de nacimiento" required>
+                            <label for="birthday">Fecha de nacimiento</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="655123456" required minlength="9">
+                            <label for="phone">Teléfono</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required minlength="5">
                             <label for="email">Correo electrónico</label>
                         </div>
-                        <div class="form-floating">
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="address" name="address" placeholder="Dirección">
+                            <label for="address">Dirección</label>
+                        </div>
+                        <hr>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Nombre de usuario" required minlength="2">
+                            <label for="username">Nombre de usuario</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required minlength="8" maxlength="16">
                             <label for="password">Contraseña de acceso</label>
+                        </div>
+                        <div class="text-center">
+                            <button type="reset" class="btn btn-secondary"><i class="bi bi-x-lg"></i> Cancelar</button>
+                            <button type="submit" class="btn btn-success bg-blue text-light"><i class="bi bi-check-lg"></i> Regístrame</button>
                         </div>
                     </form>
                 </div>
-                <div class="col">
-                    <img src="/images/place.jpg" alt="Piscina exterior" class="w-100" height="">
+                <div class="col p-0">
+                    <img src="/images/care.jpg" alt="Piscina exterior" class="cover">
                 </div>
             </div>
             <%- include('../partials/footer'); %>
