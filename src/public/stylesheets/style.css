@@ -11,7 +11,7 @@ ______________________________________________________________________
 
 /* ----- Fonts -----*/
 /* General */
-body {
+body, .modal {
   font-family: 'Montserrat', sans-serif;
 }
 /* Brand */

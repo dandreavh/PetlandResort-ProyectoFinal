@@ -1,18 +1,35 @@
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="popup-iniciarSesion" tabindex="-1" aria-labelledby="iniciar-sesion" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content bg-dark text-light rounded-0 border-0">
+            <div class="modal-header border-0 rounded-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            ...
-            <a href="/register">Regístrate para disfrutar de todos los recursos que tenemos para ti</a>
+                <h1 class="modal-title text-center font-brand" id="iniciar-sesion">Iniciar sesión</h1>
+                <div class="px-5 mt-4">
+                    <form action="">
+                        <div class="form-floating mb-3 border-bottom border-light">
+                            <input type="text" class="form-control bg-dark border-0 text-light" id="userName" placeholder="Nombre de usuario">
+                            <label for="username" class=""><i class="bi bi-person"></i> Nombre de usuario</label>
+                        </div>
+                        <div class="form-floating border-bottom border-light">
+                            <input type="password" class="form-control bg-dark border-0 text-light" id="userPassword" placeholder="Contraseña de acceso">
+                            <label for="userPassword"><i class="bi bi-key"></i> Contraseña de acceso</label>
+                        </div>
+                        <div class="form-check my-3">
+                            <input class="form-check-input" type="checkbox" value="" id="rememberme" checked>
+                            <label class="form-check-label" for="rememberme">Recuérdame</label>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn bg-blue text-light" data-bs-dismiss="modal"><i class="bi bi-box-arrow-in-right"></i> Entrar</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <div class="modal-footer border-0 text-light justify-content-center">
+                <a href="/" class="nav-link mb-3">He olvidado mi contraseña</a>
+                <a href="/register" class="nav-link mb-3">¿No tienes acceso aún? Regístrate aquí</a>
             </div>
         </div>
     </div>
