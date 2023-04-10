@@ -11,4 +11,8 @@ router.get('/register', function(req, res, next) {
   res.render('./pages/register');
 });
 
+router.get('/users', function(req, res, next) {
+  res.render('./pages/users');
+});
+
 module.exports = router;
