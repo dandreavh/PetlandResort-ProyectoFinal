@@ -11,8 +11,9 @@ router.get('/register', function(req, res, next) {
   res.render('./pages/register');
 });
 
-router.get('/users', function(req, res, next) {
-  res.render('./pages/users');
+/* GET home client */
+router.get('/homeClient', function(req, res, next) {
+  res.render('./pages/homeClient');
 });
 
 module.exports = router;

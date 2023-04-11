@@ -12,24 +12,39 @@ ______________________________________________________________________
 ______________________________________________________________________
 */
 // GET all the users order by registration date
-/* router.get('/', async function(req, res, next) {
+router.get('/', async (req, res) =>{
   const users = await User.find().sort('-register_date');
-  if(res.status(200)){
-    res.render('users', {users}); 
-  } else{
-    console.log("ERROR!!!!!! "+res);
-  }
-}); */
+  if(!users) res.status(500).json({success:false});
+  res.send(users);
+});
 
-
-// POST new user (General)
+// POST to create a new user (General)
 router.post('/', function(req, res, next) {
-  User.create(req.body)
-  .then(()=>{
+  User
+  .create(req.body)
+  .then(() => {
     res.status(200).send({msg:"Usuario creado correctamente"});
-  }).catch((err)=>{
-    if (err) res.status(500).send(err)
   })
+  .catch((err)=>{
+    if (err) res.status(500).send(err);
+  })
+});
+
+// POST to log-in user
+router.post('/login', function(req, res, next) {
+  User.findOne({ username: req.body.username }).then((user) => {
+    // Si el usuario existe...
+    if (user != null) {
+      user.comparePassword(req.body.password, function(err, isMatch) {
+        if (err) return next(err);
+        // Si el password es correcto...
+        if (isMatch){
+          res.redirect("/homeClient").send({ message:'Bienvenido/a, '+user.name});
+        } 
+        else res.status(200).send({ message: 'Algún dato es erróneo' });
+      });
+    };
+  });
 });
 
 module.exports = router;
