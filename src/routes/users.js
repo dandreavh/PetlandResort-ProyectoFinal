@@ -18,20 +18,22 @@ router.get('/', async (req, res) =>{
   res.send(users);
 });
 
+/* router.get('/addUser', function (req, res) {
+  res.render("/registerAdmin");
+}); */
+
 // POST to create a new user (General)
-router.post('/', function(req, res, next) {
-  User
-  .create(req.body)
-  .then(() => {
-    res.status(200).send({msg:"Usuario creado correctamente"});
-  })
-  .catch((err)=>{
-    if (err) res.status(500).send(err);
-  })
+router.post('/addUser', async function(req, res) {
+  console.log("In addUser");
+  const {name, surnames, idnumber, birthday, phone, email, address, username, password, role} = req.body;
+  await User.create({name, surnames, idnumber, birthday, phone, email, address, username, password, role});
+  //req.flash('success_msg', 'Usuario registrado con éxito');
+  res.redirect('../');
 });
 
 // POST to log-in user
 router.post('/login', function(req, res, next) {
+  console.log("In login");
   User.findOne({ username: req.body.username }).then((user) => {
     // Si el usuario existe...
     if (user != null) {
@@ -39,7 +41,7 @@ router.post('/login', function(req, res, next) {
         if (err) return next(err);
         // Si el password es correcto...
         if (isMatch){
-          res.redirect("/homeClient").send({ message:'Bienvenido/a, '+user.name});
+          res.send({ message:'Bienvenido/a, '+user.name});
         } 
         else res.status(200).send({ message: 'Algún dato es erróneo' });
       });

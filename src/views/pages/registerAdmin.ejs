@@ -45,6 +45,17 @@
                             <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required minlength="8" maxlength="16">
                             <label for="password">Contraseña de acceso</label>
                         </div>
+                        <hr>
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="role" name="role">
+                                <option selected>Selecciona un rol</option>
+                                <option value="client">Client</option>
+                                <option value="staff">Staff</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                            <label for="floatingSelect">Rol del usuario</label>
+                        </div>
+                        <div id="role_inputs"></div>
                         <div class="text-center">
                             <button type="reset" class="btn btn-secondary"><i class="bi bi-x-lg"></i> Cancelar</button>
                             <button type="submit" class="btn btn-success bg-blue text-light"><i class="bi bi-check-lg"></i> Regístrame</button>

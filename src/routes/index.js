@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 
 /* GET register page. */
 router.get('/register', function(req, res, next) {
-  res.render('./pages/register');
+  res.render('./pages/registerAdmin');
 });
 
 /* GET home client */
