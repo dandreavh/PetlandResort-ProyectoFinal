@@ -14,12 +14,15 @@ Se plantea una aplicación all-in-one que permita tener una gestión interna de 
 recursos (capacidades, empleados, ingresos, gastos, etc.) y que también sirva para que sus clientes puedan contratar estancias para sus mascotas, a partir de un perfil propio y personalizable. Esta aplicación, además, debe proyectar la imagen del hotel y ofrecer una experiencia de usuario muy satisfactoria.
 
 - **¿Qué va a hacer la aplicación? / ¿Qué necesidad va a cubrir?**
+
 Por una parte, permitirá la gestión interna del hotel. Y, por otra parte, facilitará la tarea de reserva a sus clientes.
 
 - **¿Cuál es su atractivo principal?**
+
 Se apuesta por una estética atractiva y fácil de usar. Además, la aplicación está diseñada para usar tecnología de vanguardia, por lo que su escalabilidad e incorporación de recursos de terceras partes o propias es muy flexible.
  
 - **¿Qué problema concreto va a resolver?**
+
 En el mercado no existe una aplicación para centros donde se alojan animales, por lo que no hay un sistema de registro e identificación que permita asociarlos  al perfil de la persona. 
 
 ## Estructura del Proyecto
