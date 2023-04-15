@@ -1,100 +1,41 @@
-***PROYECTO FINAL - PETLAND RESORT***
+# PETLAND RESORT
 
-ÍNDICE
-* * *
-- [1. Introducción](#1-introducción)
-- [2. Objetivos y motivación](#2-objetivos-y-motivación)
-- [3. Análisis de las alternativas del mercado](#3-análisis-de-las-alternativas-del-mercado)
-- [4. Tecnologías empleadas](#4-tecnologías-empleadas)
-  - [4.1. Desarrollo](#41-desarrollo)
-    - [4.1.1. Back](#411-back)
-    - [4.1.2. Front](#412-front)
-  - [4.2. Despliegue](#42-despliegue)
-  - [4.3. Útiles](#43-útiles)
-    - [4.3.1. Construcción](#431-construcción)
-    - [4.3.2. Control](#432-control)
-    - [4.3.3. Diseño](#433-diseño)
-    - [4.3.4. Pruebas](#434-pruebas)
-    - [4.3.5. Otros](#435-otros)
-- [5. Diseño de la aplicación](#5-diseño-de-la-aplicación)
-  - [5.1. Funcionalidades](#51-funcionalidades)
-  - [5.2. Diseño de la base de datos](#52-diseño-de-la-base-de-datos)
-    - [5.2.1. Esquema](#521-esquema)
-    - [5.2.2. Modelado de datos](#522-modelado-de-datos)
-  - [5.3. Vistas](#53-vistas)
-    - [5.3.1. Wireframe](#531-wireframe)
-    - [5.3.2. Mockup](#532-mockup)
-- [6. Manual de despliegue](#6-manual-de-despliegue)
-- [7. Postmortem y conclusiones](#7-postmortem-y-conclusiones)
+#### Curso Escolar 2022-2023
+#### Autora: [Dalieska Andrea Vieira Hernández](https://github.com/dandreavh)
+#### Tutor: [Antonio Gabriel González Casado](https://github.com/antonio-gabriel-gonzalez-casado)
+#### Fecha de Inicio: 15-03-2023
+#### Fecha de Finalización: DD-MM-YYYY
 
-CONTENIDO
-* * *
-<a name="introduccion"></a>						     		
-## 1. Introducción
+## Breve descripción del proyecto
+El proyecto pretende aunar en una aplicación todos los conocimientos adquiridos, respondiendo a una necesidad del mundo real, en este caso, la de un complejo hostelero, Petland Resort, que se encarga de alojar mascotas y ofrecer una serie de servicios durante la estancia de estas.
 
-<a name="objetivos"></a>						     		
-## 2. Objetivos y motivación 
+## Definir el objetivo de la aplicación
+Se plantea una aplicación all-in-one que permita tener una gestión interna de sus
+recursos (capacidades, empleados, ingresos, gastos, etc.) y que también sirva para que sus clientes puedan contratar estancias para sus mascotas, a partir de un perfil propio y personalizable. Esta aplicación, además, debe proyectar la imagen del hotel y ofrecer una experiencia de usuario muy satisfactoria.
 
-<a name="analisis"></a>						     		
-## 3. Análisis de las alternativas del mercado
+- **¿Qué va a hacer la aplicación? / ¿Qué necesidad va a cubrir?**
+Por una parte, permitirá la gestión interna del hotel. Y, por otra parte, facilitará la tarea de reserva a sus clientes.
 
-<a name="tecnologias"></a>						     		
-## 4. Tecnologías empleadas
+- **¿Cuál es su atractivo principal?**
+Se apuesta por una estética atractiva y fácil de usar. Además, la aplicación está diseñada para usar tecnología de vanguardia, por lo que su escalabilidad e incorporación de recursos de terceras partes o propias es muy flexible.
+ 
+- **¿Qué problema concreto va a resolver?**
+En el mercado no existe una aplicación para centros donde se alojan animales, por lo que no hay un sistema de registro e identificación que permita asociarlos  al perfil de la persona. 
 
-<a name="desarrollo"></a>						     		
-### 4.1. Desarrollo
-<a name="back"></a>						     		
-#### 4.1.1. Back
-
-<a name="front"></a>						     		
-#### 4.1.2. Front
-
-<a name="despliegue"></a>						     		
-### 4.2. Despliegue
-
-<a name="utiles"></a>						     		
-### 4.3. Útiles
-
-<a name="construccion"></a>						     		
-#### 4.3.1. Construcción
-<a name="control"></a>						     		
-#### 4.3.2. Control
-
-<a name="dis"></a>						     		
-#### 4.3.3. Diseño
-
-<a name="pruebas"></a>						     		
-#### 4.3.4. Pruebas
-
-<a name="otros"></a>						     		
-#### 4.3.5. Otros
-
-<a name="diseño"></a>						     		
-## 5. Diseño de la aplicación
-
-<a name="funcionalidades"></a>						     		
-### 5.1. Funcionalidades
-
-<a name="bd"></a>						     		
-### 5.2. Diseño de la base de datos
-
-<a name="esquema"></a>						     		
-#### 5.2.1. Esquema
-
-<a name="modelado"></a>						     		
-#### 5.2.2. Modelado de datos
-
-<a name="vistas"></a>						     		
-### 5.3. Vistas
-
-<a name="wireframe"></a>						     		
-#### 5.3.1. Wireframe
-
-<a name="mockup"></a>						     		
-#### 5.3.2. Mockup
-
-<a name="manual"></a>						     		
-## 6. Manual de despliegue
-
-<a name="postmortem"></a>						     		
-## 7. Postmortem y conclusiones
+## Estructura del Proyecto
+├───docs/ <br>
+├───src/ <br>
+│   ├───bin/<br>
+│   ├───models/<br>
+│   ├───public/<br>
+│   │   ├───images/<br>
+│   │   ├───javascripts/<br>
+│   │   ├───stylesheets/<br>
+│   ├───routes/<br>
+│   ├───views/<br>
+│   │   ├───partials/<br>
+│   │   ├───pages/<br>
+│   ├───app.js<br>
+│   ├───package-lock.json<br>
+│   ├───package.json<br>
+└───README.md
