@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const methodOverride = require('method-override');
 const flash = require('connect-flash');
+const session = require('express-session');
 
 // ODM configuration - database
 const mongoose = require('mongoose');
@@ -35,6 +36,11 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true
+}))
 app.use(flash());
 app.use(cookieParser());
 
