@@ -29,6 +29,7 @@ En el mercado no existe una aplicación para centros donde se alojan animales, p
 ├───docs/ <br>
 ├───src/ <br>
 │   ├───bin/<br>
+│   ├───controller/<br>
 │   ├───models/<br>
 │   ├───public/<br>
 │   │   ├───images/<br>

@@ -49,7 +49,7 @@ UserSchema.pre('save', function(next) {
         });
     });
 });
-// Method to compare password (if it's loging properly)
+// Method to compare password (if it's logged properly)
 UserSchema.methods.comparePassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) return cb(err);

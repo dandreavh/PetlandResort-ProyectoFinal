@@ -26,9 +26,15 @@ router.get('/register', function (req, res) {
 router.post('/register', async function(req, res) {
   console.log("In register");
   const {name, surnames, idnumber, birthday, phone, email, address, username, password, role} = req.body;
-  await User.create({name, surnames, idnumber, birthday, phone, email, address, username, password, role});
-  req.flash('success_msg', 'Usuario registrado con éxito');
-  res.redirect('../');
+  const checkUser = await User.findOne({'username': username});
+  if(checkUser){
+    await User.create({name, surnames, idnumber, birthday, phone, email, address, username, password, role});
+    req.flash('success_msg', 'Usuario registrado con éxito');
+    res.redirect('../');
+  } else{
+    req.flash('error_msg', 'Nombre de identificación del usuario ya registrado');
+    res.redirect('/register');
+  }
 });
 
 // POST to log-in user
