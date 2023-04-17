@@ -23,8 +23,8 @@ router.get('/', async (req, res) =>{
 }); */
 
 // POST to create a new user (General)
-router.post('/addUser', async function(req, res) {
-  console.log("In addUser");
+router.post('/register', async function(req, res) {
+  console.log("In register");
   const {name, surnames, idnumber, birthday, phone, email, address, username, password, role} = req.body;
   await User.create({name, surnames, idnumber, birthday, phone, email, address, username, password, role});
   req.flash('success_msg', 'Usuario registrado con éxito');
