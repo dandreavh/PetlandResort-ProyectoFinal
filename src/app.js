@@ -7,8 +7,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const methodOverride = require('method-override');
-const flash = require('connect-flash');
 const session = require('express-session');
+const flash = require('connect-flash');
 
 // ODM configuration - database
 const mongoose = require('mongoose');

@@ -18,9 +18,9 @@ router.get('/', async (req, res) =>{
   res.send(users);
 });
 
-/* router.get('/addUser', function (req, res) {
+router.get('/register', function (req, res) {
   res.render("/registerAdmin");
-}); */
+});
 
 // POST to create a new user (General)
 router.post('/register', async function(req, res) {
