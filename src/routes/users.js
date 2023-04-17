@@ -27,7 +27,7 @@ router.post('/addUser', async function(req, res) {
   console.log("In addUser");
   const {name, surnames, idnumber, birthday, phone, email, address, username, password, role} = req.body;
   await User.create({name, surnames, idnumber, birthday, phone, email, address, username, password, role});
-  //req.flash('success_msg', 'Usuario registrado con éxito');
+  req.flash('success_msg', 'Usuario registrado con éxito');
   res.redirect('../');
 });
 
