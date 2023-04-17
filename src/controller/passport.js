@@ -10,12 +10,13 @@ passport.use(new localStrategy({
 }, async (username, password, done) => {
     const user = await User.findOne({username: username});
     // check if user exists
-    if (!user) return done(null, false, {message: 'User not found'});
+    if (!user) return done(null, false, {message: 'Error al iniciar la sesión (User not found)'});
     else{
         // check if password is correct
-        const match = await User.comparePassword(password, user.password);
-        if (match) return done(null, user);
-        else return done(null, false, {message: 'Wrong data'});
+        await user.comparePassword(password, function(err, isMatch){
+            if (isMatch) return done(null, user);
+            else return done(null, false, {message: 'Error al iniciar la sesión (Wrong password)' + err});
+        });
     }
 }));
 
@@ -25,8 +26,12 @@ passport.serializeUser((user, done) => {
 });
 
 // find a user by id and use it
-passport.deserializeUser((id, done) => {
-    User.findById(id, (err, user) => {
-        done(err, user);
-    })
+passport.deserializeUser( async (id, done) => {
+    try{
+        const user = await User.findById(id);
+        if(!user) return done(new Error('User not found'));
+        done(null, user);
+    } catch(e){
+        done(e);
+    }
 });

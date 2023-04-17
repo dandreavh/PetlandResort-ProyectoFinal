@@ -4,6 +4,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const User = require('../models/User'); // model to use
 const db = mongoose.connection;
+const passport = require('passport');
 
 /* 
 ______________________________________________________________________
@@ -22,6 +23,10 @@ router.get('/register', function (req, res) {
   res.render("/registerAdmin");
 });
 
+router.get('/homeClient', function (req, res) {
+  res.render("/homeClient");
+});
+
 // POST to create a new user (General)
 router.post('/register', async function(req, res) {
   console.log("In register");
@@ -38,7 +43,7 @@ router.post('/register', async function(req, res) {
 });
 
 // POST to log-in user
-router.post('/login', function(req, res, next) {
+/* router.post('/login', function(req, res, next) {
   console.log("In login");
   User.findOne({ username: req.body.username }).then((user) => {
     // Si el usuario existe...
@@ -53,6 +58,11 @@ router.post('/login', function(req, res, next) {
       });
     };
   });
-});
+}); */
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/home',
+  failureRedirect: '../',
+  failureFlash: true
+}));
 
 module.exports = router;

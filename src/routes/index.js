@@ -33,4 +33,9 @@ router.get('/aboutus', function(req, res, next) {
   res.render('./pages/aboutus');
 });
 
+/* GET gome page */
+router.get('/home', function(req, res, next) {
+  res.render('./pages/home');
+});
+
 module.exports = router;

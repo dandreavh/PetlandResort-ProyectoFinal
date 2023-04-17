@@ -9,6 +9,7 @@ const logger = require('morgan');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
+const passport = require('passport');
 
 // ODM configuration - database
 const mongoose = require('mongoose');
@@ -22,7 +23,9 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const reservationsRouter = require('./routes/reservations');
 
-let app = express();
+// Initializations
+const app = express();
+require('./controller/passport');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,6 +44,8 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }))
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(flash());
 app.use(cookieParser());
 

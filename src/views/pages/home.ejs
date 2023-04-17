@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('../partials/head'); %>
+    <body>
+        <div class="container">
+            <%- include('../partials/header'); %>
+            <div>
+                <% if (user.role == "client") { %>
+                    <%- include('../partials/homeClient'); %>
+                <%} else if (user.role == "staff" && user.position.title == "manager") { %>
+                    <%- include('../partials/homeManager'); %>
+                <%} else if (user.role == "staff" && user.position.title == "employee") { %>
+                    <%- include('../partials/homeEmployee'); %>
+                <%} else if (user.role == "admin") { %>
+                    <%- include('../partials/homeAdmin'); %>
+                <% } %>
+            </div>
+            <%- include('../partials/footer'); %>
+        </div>
+    </body>
+</html>    
