@@ -12,7 +12,7 @@ router.get('/register', function(req, res, next) {
   res.render('./pages/registerAdmin');
 });
 
-/* GET reservarions page */
+/* GET reservations page */
 router.get('/reservations', function(req, res, next) {
   // check  if user is logged 
   res.render('./pages/reservations');
@@ -21,6 +21,11 @@ router.get('/reservations', function(req, res, next) {
 /* GET rooms page */
 router.get('/rooms', function(req, res, next) {
   res.render('./pages/rooms');
+});
+
+/* GET services page */
+router.get('/services', function(req, res, next) {
+  res.render('./pages/services');
 });
 
 /* GET about us page */
