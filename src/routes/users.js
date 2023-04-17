@@ -43,22 +43,6 @@ router.post('/register', async function(req, res) {
 });
 
 // POST to log-in user
-/* router.post('/login', function(req, res, next) {
-  console.log("In login");
-  User.findOne({ username: req.body.username }).then((user) => {
-    // Si el usuario existe...
-    if (user != null) {
-      user.comparePassword(req.body.password, function(err, isMatch) {
-        if (err) return next(err);
-        // Si el password es correcto...
-        if (isMatch){
-          res.send({ message:'Bienvenido/a, '+user.name});
-        } 
-        else res.status(200).send({ message: 'Algún dato es erróneo' });
-      });
-    };
-  });
-}); */
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/home',
   failureRedirect: '../',

@@ -1,5 +1,4 @@
 // role_inputs (div para añadir)
-// id role
 // comprobar si está en registerAdmin
 if(window.location.pathname === "/register"){
     document.getElementById("role").addEventListener("change", () => {
@@ -81,4 +80,13 @@ function addStaffInputs(){
     role_inputs.appendChild(div_title);
     role_inputs.appendChild(div_salary);
     role_inputs.appendChild(div_reports);
+}
+
+window.onload = function() {
+    const nav = document.getElementById("myNavbar");
+    const a_elements =nav.getElementsByTagName("a");
+    for (const a of a_elements) {
+        if(("/"+a.href.split("/").reverse()[0]) === window.location.pathname) a.classList.add("active");
+        else a.classList.remove("active");
+    }
 }
