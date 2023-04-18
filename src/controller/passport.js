@@ -15,7 +15,7 @@ passport.use(new localStrategy({
         // check if password is correct
         await user.comparePassword(password, function(err, isMatch){
             if (isMatch) return done(null, user);
-            else return done(null, false, {message: 'Error al iniciar la sesión (Wrong password)' + err});
+            else return done(null, false, {message: 'Error al iniciar la sesión (Wrong password)'});
         });
     }
 }));
