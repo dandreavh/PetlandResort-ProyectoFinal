@@ -21,7 +21,7 @@ router.get('/', isAuthenticated, async (req, res) =>{
 });
 
 router.get('/register', (req, res) => {
-  res.render("/registerAdmin");
+  res.render("/register");
 });
 
 router.get('/homeClient', (req, res) => {
@@ -35,6 +35,7 @@ router.get('/logout', (req, res) => {
   });
 });
 
+//ARREGLAR!!
 // POST to create a new user (General)
 router.post('/register', async function(req, res) {
   console.log("In register");
