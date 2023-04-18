@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 /* GET register page. */
 router.get('/register', function(req, res, next) {
   // evaluate if user logged is admin, manager or not
-  res.render('./pages/registerAdmin');
+  res.render('./pages/register');
 });
 
 /* GET reservations page */
