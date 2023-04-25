@@ -5,6 +5,15 @@ const bcrypt = require('bcryptjs');
 const SALT_WORK_FACTOR = 10;
 // Refered model
 const Pet = require('../models/Pet.js');
+// Position model
+const PositionSchema = new mongoose.Schema({
+    start_date: {type: Date, default: Date.now}, 
+    end_date: {type: Date}, 
+    studies: [{type: String}], 
+    title: {type: String, enum: ['employee', 'manager', ''], default: ''},
+    salary: {type: Number, default: 0},
+    reportsTo: {type: String, default: ''},
+});
 // Users model
 const UserSchema = new mongoose.Schema({
     username: {type: String, required: true, index: {unique: true}}, 
@@ -23,15 +32,8 @@ const UserSchema = new mongoose.Schema({
     // —------------- if role is client: —---------------------------
     pets: [{type: mongoose.Schema.Types.ObjectId, ref: Pet, default: null}], 
     // —------------- if role is staff: —---------------------------
-    start_date: {type: Date, default: Date.now}, 
-    end_date: {type: Date}, 
-    studies: [{type: String}], 
-    position: {
-        title: {type: String},
-        salary: {type: Number},
-        reportsTo: {type: mongoose.Schema.Types.ObjectId},
-    }
-})
+    position: PositionSchema
+});
 // Hashing password
 UserSchema.pre('save', function(next) {
     const user = this;
@@ -57,4 +59,6 @@ UserSchema.methods.comparePassword = function(candidatePassword, cb) {
     });
 };
 
+// module.exports.Comment = mongoose.model('Comment', CommentSchema);
+//module.exports = mongoose.model('Position', PositionSchema);
 module.exports = mongoose.model('User', UserSchema);

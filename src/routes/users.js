@@ -15,10 +15,12 @@ ______________________________________________________________________
 */
 // GET all the users order by registration date
 router.get('/', isAuthenticated, async (req, res) =>{
-  const users = await User.find().sort('-register_date');
+  const users = await User.find()
+  .sort('-register_date');
   if(!users) res.status(500).json({success:false});
   res.send(users);
 });
+
 
 router.get('/register', (req, res) => {
   res.render("/register");
@@ -35,14 +37,15 @@ router.get('/logout', (req, res) => {
   });
 });
 
-//ARREGLAR!!
 // POST to create a new user (General)
 router.post('/register', async function(req, res) {
   console.log("In register");
-  const {name, surnames, idnumber, birthday, phone, email, address, username, password, role} = req.body;
-  const checkUser = await User.findOne({'username': username});
-  if(checkUser){
-    await User.create({name, surnames, idnumber, birthday, phone, email, address, username, password, role});
+  //const {name, surnames, idnumber, birthday, phone, email, address, username, password, role, title, salary, reportsTo} = req.body;
+  const checkUser = await User.find({'username': req.body.username});
+  if(checkUser !== null){
+    //await User.create({name, surnames, idnumber, birthday, phone, email, address, username, password, role, title, salary, reportsTo});
+    await User.create(req.body);
+    console.log(req.body);
     req.flash('success_msg', 'Usuario registrado con éxito');
     res.redirect('../');
   } else{
