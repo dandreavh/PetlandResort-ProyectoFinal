@@ -40,10 +40,8 @@ router.get('/logout', (req, res) => {
 // POST to create a new user (General)
 router.post('/register', async function(req, res) {
   console.log("In register");
-  //const {name, surnames, idnumber, birthday, phone, email, address, username, password, role, title, salary, reportsTo} = req.body;
   const checkUser = await User.find({'username': req.body.username});
   if(checkUser !== null){
-    //await User.create({name, surnames, idnumber, birthday, phone, email, address, username, password, role, title, salary, reportsTo});
     await User.create(req.body);
     console.log(req.body);
     req.flash('success_msg', 'Usuario registrado con éxito');

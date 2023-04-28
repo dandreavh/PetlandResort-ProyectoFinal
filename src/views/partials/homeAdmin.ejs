@@ -1,1 +1,127 @@
-<h1>ADMIN</h1>
+<div class="bg-dark text-light p-4 text-center">
+    <h1 class="font-brand mb-4">Hola, <%= user.name %></h1>
+    <p>Este es tu espacio como administrador/a de la aplicación</p>
+</div>
+<div class="bg-grey p-2 py-5">
+    <h2 class="font-brand text-center mb-5">Panel de administración</h2>
+    <!-- card -->
+    <div class="side-border mx-5 shadow ps-3 py-4 mb-4">
+        <!-- title -->
+        <div class="mb-4">
+            <h3><i class="bi bi-shop"></i> Centro</h3>
+        </div>
+        <!-- options -->
+        <div class="row mb-3 me-2 gx-0">
+            <div class="col-lg-2">Habitaciones:</div>
+            <div class="col-lg px-1">
+                <a href="" class="btn btn-success w-100"><i class="bi bi-plus-circle"></i> Añadir habitación</a>
+            </div>
+            <div class="col-lg px-1">
+                <a href="" class="btn btn-danger w-100"><i class="bi bi-trash"></i> Eliminar habitación</a>
+            </div>
+            <div class="col-lg px-1">
+                <a href="" class="btn btn-dark w-100"><i class="bi bi-card-list"></i> Listar habitaciones</a>
+            </div>
+        </div>
+        <div class="row mb-3 me-2 gx-0">
+            <div class="col-lg-2">Servicios:</div>
+            <div class="col-lg px-1">
+                <a href="" class="btn btn-success w-100"><i class="bi bi-plus-circle"></i> Añadir servicio</a>
+            </div>
+            <div class="col-lg px-1">
+                <a href="" class="btn btn-danger w-100"><i class="bi bi-trash"></i> Eliminar servicio</a>
+            </div>
+            <div class="col-lg px-1">
+                <a href="" class="btn btn-dark w-100"><i class="bi bi-card-list"></i> Listar servicio</a>
+            </div>
+        </div>
+        <div class="row mb-3 me-2 gx-0">
+            <div class="col-lg-2">Gerencia:</div>
+            <div class="col-lg px-1">
+                <a href="" class="btn btn-success w-100"><i class="bi bi-graph-up-arrow"></i> Ganancias</a>
+            </div>
+            <div class="col-lg px-1">
+                <a href="" class="btn btn-danger w-100"><i class="bi bi-graph-down-arrow"></i> Gastos</a>
+            </div>
+            <div class="col-lg px-1">
+                <a href="" class="btn btn-dark w-100"><i class="bi bi-file-earmark-bar-graph"></i> Ver gráficas</a>
+            </div>
+        </div>
+    </div>
+    <!-- card -->
+    <div class="side-border mx-5 shadow ps-3 py-4 mb-4">
+        <!-- title -->
+        <div class="mb-4">
+            <h3><i class="bi bi-people"></i> Usuarios</h3>
+        </div>
+        <!-- options -->
+        <div class="row mb-3 me-2 gx-0">
+            <div class="col-lg-2">Empleados:</div>
+            <div class="col-lg px-1">
+                <a href="/register" class="btn btn-success w-100"><i class="bi bi-plus-circle"></i> Añadir empleado</a>
+            </div>
+            <div class="col-lg px-1">
+                <a href="" class="btn btn-danger w-100"><i class="bi bi-trash"></i> Eliminar empleado</a>
+            </div>
+            <div class="col-lg px-1">
+                <a href="" class="btn btn-dark w-100"><i class="bi bi-card-list"></i> Listar empleados</a>
+            </div>
+        </div>
+        <div class="row mb-3 me-2 gx-0">
+            <div class="col-lg-2">Clientes:</div>
+            <div class="col-lg px-1">
+                <a href="/register" class="btn btn-success w-100"><i class="bi bi-plus-circle"></i> Añadir cliente</a>
+            </div>
+            <div class="col-lg px-1">
+                <a href="" class="btn btn-danger w-100"><i class="bi bi-trash"></i> Eliminar cliente</a>
+            </div>
+            <div class="col-lg px-1">
+                <a href="" class="btn btn-dark w-100"><i class="bi bi-card-list"></i> Listar clientes</a>
+            </div>
+        </div>
+        <div class="row mb-3 me-2 gx-0">
+            <div class="col-lg-2"></div>
+            <div class="col-lg px-1">
+                <a href="../users" class="btn btn-secondary w-100"><i class="bi bi-person-lines-fill"></i> Ver todos los usuarios del sistema</a>
+            </div>
+        </div>
+    </div>
+    <!-- card -->
+    <div class="side-border mx-5 shadow ps-3 py-4 mb-4">
+        <!-- title -->
+        <div class="mb-4">
+            <h3><i class="bi bi-hearts"></i> Mascotas</h3>
+        </div>
+        <!-- options -->
+        <div class="row mb-3 me-2 gx-0">
+            <div class="col-lg px-1">
+                <a href="" class="btn btn-success w-100"><i class="bi bi-plus-circle"></i> Añadir mascota</a>
+            </div>
+            <div class="col-lg px-1">
+                <a href="" class="btn btn-danger w-100"><i class="bi bi-trash"></i> Eliminar mascota</a>
+            </div>
+            <div class="col-lg px-1">
+                <a href="" class="btn btn-dark w-100"><i class="bi bi-card-list"></i> Listar mascotas</a>
+            </div>
+        </div>
+    </div>
+    <!-- card -->
+    <div class="side-border mx-5 shadow ps-3 py-4 mb-4">
+        <!-- title -->
+        <div class="mb-4">
+            <h3><i class="bi bi-journal-bookmark"></i> Reservas</h3>
+        </div>
+        <!-- options -->
+        <div class="row mb-3 me-2 gx-0">
+            <div class="col-lg px-1">
+                <a href="" class="btn btn-success w-100"><i class="bi bi-plus-circle"></i> Añadir reserva</a>
+            </div>
+            <div class="col-lg px-1">
+                <a href="" class="btn btn-danger w-100"><i class="bi bi-trash"></i> Eliminar reserva</a>
+            </div>
+            <div class="col-lg px-1">
+                <a href="" class="btn btn-dark w-100"><i class="bi bi-card-list"></i> Listar reservas</a>
+            </div>
+        </div>
+    </div>
+</div>

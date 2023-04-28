@@ -1,7 +1,7 @@
 /*____________________________________________________________________
   Project: Petland Resort - Proyecto final DAW
-  Version: 1.0
-  Last change: 09/04/2023
+  Version: 2.0
+  Last change: 25/04/2023
   Author: Andrea Vieira Hernández (dandreavh)
 ---------------------[TABLE OF CONTENTS]---------------------
 
@@ -39,8 +39,14 @@ body, .modal {
   padding-bottom: 3px;
 }
 
+/* Images */
 .cover{
   object-fit: cover;
   width: 100%;
   height: 100%;
+}
+
+/* Borders */
+.side-border{
+  border-left: 25px solid rgba(3, 138, 162, 1);
 }
