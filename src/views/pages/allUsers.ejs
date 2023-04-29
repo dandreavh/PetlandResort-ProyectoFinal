@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('../partials/head'); %>
+    <body>
+        <div class="container">
+            <%- include('../partials/header'); %>
+            <div class="bg-grey p-5">
+                <h1 class="font-brand text-center mb-4">Listado de usuarios</h1>
+                <% users.forEach(function(user) { %>
+                    <!-- card -->
+                    <div class="side-border mx-5 shadow ps-3 py-3 mb-4">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <h3 class="mb-3"><%= user.name%> <%= user.surnames %></h3>
+                                <p>Identificador del usuario: <%= user.username %> <i class="bi bi-stickies"></i></p>
+                            </div>
+                            <div class="col-lg me-4">
+                                <p>Rol: <%= user.role%> <%= user.title%></p>
+                                <a href="" class="btn btn-dark w-100">Ver perfil</a>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+            <%- include('../partials/footer'); %>
+        </div>
+    </body>
+</html>    

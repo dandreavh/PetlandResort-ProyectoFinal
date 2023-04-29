@@ -15,10 +15,11 @@ ______________________________________________________________________
 */
 // GET all the users order by registration date
 router.get('/', isAuthenticated, async (req, res) =>{
-  const users = await User.find()
-  .sort('-register_date');
+  const users = await User.find().sort('-register_date');
   if(!users) res.status(500).json({success:false});
-  res.send(users);
+  res.render('./pages/allUsers', {
+    users: users
+  });
 });
 
 
