@@ -22,6 +22,7 @@ mongoose.connect(process.env.DB_URI,)
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const reservationsRouter = require('./routes/reservations');
+const petsRouter = require('./routes/pets');
 
 // Initializations
 const app = express();
@@ -62,6 +63,7 @@ app.use((req, res, next) => {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/reservations', reservationsRouter);
+app.use('/pets', petsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

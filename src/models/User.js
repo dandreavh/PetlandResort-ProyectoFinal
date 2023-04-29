@@ -26,11 +26,11 @@ const UserSchema = new mongoose.Schema({
     address: {type: String, required: true}, 
     birthday: {type: Date, required: true}, 
     register_date: {type: Date, default: Date.now, required: true}, 
-    avatar: {type: String, default:'xxx'}, 
+    avatar: {type: String, default:'./images/2.png'}, 
     status: {type: String, enum: ['inactive', 'active'], default: 'active'}, 
     role: {type: String, enum: ['client', 'staff', 'admin'], default: 'client'}, 
     // —------------- if role is client: —---------------------------
-    pets: [{type: mongoose.Schema.Types.ObjectId, ref: Pet, default: null}], 
+    pets: [{type: String, ref: Pet, default: null}], 
     // —------------- if role is staff: —---------------------------
     position: PositionSchema
 });

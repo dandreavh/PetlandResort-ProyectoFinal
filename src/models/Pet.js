@@ -17,7 +17,7 @@ const PetSchema = new mongoose.Schema({
     comments: {type: String},
     status: {type: String, enum: ['active', 'inactive'], default: 'active'},
     medical_info: {type: String},
-    caregiver: {type: mongoose.Schema.Types.ObjectId, required: true},
+    caregiver: {type: String},
     informs:  [{
         timestamp:  {type: Date, default: Date.now},
         author: {type: mongoose.Schema.Types.ObjectId},

@@ -22,7 +22,6 @@ router.get('/', isAuthenticated, async (req, res) =>{
   });
 });
 
-
 router.get('/register', (req, res) => {
   res.render("/register");
 });
