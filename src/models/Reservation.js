@@ -13,7 +13,7 @@ const ReservationSchema = new mongoose.Schema({
 		assigned: {type: String},
 		details: {type: String}		
     },
-	client: {type: mongoose.Schema.Types.ObjectId, required: true}, 
+	client: {type: String, required: true}, 
 	pets: [{type: mongoose.Schema.Types.ObjectId, required: true}], 
     petsitter: [{type: mongoose.Schema.Types.ObjectId}], 
     observations: {type: String}, 
@@ -22,7 +22,7 @@ const ReservationSchema = new mongoose.Schema({
         pet: {type: mongoose.Schema.Types.ObjectId},
         observations: {type: String},
         scheduled: {type: Date},
-        giver: {type: mongoose.Schema.Types.ObjectId},
+        giver: {type: String},
     }]
 })
 

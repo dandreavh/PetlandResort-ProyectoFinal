@@ -17,7 +17,11 @@
                         <% } %>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/reservations">Reservas</a>
+                        <% if (user == null) { %>
+                            <a class="nav-link" href="/reservations/addReservation">Reservas</a>
+                        <%} else { %>
+                            <a class="nav-link" href="/reservations">Reservas</a>
+                        <% } %>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/rooms">Habitaciones</a>

@@ -30,7 +30,6 @@ router.get('/addPet', isAuthenticated, async (req, res) => {
 // POST to create a new user (General)
 router.post('/addPet', async function(req, res) {
     console.log("In addPet");
-    /* res.locals.currentUser = req.user; */
     const caregiver = req.user.username;
     const checkPet = await Pet.find({'chip': req.body.chip});
     if(checkPet !== null){

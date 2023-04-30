@@ -5,7 +5,11 @@
         <div class="container">
             <%- include('../partials/header'); %>
             <div>
-                <h1>RESERVAS</h1>
+                <% if (user == null) { %>
+                    <h1>RESERVAS</h1>
+                <%} else { %>
+                    <h1>mis reservas</h1>
+                <% } %>
             </div>
             <%- include('../partials/footer'); %>
         </div>

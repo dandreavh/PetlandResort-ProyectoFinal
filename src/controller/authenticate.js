@@ -5,7 +5,7 @@ auth.isAuthenticated = (req, res, next) => {
     if(req.isAuthenticated()){
         return next();
     }
-    req.flash('error_msg', 'Not authenticated');
+    req.flash('error_msg', 'Necesita tener la sesión iniciada');
     res.redirect('../');
 };
 
