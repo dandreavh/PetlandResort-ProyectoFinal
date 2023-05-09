@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
 <%- include('../partials/head'); %>
+
 <body>
     <div class="container">
         <%- include('../partials/header'); %>
         <div class="row bg-grey">
-            <div class="col p-5">
+            <div class="side-border col p-5">
                 <h1 class="font-brand text-center mb-4">Nueva reserva</h1>
-                <form action="/reservations/addReservation" method="POST">
+                <form action="/reservations/addReservation" method="POST" class="">
                     <div class="d-flex justify-content-between">
                         <div class="form-floating mb-3">
                             <input type="date" class="form-control" name="checkin" placeholder="Fecha de entrada"
@@ -20,23 +21,63 @@
                             <label for="checkout">Fecha de salida</label>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-between">
-                        <div class="form-floating mb-3">
-                            <select class="form-select" name="size">
-                                <!-- 'suite', 'pack suite', 'deluxe suite', 'deluxe pack suite' -->
-                                <option selected>Seleccionar </option>
-                                <option value="suite">Suite</option>
-                                <option value="pack suite">Suite familiar</option>
-                                <option value="deluxe suite">Deluxe suite</option>
-                                <option value="deluxe pack suite">Deluxe suite familiar</option>
-                            </select>
-                            <label for="checkin">Tipo de habitación</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="number" class="form-control" name="num_pets" placeholder="Número de huéspedes"
-                                value="1" step="1" min="1" required>
-                            <label for="checkout">Nº de huéspedes</label>
-                        </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-select" name="room.type">
+                            <!-- 'suite', 'pack suite', 'deluxe suite', 'deluxe pack suite' -->
+                            <option selected>Seleccionar </option>
+                            <option value="suite">Suite</option>
+                            <option value="pack suite">Suite familiar</option>
+                            <option value="deluxe suite">Deluxe suite</option>
+                            <option value="deluxe pack suite">Deluxe suite familiar</option>
+                        </select>
+                        <label for="room.type">Tipo de habitación</label>
+                    </div>
+                    <div id="pets" class="">
+                        <% if (petsList.length == 0) { %>
+                        <p><b>Para realizar una reserva debe tener registrada mascotas.
+                                ¿Quiere registrar una mascota? Haga click <a href="">aquí</a>
+                            </b></p>
+                        <% } else {%>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Añadir</th>
+                                    <th scope="col">Mascota</th>
+                                    <th scope="col">Servicios</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% petsList.forEach(pet => { %>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="<%= pet.name %>" value="<%= pet.id %>">
+                                            </div>
+                                        </td>
+                                        <td><%= pet.name %></td>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="veterinaria" name="cares.description">
+                                                <label class="form-check-label" for="cares.description">Veterinaria</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="belleza" name="cares.description">
+                                                <label class="form-check-label" for="cares.description">Belleza</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="entrenamiento" name="cares.description">
+                                                <label class="form-check-label" for="cares.description">Entrenamiento</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="personalizado" name="cares.description">
+                                                <label class="form-check-label" for="cares.description">Personalizado</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
+                        <% } %>
                     </div>
                     <div class="form-floating mb-3">
                         <textarea class="form-control" name="observations" placeholder="Observaciones"></textarea>
@@ -55,7 +96,7 @@
                 </form>
             </div>
             <div class="col p-0">
-                <img src="/images/habitacion2.jpg" alt="Perro en una habitación" class="cover">
+                <img src="/images/cat.jpg" alt="Perro en una habitación" class="cover">
             </div>
         </div>
         <%- include('../partials/footer'); %>

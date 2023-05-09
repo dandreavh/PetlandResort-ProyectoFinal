@@ -1,5 +1,4 @@
-// role_inputs (div para añadir)
-// comprobar si está en registerAdmin
+// add inputs into register form if page is register and if user is 'admin' or 'staff'
 if(window.location.pathname === "/register"){
     document.getElementById("role").addEventListener("change", () => {
         if(document.getElementById("role").value === "staff") addStaffInputs();
@@ -7,6 +6,8 @@ if(window.location.pathname === "/register"){
     });
 }
 
+
+// register options
 function addStaffInputs(){
     let role_inputs = document.getElementById("role_inputs");
     // studies
@@ -82,9 +83,10 @@ function addStaffInputs(){
     role_inputs.appendChild(div_reports);
 }
 
+// styles for menu items
 window.onload = function() {
     const nav = document.getElementById("myNavbar");
-    const a_elements =nav.getElementsByTagName("a");
+    const a_elements = nav.getElementsByTagName("a");
     for (const a of a_elements) {
         if(("/"+a.href.split("/").reverse()[0]) === window.location.pathname) a.classList.add("active");
         else a.classList.remove("active");

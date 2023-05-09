@@ -21,23 +21,25 @@ router.get('/listReservations', async (req, res) =>{
     res.send(reservations);
 });
 
-router.get('/addReservation', async (req, res) => {
-    res.render('./pages/addReservation');
+router.get('/addReservation', isAuthenticated, async (req, res) => {
+    const userLogged = req.user;
+    const petsList = await Pet.find({'caregiver': userLogged.username});
+    res.render('./pages/addReservation', {petsList});
 })
 
 // POST to create a new user (General)
 router.post('/addReservation', isAuthenticated, async function(req, res) {
     console.log("In addReservation");
+    console.log(req.body);
 
-/*     if(){
-        const newPet = await Pet.create(req.body);
-
+    if(isAuthenticated){
+        const newReservation = await Reservation.create(req.body);
         req.flash('success_msg', 'Reserva realizada con éxito');
         res.redirect('../home');
     } else{
         req.flash('error_msg', 'Ha habido un error al realizar la reserva');
         res.redirect('/addPet');
-    } */
+    }
 });
 
 module.exports = router;
