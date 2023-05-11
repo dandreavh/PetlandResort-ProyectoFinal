@@ -4,7 +4,7 @@
     <body>
         <div class="container">
             <%- include('../partials/header'); %>
-            <div class="p-0">
+            <div class="">
                 <% if (user.role == "client") { %>
                     <%- include('../partials/homeClient'); %>
                 <%} else if (user.role == "staff" && user.position.title == "manager") { %>

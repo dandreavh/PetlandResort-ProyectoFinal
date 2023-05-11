@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="form-floating mb-3">
-                        <select class="form-select" name="room.type">
+                        <select class="form-select" name="room[type]">
                             <!-- 'suite', 'pack suite', 'deluxe suite', 'deluxe pack suite' -->
                             <option selected>Seleccionar </option>
                             <option value="suite">Suite</option>
@@ -30,11 +30,11 @@
                             <option value="deluxe suite">Deluxe suite</option>
                             <option value="deluxe pack suite">Deluxe suite familiar</option>
                         </select>
-                        <label for="room.type">Tipo de habitación</label>
+                        <label for="room[type]">Tipo de habitación</label>
                     </div>
                     <div id="pets" class="">
                         <% if (petsList.length == 0) { %>
-                        <p><b>Para realizar una reserva debe tener registrada mascotas.
+                        <p><b>Para realizar una reserva debe tener registradas mascotas.
                                 ¿Quiere registrar una mascota? Haga click <a href="">aquí</a>
                             </b></p>
                         <% } else {%>
@@ -57,20 +57,20 @@
                                         <td><%= pet.name %></td>
                                         <td>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="veterinaria" name="cares.description">
-                                                <label class="form-check-label" for="cares.description">Veterinaria</label>
+                                                <input class="form-check-input" type="checkbox" value="veterinaria" name="cares[description]">
+                                                <label class="form-check-label" for="cares[description]">Veterinaria</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="belleza" name="cares.description">
-                                                <label class="form-check-label" for="cares.description">Belleza</label>
+                                                <input class="form-check-input" type="checkbox" value="belleza" name="cares[description]">
+                                                <label class="form-check-label" for="cares[description]">Belleza</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="entrenamiento" name="cares.description">
-                                                <label class="form-check-label" for="cares.description">Entrenamiento</label>
+                                                <input class="form-check-input" type="checkbox" value="entrenamiento" name="cares[description]">
+                                                <label class="form-check-label" for="cares[description]">Entrenamiento</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="personalizado" name="cares.description">
-                                                <label class="form-check-label" for="cares.description">Personalizado</label>
+                                                <input class="form-check-input" type="checkbox" value="personalizado" name="cares[description]">
+                                                <label class="form-check-label" for="cares[description]">Personalizado</label>
                                             </div>
                                         </td>
                                     </tr>
