@@ -45,8 +45,8 @@
                             <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required minlength="8" maxlength="16">
                             <label for="password">Contraseña de acceso</label>
                         </div>
-                        <% if (user == null && (user.role !== "staff" || user.role !== "admin")) { %>
-                        <%} else { %>
+                        <% if (user == null) { %>
+                        <%} else if (user.role == "admin" || user.role == "staff") { %>
                             <hr>
                             <div class="form-floating mb-3">
                                 <select class="form-select" id="role" name="role">

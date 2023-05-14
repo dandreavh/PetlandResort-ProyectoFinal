@@ -35,7 +35,7 @@
                     <div id="pets" class="">
                         <% if (petsList.length == 0) { %>
                         <p><b>Para realizar una reserva debe tener registradas mascotas.
-                                ¿Quiere registrar una mascota? Haga click <a href="">aquí</a>
+                                ¿Quiere registrar una mascota? Haga click <a href="../pets/addPet">aquí</a>
                             </b></p>
                         <% } else {%>
                         <table class="table table-hover">
@@ -79,6 +79,18 @@
                         </table>
                         <% } %>
                     </div>
+                    <% if (user.role == "admin" || user.role == "staff") { %>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="client" placeholder="Nombre del cliente titular"
+                            required>
+                            <label for="client">Nombre del cliente titular de la reserva</label>
+                        </div>
+                    <% } else {%>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="client" value="<%= user.username %>" placeholder="<%= user.username %>" readonly required>
+                            <label for="client">Nombre del cliente titular de la reserva</label>
+                        </div>
+                    <% } %>
                     <div class="form-floating mb-3">
                         <textarea class="form-control" name="observations" placeholder="Observaciones"></textarea>
                         <label for="observations">Observaciones</label>
