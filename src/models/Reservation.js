@@ -23,7 +23,8 @@ const ReservationSchema = new mongoose.Schema({
         observations: {type: String},
         scheduled: {type: Date},
         giver: {type: String},
-    }]
+    }],
+    price: {type: Number}
 })
 
 module.exports = mongoose.model('Reservation', ReservationSchema);
