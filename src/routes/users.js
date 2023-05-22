@@ -26,10 +26,12 @@ router.get('/register', (req, res) => {
   res.render("/register");
 });
 
-router.get('/homeClient', (req, res) => {
+// ELIMINAR TRAS PRUEBA
+/* router.get('/homeClient', (req, res) => {
   res.render("/homeClient");
-});
+}); */
 
+// GET to log out user and redirect
 router.get('/logout', (req, res) => {
   req.logout(function(err) {
     if (err) { return next(err); }
@@ -43,7 +45,6 @@ router.post('/register', async function(req, res) {
   const checkUser = await User.find({'username': req.body.username});
   if(checkUser !== null){
     await User.create(req.body);
-    console.log(req.body);
     req.flash('success_msg', 'Usuario registrado con éxito');
     res.redirect('../');
   } else{

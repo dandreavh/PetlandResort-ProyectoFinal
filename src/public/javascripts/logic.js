@@ -93,7 +93,7 @@ if(window.location.pathname === "/reservations/addReservation"){
         // change miliseconds into days
         const days = Math.ceil(difference / (1000 * 60 * 60 * 24));
         const price = document.getElementById("price");
-
+        // variables for values
         const suite = 50;
         const pack_suite = 80;
         const deluxe_suite = 90;
