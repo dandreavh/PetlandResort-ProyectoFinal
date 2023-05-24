@@ -29,9 +29,14 @@ body, .modal {
   background-color: rgba(3, 138, 162, 1);
 }
 
-.btn .bg-blue:hover{
-  background-color: rgb(2, 79, 93) !important;
+/* Dark turquoise for texts */
+.text-blue{
+  color: rgba(3, 138, 162, 1);
 }
+
+/* .btn .bg-blue:hover{
+  background-color: rgb(2, 79, 93) !important;
+} */
 
 /* ----- Navbar -----*/
 .navbar-collapse a:hover, .active{
@@ -39,14 +44,26 @@ body, .modal {
   padding-bottom: 3px;
 }
 
-/* Images */
+/* ----- Images -----*/
 .cover{
   object-fit: cover;
   width: 100%;
   height: 100%;
 }
 
+/* Background image */
+.bg-image{
+  background-image: url('/images/place.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
 /* Borders */
 .side-border{
   border-left: 25px solid rgba(3, 138, 162, 1);
+}
+
+/* Hr */
+.h-line{
+  height: 5px !important;
 }

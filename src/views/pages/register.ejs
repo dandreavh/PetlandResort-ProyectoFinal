@@ -4,7 +4,74 @@
     <body>
         <div class="container">
             <%- include('../partials/header'); %>
-            <div class="row bg-grey">
+            <div class="bg-image p-5">
+                <div class="bg-dark bg-opacity-75 w-75 mx-auto p-5">
+                    <h1 class="font-brand text-center mb-4 text-light">Regístrate</h1>
+                    <hr class="h-line bg-blue w-50 mx-auto mb-5">
+                    <form action="/users/register" method="POST" class="d-flex flex-wrap justify-content-evenly">
+                        <fieldset>
+                            <legend class="text-light"><i class="bi bi-1-circle"></i> Datos de usuario</legend>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Nombre de usuario" required minlength="2" autofocus>
+                                <label for="username">Nombre de usuario</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required minlength="8" maxlength="16">
+                                <label for="password">Contraseña de acceso</label>
+                            </div>
+                            <% if (user == null) { %>
+                            <%} else if (user.role == "admin" || user.role == "staff") { %>
+                                <div class="form-floating mb-3">
+                                    <select class="form-select" id="role" name="role">
+                                        <option selected>Selecciona un rol</option>
+                                        <option value="client">Client</option>
+                                        <option value="staff">Staff</option>
+                                        <option value="admin">Admin</option>
+                                    </select>
+                                    <label for="floatingSelect">Rol del usuario</label>
+                                </div>
+                                <div id="role_inputs"></div>
+                            <% } %>
+                        </fieldset>
+                        <fieldset>
+                            <legend class="text-light"><i class="bi bi-2-circle"></i> Datos personales</legend>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" required minlength="2">
+                                <label for="name">Nombre</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="surname" name="surnames" placeholder="Apellidos" required minlength="2">
+                                <label for="surname">Apellidos</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="DNI/NIE/Pasaporte" required minlength="9">
+                                <label for="idnumber">DNI/NIE/Pasaporte</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Fecha de nacimiento" required>
+                                <label for="birthday">Fecha de nacimiento</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="phone" name="phone" placeholder="655123456" required minlength="9">
+                                <label for="phone">Teléfono</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required minlength="5">
+                                <label for="email">Correo electrónico</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="address" name="address" placeholder="Dirección">
+                                <label for="address">Dirección</label>
+                            </div>
+                        </fieldset>                      
+                        <div class="text-center w-100">
+                            <button type="reset" class="btn btn-secondary"><i class="bi bi-x-lg"></i> Cancelar</button>
+                            <button type="submit" class="btn btn-success bg-blue text-light"><i class="bi bi-check-lg"></i> Regístrame</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- <div class="row bg-grey">
                 <div class="col p-5">
                     <h1 class="font-brand text-center mb-4">Regístrate</h1>
                     <form action="/users/register" method="POST">
@@ -68,7 +135,7 @@
                 <div class="col p-0">
                     <img src="/images/care.jpg" alt="Chica cuidando a un perro" class="cover">
                 </div>
-            </div>
+            </div> -->
             <%- include('../partials/footer'); %>
         </div>
     </body>
