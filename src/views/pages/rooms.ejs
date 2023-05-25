@@ -4,8 +4,40 @@
     <body>
         <div class="container">
             <%- include('../partials/header'); %>
-            <div>
-                <h1>HABITACIONES</h1>
+            <div class="p-5">
+                <h1 class="font-brand text-center">Nuestras habitaciones</h1>
+                <hr class="h-line bg-blue w-50 mx-auto mb-5">
+                <div class="d-md-flex flex-wrap">
+                    <div class="card text-center bg-dark text-light shadow-lg border-0 w-50 mx-auto rounded-0">
+                        <img src="/images/habitaciones.jpg" class="card-img-top" alt="Habitación individual" height="70%">
+                        <div class="card-body p-2">
+                            <h6 class="card-title">Suite individual</h6>
+                            <a href="/reservations/addReservation" class="btn btn-secondary bg-blue border-0 shadow-lg rounded-0">Reservar</a>
+                        </div>
+                    </div>
+                    <div class="card text-center bg-dark text-light shadow-lg border-0 w-50 mx-auto rounded-0">
+                        <img src="/images/habitaciondoble.jpg" class="card-img-top" alt="Habitación familiar" height="70%">
+                        <div class="card-body p-2">
+                            <h6 class="card-title">Suite familiar</h6>
+                            <a href="/reservations/addReservation" class="btn btn-secondary bg-blue border-0 shadow-lg rounded-0">Reservar</a>
+                        </div>
+                    </div>
+                    <div class="card text-center bg-dark text-light shadow-lg border-0 w-50 mx-auto mt-4 rounded-0">
+                        <img src="/images/habitacion.jpg" class="card-img-top" alt="Habitación lujosa individual" height="70%">
+                        <div class="card-body p-2">
+                            <h6 class="card-title">Deluxe individual</h6>
+                            <a href="/reservations/addReservation" class="btn btn-secondary bg-blue border-0 shadow-lg rounded-0">Reservar</a>
+                        </div>
+                    </div>
+                    <div class="card text-center bg-dark text-light shadow-lg border-0 w-50 mx-auto mt-4 rounded-0">
+                        <img src="/images/habitacion2.jpg" class="card-img-top" alt="Habitación lujosa familiar" height="70%">
+                        <div class="card-body p-2">
+                            <h6 class="card-title">Deluxe familiar</h5>
+                            <a href="/reservations/addReservation" class="btn btn-secondary bg-blue border-0 shadow-lg rounded-0">Reservar</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <%- include('../partials/footer'); %>
         </div>
