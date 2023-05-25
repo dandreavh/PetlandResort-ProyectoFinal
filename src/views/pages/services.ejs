@@ -4,8 +4,39 @@
     <body>
         <div class="container">
             <%- include('../partials/header'); %>
-            <div>
-                <h1>SERVICIOS</h1>
+            <div class="p-5">
+                <h1 class="font-brand text-center">Nuestros servicios</h1>
+                <hr class="h-line bg-blue w-50 mx-auto mb-5">
+                <div class="d-md-flex flex-wrap">
+                    <div class="card text-center bg-dark text-light shadow-lg border-0 w-50 mx-auto rounded-0">
+                        <img src="/images/vet.jpg" class="card-img-top" alt="servicio de veterinaria" height="70%">
+                        <div class="card-body p-2">
+                            <h6 class="card-title">Veterinaria</h6>
+                            <a href="/reservations/addReservation" class="btn btn-secondary bg-blue border-0 shadow-lg rounded-0">Reservar</a>
+                        </div>
+                    </div>
+                    <div class="card text-center bg-dark text-light shadow-lg border-0 w-50 mx-auto rounded-0">
+                        <img src="/images/Agility.jpg" class="card-img-top" alt="servicio de entrenamiento" height="70%">
+                        <div class="card-body p-2">
+                            <h6 class="card-title">Entrenamiento</h6>
+                            <a href="/reservations/addReservation" class="btn btn-secondary bg-blue border-0 shadow-lg rounded-0">Reservar</a>
+                        </div>
+                    </div>
+                    <div class="card text-center bg-dark text-light shadow-lg border-0 w-50 mx-auto mt-4 rounded-0">
+                        <img src="/images/pelu2.jpg" class="card-img-top" alt="servicio de belleza" height="70%">
+                        <div class="card-body p-2">
+                            <h6 class="card-title">Belleza</h6>
+                            <a href="/reservations/addReservation" class="btn btn-secondary bg-blue border-0 shadow-lg rounded-0">Reservar</a>
+                        </div>
+                    </div>
+                    <div class="card text-center bg-dark text-light shadow-lg border-0 w-50 mx-auto mt-4 rounded-0">
+                        <img src="/images/Ball.jpeg" class="card-img-top" alt="servicio personalizado" height="70%">
+                        <div class="card-body p-2">
+                            <h6 class="card-title">Personalizado</h5>
+                            <a href="/reservations/addReservation" class="btn btn-secondary bg-blue border-0 shadow-lg rounded-0">Reservar</a>
+                        </div>
+                    </div>
+                </div>
             </div>
             <%- include('../partials/footer'); %>
         </div>
