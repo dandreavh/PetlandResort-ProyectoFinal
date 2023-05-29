@@ -1,1 +1,65 @@
-<h1>CLIENTE</h1>
+<!-- hero -->
+<div class="d-md-flex">
+    <div class="col-md-4">
+        <img src="<%= user.avatar %>" alt="Persona" class="cover" />
+    </div>
+    <div class="col-md p-5 text-center">
+        <h1 class="font-brand">Hola, <%= user.name %></h1>
+        <p>
+            Aquí te mostramos tu espacio personal donde puedes gestionar tu perfil, tus mascotas y tus reservas
+        </p>
+        <a href="" class="btn btn-secondary bg-blue rounded-0 border-0 shadow"><i class="bi bi-pencil-square"></i> Editar perfil</a>
+    </div>
+</div>
+<!-- menu -->
+<div class="bg-dark">
+    <ul class="nav justify-content-center py-2">
+        <li class="nav-item">
+            <a class="nav-link text-light font-brand" href="/reservations"><i class="bi bi-journal-bookmark"></i> Mis reservas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light font-brand" href="/pets"><i class="bi bi-hearts"></i> Mis mascotas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light font-brand" href="/services"><i class="bi bi-calendar-heart"></i> Mis servicios</a>
+        </li>
+    </ul>
+</div>
+<!-- reservations  -->
+<div class="bg-grey my-0">
+    <h2 class="font-brand text-center py-5 my-0">Próxima reserva</h2>
+    <% if (reservationsList.length == 0) { %>
+        <div class="text-center mx-auto p-3">
+            <p>No tiene ninguna reserva activa en estos momentos</p>
+            <a href="/reservations/addReservation" class="btn btn-secondary btn-lg bg-blue my-3 rounded-0 border-0 shadow">Reservar ahora</a>
+        </div>
+    <% } else {%>
+        <% reservationsList.forEach(reservation => { %>
+            <!-- card -->
+            <div class="side-border mx-5 shadow ps-3 py-3 mb-4">
+                <div class="">
+                    <h3>Del <%= reservation.checkin %> al <%= reservation.checkout %>  ( día/s)</h3>
+                </div>
+            </div>
+        <% }); %>
+    <% } %>
+</div>
+<!-- pets -->
+<div class="bg-blue my-o">
+    <h2 class="font-brand text-center text-light py-5 my-0">Mis mascotas</h2>
+    <% if (petsList.length == 0) { %>
+        <div class="text-center mx-auto p-3">
+            <p>No tiene registrada ninguna mascota</p>
+            <a href="/pets/addPet" class="btn btn-dark btn-lg my-3 rounded-0 border-0 shadow">Añadir ahora</a>
+        </div>
+    <% } else {%>
+        <% petsList.forEach(pet => { %>
+            <!-- card -->
+            <div class="side-border mx-5 shadow ps-3 py-3 mb-4">
+                <div class="">
+                    
+                </div>
+            </div>
+        <% }); %>
+    <% } %>
+</div>

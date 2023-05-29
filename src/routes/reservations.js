@@ -2,7 +2,7 @@ const { json } = require('express');
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-// model to use
+// models to use
 const User = require('../models/User'); 
 const Pet = require('../models/Pet');
 const Reservation = require('../models/Reservation');

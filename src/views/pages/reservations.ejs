@@ -8,7 +8,14 @@
                 <% if (user == null) { %>
                     <h1>RESERVAS</h1>
                 <%} else { %>
-                    <h1>mis reservas</h1>
+                    <% if (reservationsList.length == 0) { %>
+                        <div class="text-center mx-auto p-3">
+                            <p>No tiene ninguna reserva activa en estos momentos</p>
+                            <a href="/reservations/addReservation" class="btn btn-secondary btn-lg bg-blue my-3 rounded-0 border-0 shadow">Reservar ahora</a>
+                        </div>
+                    <%} else { %>
+                        <h1>mis reservas</h1>
+                    <% } %>
                 <% } %>
             </div>
             <%- include('../partials/footer'); %>

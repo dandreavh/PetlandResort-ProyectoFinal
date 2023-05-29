@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema({
     address: {type: String, required: true}, 
     birthday: {type: Date, required: true}, 
     register_date: {type: Date, default: Date.now, required: true}, 
-    avatar: {type: String, default:'./images/2.png'}, 
+    avatar: {type: String, default:'./images/avatar-default.png'}, 
     status: {type: String, enum: ['inactive', 'active'], default: 'active'}, 
     role: {type: String, enum: ['client', 'staff', 'admin'], default: 'client'}, 
     // —------------- if role is client: —---------------------------
