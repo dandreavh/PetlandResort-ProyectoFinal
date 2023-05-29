@@ -26,10 +26,10 @@
     </ul>
 </div>
 <!-- reservations  -->
-<div class="bg-grey my-0">
+<div class="bg-grey my-0 pb-5">
     <h2 class="font-brand text-center py-5 my-0">Próxima reserva</h2>
     <% if (reservationsList.length == 0) { %>
-        <div class="text-center mx-auto p-3">
+        <div class="text-center mx-auto">
             <p>No tiene ninguna reserva activa en estos momentos</p>
             <a href="/reservations/addReservation" class="btn btn-secondary btn-lg bg-blue my-3 rounded-0 border-0 shadow">Reservar ahora</a>
         </div>
@@ -45,19 +45,32 @@
     <% } %>
 </div>
 <!-- pets -->
-<div class="bg-blue my-o">
-    <h2 class="font-brand text-center text-light py-5 my-0">Mis mascotas</h2>
+<div class="bg-blue my-o p-5">
+    <h2 class="font-brand text-center text-light mb-5 my-0">Mis mascotas</h2>
     <% if (petsList.length == 0) { %>
-        <div class="text-center mx-auto p-3">
+        <div class="text-center mx-auto">
             <p>No tiene registrada ninguna mascota</p>
             <a href="/pets/addPet" class="btn btn-dark btn-lg my-3 rounded-0 border-0 shadow">Añadir ahora</a>
         </div>
     <% } else {%>
         <% petsList.forEach(pet => { %>
             <!-- card -->
-            <div class="side-border mx-5 shadow ps-3 py-3 mb-4">
-                <div class="">
-                    
+            <div class="mx-5 shadow p-3 bg-light mt-3">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="<%= pet.avatar %>" alt="Mascota-<%= pet.specie %>" class="cover">
+                    </div>
+                    <div class="col">
+                        <h3 class="mb-3">Nombre: <%= pet.name %></h3>
+                        <p>Identificador: <%= pet.id %></p>
+                        <p>Tipo: <%= pet.specie %></p>
+                        <p>Raza: <%= pet.breed %></p>
+                        <div class="d-md-flex">
+                            <a href="/editPet" class="btn btn-dark w-100 me-1"><i class="bi bi-pencil-square"></i> Editar mascota</a>
+                            <a href="/pets/addPet" class="btn btn-success w-100 me-1"><i class="bi bi-plus-circle"></i> Añadir mascota</a>
+                            <a href="" class="btn btn-danger w-100"><i class="bi bi-trash"></i> Quitar mascota</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         <% }); %>
