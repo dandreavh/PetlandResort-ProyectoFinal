@@ -30,9 +30,14 @@ router.get('/addReservation', isAuthenticated, async (req, res) => {
 // POST to create a new user (General)
 router.post('/addReservation', isAuthenticated, async function(req, res) {
     console.log("In addReservation");
-    console.log(req.body);
-
     if(isAuthenticated){
+        const userLogged = req.user;
+        if(userLogged.role === "client"){
+
+        } else{
+            
+        }
+        const {checkin, checkout, room_type, cares_description, observations} = req.body;
         const newReservation = await Reservation.create(req.body);
         req.flash('success_msg', 'Reserva realizada con éxito');
         res.redirect('../home');

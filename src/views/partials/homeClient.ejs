@@ -18,7 +18,7 @@
             <a class="nav-link text-light font-brand" href="/reservations"><i class="bi bi-journal-bookmark"></i> Mis reservas</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-light font-brand" href="/pets"><i class="bi bi-hearts"></i> Mis mascotas</a>
+            <a class="nav-link text-light font-brand" href="#pets"><i class="bi bi-hearts"></i> Mis mascotas</a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-light font-brand" href="/services"><i class="bi bi-calendar-heart"></i> Mis servicios</a>
@@ -45,7 +45,7 @@
     <% } %>
 </div>
 <!-- pets -->
-<div class="bg-blue my-o p-5">
+<div class="bg-blue my-o p-5" id="pets">
     <h2 class="font-brand text-center text-light mb-5 my-0">Mis mascotas</h2>
     <% if (petsList.length == 0) { %>
         <div class="text-center mx-auto">
