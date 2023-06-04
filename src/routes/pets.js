@@ -27,7 +27,7 @@ router.get('/addPet', isAuthenticated, async (req, res) => {
     res.render('./pages/addPet');
 })
 
-// POST to create a new pet (General)
+// POST to create a new pet (General) <REVISAR>
 router.post('/addPet', async function(req, res) {
     console.log("In addPet");
     const caregiver = req.user.username;

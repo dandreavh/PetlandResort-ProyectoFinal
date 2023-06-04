@@ -32,14 +32,7 @@ router.post('/addReservation', isAuthenticated, async function(req, res) {
     console.log("In addReservation");
     if(isAuthenticated){
         const userLogged = req.user;
-        if(userLogged.role === "client"){
-
-        } else{
-            
-        }
-        console.log("--------------------" + req.body.pets);
         const newReservation = await Reservation.create(req.body);
-        console.log(newReservation);
         req.flash('success_msg', 'Reserva realizada con éxito'); 
     } else{
         req.flash('error_msg', 'Ha habido un error al realizar la reserva');

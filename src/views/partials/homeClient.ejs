@@ -8,7 +8,7 @@
         <p>
             Aquí te mostramos tu espacio personal donde puedes gestionar tu perfil, tus mascotas y tus reservas
         </p>
-        <a href="" class="btn btn-secondary bg-blue rounded-0 border-0 shadow"><i class="bi bi-pencil-square"></i> Editar perfil</a>
+        <a href="/users/editUser" class="btn btn-secondary bg-blue rounded-0 border-0 shadow"><i class="bi bi-pencil-square"></i> Editar perfil</a>
     </div>
 </div>
 <!-- menu -->
@@ -37,8 +37,20 @@
         <% reservationsList.forEach(reservation => { %>
             <!-- card -->
             <div class="side-border mx-5 shadow ps-3 py-3 mb-4">
-                <div class="">
-                    <h3>Del <%= reservation.checkin %> al <%= reservation.checkout %>  ( día/s)</h3>
+                <h3 class="m-3">Del <strong><%= new Date(reservation.checkin).toLocaleDateString() %></strong> al <strong><%= new Date(reservation.checkout).toLocaleDateString() %></strong> (<%= (Math.ceil(reservation.checkout - reservation.checkin) / (1000 * 60 * 60 * 24)) %> día/s)</h3>
+                <div class="ms-3 d-md-flex">
+                    <div class="w-75">
+                        <p>Referencia de la reserva: <span><%= reservation.id %></span></p>
+                        <p>Nº de huéspedes: <span><%= reservation.pets.length %></span></p>
+                        <p>Tipo de habitación: <span><%= reservation.room.type %></span></p>
+                        <p>Observaciones: <span><%= reservation.observations %></span></p>
+                        <p>Servicios extra: <span><%= reservation.cares %></span></p>
+                    </div>
+                    <div class="p-5 pb-2">
+                        <a href="/reservations/editReservation" class="btn btn-outline-dark w-100 mb-2"><i class="bi bi-pencil-square"></i> Editar reserva</a>
+                        <a href="/reservations/addReservation" class="btn btn-outline-success w-100 mb-2"><i class="bi bi-plus-circle"></i> Añadir nueva reserva</a>
+                        <a href="/reservations/removeReservation" class="btn btn-outline-danger w-100 mb-2"><i class="bi bi-trash"></i> Eliminar reserva</a>
+                    </div>
                 </div>
             </div>
         <% }); %>
@@ -66,9 +78,9 @@
                         <p>Tipo: <%= pet.specie %></p>
                         <p>Raza: <%= pet.breed %></p>
                         <div class="d-md-flex">
-                            <a href="/editPet" class="btn btn-dark w-100 me-1"><i class="bi bi-pencil-square"></i> Editar mascota</a>
+                            <a href="/pets/editPet" class="btn btn-dark w-100 me-1"><i class="bi bi-pencil-square"></i> Editar mascota</a>
                             <a href="/pets/addPet" class="btn btn-success w-100 me-1"><i class="bi bi-plus-circle"></i> Añadir mascota</a>
-                            <a href="" class="btn btn-danger w-100"><i class="bi bi-trash"></i> Quitar mascota</a>
+                            <a href="/pets/removeReservation" class="btn btn-danger w-100"><i class="bi bi-trash"></i> Quitar mascota</a>
                         </div>
                     </div>
                 </div>
