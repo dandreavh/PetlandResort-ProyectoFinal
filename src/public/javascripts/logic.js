@@ -84,41 +84,49 @@ function addStaffInputs(){
 
 // price
 if(window.location.pathname === "/reservations/addReservation"){
-    const room = document.getElementsByName("room[type]")[0];
-    room.addEventListener("change", () => {
-        const checkin = new Date(document.getElementsByName("checkin")[0].value);
-        const checkout = new Date(document.getElementsByName("checkout")[0].value);
-        // get the difference between the dates in miliseconds
-        const difference = Math.abs(checkout - checkin);
-        // change miliseconds into days
-        const days = Math.ceil(difference / (1000 * 60 * 60 * 24));
+    document.addEventListener('DOMContentLoaded', function() {
+        let room_type = document.getElementById("room[type]");
         const price = document.getElementById("price");
-        // variables for values
-        const suite = 50;
-        const pack_suite = 80;
-        const deluxe_suite = 90;
-        const deluxe_pack_suite = 150;
-        let room_price;
+        const price_info = document.getElementById("price_info");
 
-        if(room.value === "suite"){
-            room_price = suite;
-        } else if(room.value === "pack suite"){
-            room_price = pack_suite;
-        } else if(room.value === "deluxe suite"){
-            room_price = deluxe_suite;
-        } else if(room.value === "deluxe pack suite"){
-            room_price = deluxe_pack_suite;
-        } else{
-            if(room_price !== null && days > 0){
-                price.getElementsByTagName("p")[0].textContent = "* "+room_price+" €/día x "+days+" días";
-                price.getElementsByTagName("h3")[0].textContent = room_price*days + " € "
-            } else{
-                price.getElementsByTagName("p")[0].textContent = " ";
-                price.getElementsByTagName("h3")[0].textContent = " ";
-            }
-        }
-    })
-    
+        room_type.addEventListener('change', function() {
+            const checkin = new Date(document.getElementsByName("checkin")[0].value);
+            const checkout = new Date(document.getElementsByName("checkout")[0].value);
+            // get the difference between the dates in miliseconds
+            const difference = Math.abs(checkout - checkin);
+            // change miliseconds into days
+            const days = Math.ceil(difference / (1000 * 60 * 60 * 24));
+            const selectedOption = room_type.value;
+            // variables for values
+            const suite = 50;
+            const pack_suite = 80;
+            const deluxe_suite = 90;
+            const deluxe_pack_suite = 150;
+            // set price depending on the selected option (room)
+            switch (selectedOption) {
+            case "suite":
+                //precio.innerHTML = "100";
+                price.value = suite*days;
+                price_info.innerHTML = "* "+suite+" €/día x "+days+" días";
+                break;
+            case "pack suite":
+                //precio.innerHTML = "150";
+                price.value = pack_suite*days;
+                price_info.innerHTML = "* "+pack_suite+" €/día x "+days+" días";
+                break;
+            case "deluxe suite":
+                //precio.innerHTML = "200";
+                price.value = deluxe_suite*days;
+                price_info.innerHTML = "* "+deluxe_suite+" €/día x "+days+" días";
+                break;
+            case "deluxe pack suite":
+                //precio.innerHTML = "200";
+                price.value = deluxe_pack_suite*days;
+                price_info.innerHTML = "* "+deluxe_pack_suite+" €/día x "+days+" días";
+                break;
+            };
+        });
+    });
 }
 
 // styles for menu items

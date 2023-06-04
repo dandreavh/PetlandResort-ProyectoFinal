@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 router.get('/home', async (req, res) => {
   const userLogged = req.user;
 
-  if(isAuthenticated && userLogged.role === 'client'){
+  if(isAuthenticated && userLogged.role === 'client') {
     const petsList = await Pet.find({'caregiver': userLogged.username});
     const reservationsList = await Reservation.find({'client': userLogged.username});
     res.render('./pages/home',{

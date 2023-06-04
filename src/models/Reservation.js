@@ -14,16 +14,10 @@ const ReservationSchema = new mongoose.Schema({
 		details: {type: String}		
     },
 	client: {type: String, required: true}, 
-	pets: [{type: mongoose.Schema.Types.ObjectId, required: true}], 
+    pets: [{type: mongoose.Schema.Types.ObjectId, required: true}], 
+    cares: {type: String},
     petsitter: [{type: mongoose.Schema.Types.ObjectId}], 
     observations: {type: String}, 
-    cares: [{
-        description: {type: String},
-        pet: {type: mongoose.Schema.Types.ObjectId},
-        observations: {type: String},
-        scheduled: {type: Date},
-        giver: {type: String},
-    }],
     price: {type: Number}
 })
 

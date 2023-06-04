@@ -27,7 +27,7 @@ router.get('/addReservation', isAuthenticated, async (req, res) => {
     res.render('./pages/addReservation', {petsList});
 })
 
-// POST to create a new user (General)
+// POST to create a new reservation (General)
 router.post('/addReservation', isAuthenticated, async function(req, res) {
     console.log("In addReservation");
     if(isAuthenticated){
@@ -37,14 +37,14 @@ router.post('/addReservation', isAuthenticated, async function(req, res) {
         } else{
             
         }
-        const {checkin, checkout, room_type, cares_description, observations} = req.body;
+        console.log("--------------------" + req.body.pets);
         const newReservation = await Reservation.create(req.body);
-        req.flash('success_msg', 'Reserva realizada con éxito');
-        res.redirect('../home');
+        console.log(newReservation);
+        req.flash('success_msg', 'Reserva realizada con éxito'); 
     } else{
         req.flash('error_msg', 'Ha habido un error al realizar la reserva');
-        res.redirect('/addPet');
     }
+    res.redirect('../home');
 });
 
 module.exports = router;
