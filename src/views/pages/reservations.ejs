@@ -19,8 +19,8 @@
                         <!-- diferenciar si la reserva está activa o no -->
                         <% reservationsList.forEach(reservation => { %>
                             <!-- card -->
-                            <div class="side-border mx-5 shadow ps-3 py-3 mb-4">
-                                <h3 class="m-3"><i class="bi bi-calendar2-week"></i> Del <strong><%= new Date(reservation.checkin).toLocaleDateString() %></strong> al <strong><%= new Date(reservation.checkout).toLocaleDateString() %></strong> (<%= (Math.ceil(reservation.checkout - reservation.checkin) / (1000 * 60 * 60 * 24)) %> día/s)</h3>
+                            <div class="mx-5 shadow pb-3 mb-4">
+                                <h3 class="bg-blue text-light text-center p-4"><i class="bi bi-calendar2-week"></i> Del <strong><%= new Date(reservation.checkin).toLocaleDateString() %></strong> al <strong><%= new Date(reservation.checkout).toLocaleDateString() %></strong> (<%= (Math.ceil(reservation.checkout - reservation.checkin) / (1000 * 60 * 60 * 24)) %> día/s)</h3>
                                 <div class="ms-3 d-md-flex">
                                     <div class="w-75">
                                         <p>Referencia de la reserva: <span><%= reservation.id %></span></p>
@@ -30,9 +30,13 @@
                                         <p>Servicios extra: <span><%= reservation.cares %></span></p>
                                     </div>
                                     <div class="px-5 pb-2">
-                                        <div class="mb-3">
-                                            <p class="h3">Estado: <span class="text-blue"><%= reservation.status %></span></p>
-                                            <p class="h4"><span><strong><%= reservation.price %> €</strong> (pago en centro)</span></p>
+                                        <div class="mb-3 mx-auto">
+                                            <p class="h3">
+                                                <i class="bi bi-tags"></i> 
+                                                <span class="text-secondary"><%= reservation.status %> - </span> 
+                                                <span> <strong> <%= reservation.price %> €</strong></span>
+                                            </p>
+                                            <p class="h4"></p>
                                         </div>
                                         <a href="/reservations/editReservation" class="btn btn-outline-dark w-100 mb-2"><i class="bi bi-pencil-square"></i> Editar reserva</a>
                                         <a href="/reservations/addReservation" class="btn btn-outline-success w-100 mb-2"><i class="bi bi-plus-circle"></i> Añadir nueva reserva</a>
