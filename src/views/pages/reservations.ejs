@@ -14,7 +14,33 @@
                             <a href="/reservations/addReservation" class="btn btn-secondary btn-lg bg-blue my-3 rounded-0 border-0 shadow">Reservar ahora</a>
                         </div>
                     <%} else { %>
-                        <h1>mis reservas</h1>
+                        <h1 class="font-brand text-center">Mis reservas</h1>
+                        <hr class="h-line bg-blue w-50 mx-auto mb-5">
+                        <!-- diferenciar si la reserva está activa o no -->
+                        <% reservationsList.forEach(reservation => { %>
+                            <!-- card -->
+                            <div class="side-border mx-5 shadow ps-3 py-3 mb-4">
+                                <h3 class="m-3"><i class="bi bi-calendar2-week"></i> Del <strong><%= new Date(reservation.checkin).toLocaleDateString() %></strong> al <strong><%= new Date(reservation.checkout).toLocaleDateString() %></strong> (<%= (Math.ceil(reservation.checkout - reservation.checkin) / (1000 * 60 * 60 * 24)) %> día/s)</h3>
+                                <div class="ms-3 d-md-flex">
+                                    <div class="w-75">
+                                        <p>Referencia de la reserva: <span><%= reservation.id %></span></p>
+                                        <p>Nº de huéspedes: <span><%= reservation.pets.length %></span></p>
+                                        <p>Tipo de habitación: <span><%= reservation.room.type %></span></p>
+                                        <p>Observaciones: <span><%= reservation.observations %></span></p>
+                                        <p>Servicios extra: <span><%= reservation.cares %></span></p>
+                                    </div>
+                                    <div class="px-5 pb-2">
+                                        <div class="mb-3">
+                                            <p class="h3">Estado: <span class="text-blue"><%= reservation.status %></span></p>
+                                            <p class="h4"><span><strong><%= reservation.price %> €</strong> (pago en centro)</span></p>
+                                        </div>
+                                        <a href="/reservations/editReservation" class="btn btn-outline-dark w-100 mb-2"><i class="bi bi-pencil-square"></i> Editar reserva</a>
+                                        <a href="/reservations/addReservation" class="btn btn-outline-success w-100 mb-2"><i class="bi bi-plus-circle"></i> Añadir nueva reserva</a>
+                                        <a href="/reservations/removeReservation" class="btn btn-outline-danger w-100 mb-2"><i class="bi bi-trash"></i> Eliminar reserva</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }); %>
                     <% } %>
                 <% } %>
             </div>
