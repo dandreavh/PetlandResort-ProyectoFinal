@@ -27,7 +27,7 @@
                     </div>
                     <div class="d-md-flex flex-wrap justify-content-between">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="DNI/NIE/Pasaporte" value="<%= user.idnumber %>" required minlength="9">
+                            <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="DNI/NIE/Pasaporte" value="<%= user.idnumber %>" required minlength="5">
                             <label for="idnumber">DNI/NIE/Pasaporte</label>
                         </div>
                         <div class="form-floating mb-3">
@@ -40,7 +40,7 @@
                         <label for="birthday">Fecha de nacimiento</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="address" name="address" placeholder="Dirección" value="<%= user.address %>">
+                        <input type="text" class="form-control" id="address" name="address" placeholder="Dirección" value="<%= user.address %>" required minlength="3">
                         <label for="address">Dirección</label>
                     </div>
                     <div class="form-floating mb-3">

@@ -16,7 +16,7 @@
                                 <label for="username">Nombre de usuario</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required minlength="8" maxlength="16">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required minlength="6">
                                 <label for="password">Contraseña de acceso</label>
                             </div>
                             <% if (user == null) { %>
@@ -44,7 +44,7 @@
                                 <label for="surname">Apellidos</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="DNI/NIE/Pasaporte" required minlength="9">
+                                <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="DNI/NIE/Pasaporte" required minlength="5">
                                 <label for="idnumber">DNI/NIE/Pasaporte</label>
                             </div>
                             <div class="form-floating mb-3">
@@ -60,7 +60,7 @@
                                 <label for="email">Correo electrónico</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="address" name="address" placeholder="Dirección">
+                                <input type="text" class="form-control" id="address" name="address" placeholder="Dirección" required minlength="3">
                                 <label for="address">Dirección</label>
                             </div>
                         </fieldset>                      

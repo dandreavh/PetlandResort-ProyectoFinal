@@ -167,6 +167,17 @@ function setMinimumDate() {
     });
 }
 
+// validate birthday
+if(window.location.pathname === "/register" || window.location.pathname === "/users/editUser"){
+    document.addEventListener('DOMContentLoaded', function() {
+        const birthdayInput = document.getElementById("birthday");
+        birthdayInput.addEventListener("click", () => {
+            const currentDate = new Date();
+            birthdayInput.max = currentDate.toISOString().split("T")[0];
+        })
+    });
+}
+
 // styles for menu items
 window.onload = function() {
     const nav = document.getElementById("myNavbar");
