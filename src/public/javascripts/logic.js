@@ -149,14 +149,14 @@ function setPolicies(){
 
 function setMinimumCheckinDate() {
     const checkoutInput = document.getElementById("checkin");
-    checkoutInput.addEventListener("change", () => {
+    checkoutInput.addEventListener("click", () => {
         checkoutInput.min = new Date().toISOString().split('T')[0];
     });
 }
 
 function setMinimumCheckoutDate() {
     const checkoutInput = document.getElementById("checkout");
-    checkoutInput.addEventListener("change", () => {
+    checkoutInput.addEventListener("click", () => {
         const currentDate = new Date();
         currentDate.setDate(currentDate.getDate() + 1);
         const minimumDate = currentDate.toISOString().split('T')[0];
