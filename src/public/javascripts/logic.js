@@ -92,6 +92,7 @@ if(window.location.pathname === "/reservations/addReservation"){
     });
 }
 
+// set price depending on the room type
 function setPrice(){
     let room_type = document.getElementById("room[type]");
     const price = document.getElementById("price");
@@ -136,6 +137,7 @@ function setPrice(){
     });
 }
 
+// verifies if policies are accepted
 function setPolicies(){
     const policiesCheckbox = document.getElementById("policies");
     policiesCheckbox.addEventListener('change', function() {
@@ -147,6 +149,7 @@ function setPolicies(){
     });
 }
 
+// disable possibility of choosing previous dates from current
 function setMinimumCheckinDate() {
     const checkoutInput = document.getElementById("checkin");
     checkoutInput.addEventListener("click", () => {
@@ -154,6 +157,7 @@ function setMinimumCheckinDate() {
     });
 }
 
+// disable possibility of choosing previous dates from current and checkin date
 function setMinimumCheckoutDate() {
     const checkoutInput = document.getElementById("checkout");
     checkoutInput.addEventListener("click", () => {
