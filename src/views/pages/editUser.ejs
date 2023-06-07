@@ -8,14 +8,74 @@
             <form class="d-flex flex-wrap" action="/users/editUser?_method=PUT" method="POST">
                 <input type="hidden" value="_method" value="PUT">
                 <div class="bg-blue p-5 w-50">
-                    <h1 class="font-brand text-center text-light mb-4">Modificar mi perfil</h1>
-
+                    <h1 class="font-brand text-center text-light mb-5">Mi perfil</h1>
+                    <div class="form-group mb-5 text-light">
+                        <p>
+                            <i class="bi bi-person"> </i><strong>Usuario:</strong>  <%= user.username %> 
+                        </p>
+                        <p>
+                            <i class="bi bi-key"></i> ¿Quieres cambiar la contraseña? Pulsa <a href="" class="text-light">aquí</a>
+                        </p>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" value="<%= user.name %>" required minlength="2">
+                        <label for="name">Nombre</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="surname" name="surnames" placeholder="Apellidos" value="<%= user.surnames %>" required minlength="2">
+                        <label for="surname">Apellidos</label>
+                    </div>
+                    <div class="d-md-flex flex-wrap justify-content-between">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="idnumber" name="idnumber" placeholder="DNI/NIE/Pasaporte" value="<%= user.idnumber %>" required minlength="9">
+                            <label for="idnumber">DNI/NIE/Pasaporte</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="655123456" value="<%= user.phone %>" required minlength="9">
+                            <label for="phone">Teléfono</label>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Fecha de nacimiento" value="<%= user.birthday.toISOString().split('T')[0] %>" required>
+                        <label for="birthday">Fecha de nacimiento</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="address" name="address" placeholder="Dirección" value="<%= user.address %>">
+                        <label for="address">Dirección</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" value="<%= user.email %>"  required minlength="5">
+                        <label for="email">Correo electrónico</label>
+                    </div>
                 </div>
                 <div class="w-50 p-5">
                     <div>
-                        <img src="" alt="">
+                        <img src="<%= user.avatar %>" alt="Persona" class="cover" />
                     </div>
-                    <!-- Subir un archivo para cambiar imagen -->
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="avatar"><i class="bi bi-cloud-arrow-up"></i></label>
+                        <input type="file" class="form-control" name="avatar" id="avatar" value="<%= user.avatar %>">
+                    </div>
+                    <table class="table table-hover mt-4">
+                        <thead>
+                            <tr>
+                                <th scope="col">Mascota</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% petsList.forEach(pet => { %>
+                                <tr>
+                                    <td><%= pet.name %></td>
+                                    <td>
+                                        <a href="/pets/editPet" class="btn btn-secondary btn-sm"><i class="bi bi-pencil-square"></i> Editar</a>
+                                        <a href="/pets/addPet" class="btn btn-success btn-sm"><i class="bi bi-plus-circle"></i> Añadir</a>
+                                        <a href="/pets/removePet" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Eliminar</a>
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="text-center w-100 my-4">
                     <a href="/home" class="btn btn-secondary">

@@ -2,11 +2,15 @@ const { json } = require('express');
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const User = require('../models/User'); // model to use
 const db = mongoose.connection;
 const passport = require('passport');
 const {isAuthenticated} = require('../controller/authenticate');
 const { check, validationResult } = require('express-validator');
+
+// models to use
+const User = require('../models/User'); 
+const Pet = require('../models/Pet');
+
 
 /* 
 ______________________________________________________________________
@@ -15,23 +19,32 @@ ______________________________________________________________________
 ______________________________________________________________________
 */
 // GET all the users order by registration date
-router.get('/', isAuthenticated, async (req, res) =>{
-  const users = await User.find().sort('-register_date');
-  if(!users) res.status(500).json({success:false});
-  res.render('./pages/allUsers', {
-    users: users
-  });
-});
-
-router.get('/editUser', isAuthenticated, async (req, res) => {
-  console.log("In get editUser");
-  try {
-    res.render('./pages/editUser');
-  } catch (error) {
-    req.flash('error_msg', error);
-    res.redirect('/home');
+router.get('/', isAuthenticated, 
+  async (req, res) =>{
+    try {
+      const users = await User.find().sort('-register_date');
+      res.render('./pages/allUsers', {users});
+    } catch (error) {
+      req.flash('error_msg', error);
+      res.redirect('/home');
+    }
   }
-});
+);
+
+// GET to redirect to editUser post
+router.get('/editUser', isAuthenticated, 
+  async (req, res) => {
+    console.log("In get editUser");
+    const userLogged = req.user;
+    const petsList = await Pet.find({'caregiver': userLogged.username});
+    try {
+      res.render('./pages/editUser', {petsList});
+    } catch (error) {
+      req.flash('error_msg', error);
+      res.redirect('/home');
+    }
+  }
+);
 
 // PUT to update a reservation and redirect back to home page with message
 router.put('/editUser', isAuthenticated, 
