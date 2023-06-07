@@ -2,6 +2,7 @@ const { json } = require('express');
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const { check, validationResult } = require('express-validator');
 // models to use
 const User = require('../models/User'); 
 const Pet = require('../models/Pet');
@@ -32,8 +33,49 @@ router.get('/addReservation', isAuthenticated, async (req, res) => {
 });
 
 // POST to create a new reservation
-router.post('/addReservation', isAuthenticated, async (req, res) => {
+router.post('/addReservation', isAuthenticated, 
+[// validations
+    check('checkin')
+        .notEmpty().withMessage('El campo "fecha de entrada" es obligatorio')
+        .isDate().withMessage('El campo "fecha de entrada" debe ser una fecha válida')
+        .custom((value, { req }) => {
+            const checkin = new Date(value);
+            const currentDate = new Date();
+            if (checkin < currentDate) {
+                throw new Error('La fecha de entrada debe ser igual o posterior a la fecha actual');
+            }
+            return true;
+        }),
+    check('checkout')
+        .notEmpty().withMessage('El campo "fecha de salida" es obligatorio')
+        .isDate().withMessage('El campo "fecha de salida" debe ser una fecha válida')
+        .custom((value, { req }) => {
+            const checkout = new Date(value);
+            const checkinDate = new Date(req.body.checkin);
+            if (checkout <= checkinDate) {
+                throw new Error('La fecha de salida debe ser posterior a la fecha de entrada');
+            }
+            return true;
+        }),
+    check('room.type')
+        .notEmpty().withMessage('El campo "tipo de habitación" es obligatorio')
+        .isIn(['suite', 'pack suite', 'deluxe suite', 'deluxe pack suite']).withMessage('El campo "tipo de habitación" debe ser uno de los valores permitidos'),
+    check('client')
+        .notEmpty().withMessage('El campo "Nombre del titular de la reserva" es obligatorio'),
+    check('pets')
+        .isArray({ min: 1 }).withMessage('Debes seleccionar al menos una mascota'),
+], 
+async (req, res) => {
     console.log("In post addReservation");
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        console.log(errors);
+        for (const error of errors.array()) {
+            req.flash('error_msg','\n'+ error.msg + '\n');
+        }
+        return res.redirect('/reservations/addReservation');
+    }
+
     if(isAuthenticated){
         const userLogged = req.user;
         const newReservation = await Reservation.create(req.body);

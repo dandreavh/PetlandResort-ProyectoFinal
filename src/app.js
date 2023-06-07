@@ -10,7 +10,7 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
-const { check, validationResult } = require('express-validator');
+const validator = require('express-validator');
 
 // ODM configuration - database
 const mongoose = require('mongoose');
