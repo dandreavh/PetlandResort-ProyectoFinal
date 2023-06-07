@@ -82,13 +82,12 @@ function addStaffInputs(){
     role_inputs.appendChild(div_reports);
 }
 
-// addReservation functionalities
-if(window.location.pathname === "/reservations/addReservation"){
+// add and edit Reservation functionalities
+if(window.location.pathname === "/reservations/addReservation" || window.location.pathname === "/reservations/editReservation"){
     document.addEventListener('DOMContentLoaded', function() {
         setPrice();
         setPolicies();
-        setMinimumCheckinDate();
-        setMinimumCheckoutDate();
+        setMinimumDate();
     });
 }
 
@@ -150,21 +149,21 @@ function setPolicies(){
 }
 
 // disable possibility of choosing previous dates from current
-function setMinimumCheckinDate() {
-    const checkoutInput = document.getElementById("checkin");
-    checkoutInput.addEventListener("click", () => {
-        checkoutInput.min = new Date().toISOString().split('T')[0];
-    });
-}
+function setMinimumDate() {
+    const checkinInput = document.getElementById("checkin");
+    checkinInput.addEventListener("click", () => {
+        // checkin date
+        checkinInput.min = new Date().toISOString().split('T')[0];
 
-// disable possibility of choosing previous dates from current and checkin date
-function setMinimumCheckoutDate() {
-    const checkoutInput = document.getElementById("checkout");
-    checkoutInput.addEventListener("click", () => {
-        const currentDate = new Date();
-        currentDate.setDate(currentDate.getDate() + 1);
-        const minimumDate = currentDate.toISOString().split('T')[0];
-        checkoutInput.min = minimumDate;
+        // checkout date
+        // disable possibility of choosing previous dates from checkin date
+        checkinInput.addEventListener("input", () => {
+            const checkoutInput = document.getElementById("checkout");
+            const checkinDate = new Date(checkinInput.value);
+            const checkoutDate = new Date(checkinDate);
+            checkoutDate.setDate(checkinDate.getDate() + 1);
+            checkoutInput.min = checkoutDate.toISOString().split("T")[0];
+        });
     });
 }
 

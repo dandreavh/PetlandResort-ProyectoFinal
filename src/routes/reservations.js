@@ -61,9 +61,9 @@ router.post('/addReservation', isAuthenticated,
                 }
                 return true;
             }),
-        check('room.type')
+        /*  check('room.type')
             .notEmpty().withMessage('El campo "tipo de habitación" es obligatorio')
-            .isIn(['suite', 'pack suite', 'deluxe suite', 'deluxe pack suite']).withMessage('El campo "tipo de habitación" debe ser uno de los valores permitidos'),
+            .isIn(['suite', 'pack suite', 'deluxe suite', 'deluxe pack suite']).withMessage('El campo "tipo de habitación" debe ser uno de los valores permitidos'), */
         check('client')
             .notEmpty().withMessage('El campo "Nombre del titular de la reserva" es obligatorio'),
         check('pets')

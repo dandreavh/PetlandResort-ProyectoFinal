@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head'); %>
+
+<body>
+    <div class="container">
+        <%- include('../partials/header'); %>
+            <form class="d-flex flex-wrap" action="/users/editUser?_method=PUT" method="POST">
+                <input type="hidden" value="_method" value="PUT">
+                <div class="bg-blue p-5 w-50">
+                    <h1 class="font-brand text-center text-light mb-4">Modificar mi perfil</h1>
+
+                </div>
+                <div class="w-50 p-5">
+                    <div>
+                        <img src="" alt="">
+                    </div>
+                    <!-- Subir un archivo para cambiar imagen -->
+                </div>
+                <div class="text-center w-100 my-4">
+                    <a href="/home" class="btn btn-secondary">
+                        <i class="bi bi-x-lg"></i> 
+                        Cancelar cambios
+                    </a>
+                    <button type="submit" class="btn btn-success bg-blue text-light">
+                        <i class="bi bi-check-lg"></i> 
+                        Guardar cambios
+                    </button>
+                </div>
+            </form>
+        <%- include('../partials/footer'); %>
+    </div>
+</body>
+</html>
