@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head'); %>
+
+<body>
+    <div class="container">
+        <%- include('../partials/header'); %>
+        <div class="bg-image p-5">
+            <form class="d-flex flex-wrap bg-dark bg-opacity-75 w-75 mx-auto p-5 text-light" action="/pets/removePet/<%= pet.id %>?_method=PUT" method="POST">
+                <input type="hidden" value="_method" value="PUT">
+                <h1 class="text-center">¿Deseas eliminar esta mascota?</h1>
+                <hr class="h-line bg-blue w-50 mx-auto mb-5">
+                <div>
+                    <!-- datos mascota -->
+                </div>
+                <h3 class="mx-auto mt-4 h5">Ya no podrás tener acceso a esta mascota</h3>
+                <div class="text-center w-100 my-4">
+                    <a href="/home" class="btn btn-secondary">
+                        <i class="bi bi-x-lg"></i> 
+                        Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-success bg-blue text-light">
+                        <i class="bi bi-check-lg"></i> 
+                        Eliminar mascota
+                    </button>
+                </div>
+            </form>
+        </div>
+        <%- include('../partials/footer'); %>
+    </div>
+</body>
+</html>

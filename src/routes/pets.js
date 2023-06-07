@@ -50,7 +50,7 @@ router.post('/addPet', async (req, res) => {
 });
 
 // --------------------- EDIT PETS -----------------------------
-// GET to redirect to editPet post
+// GET to redirect to editPet put
 router.get('/editPet/:id', isAuthenticated, 
     async (req, res) => {
         console.log("In get editPet");
@@ -85,6 +85,45 @@ router.put('/editPet/:id', isAuthenticated,
 
         await Pet.findByIdAndUpdate(req.params.id, req.body);
         req.flash('success_msg', 'Mascota modificada con éxito'); 
+        res.redirect('/home');
+    }
+);
+
+// --------------------- REMOVE PETS -----------------------------
+// GET to redirect to removePet put
+router.get('/removePet/:id', isAuthenticated, 
+    async (req, res) => {
+        console.log("In get removePet");
+        const pet = await Pet.findById(req.params.id);
+        if (!pet) {
+            req.flash('error_msg', 'Ha habido un error al encontrar tu mascota');
+        } else{
+            if (pet.status === "active") {
+                res.render('./pages/removePet', {pet});
+            } else{
+                req.flash('error_msg', 'Esta mascota ya no se puede eliminar');
+                res.redirect('/home');
+            }
+        }
+    }
+);
+
+// PUT to update pets status (inactive)
+router.put('/removePet/:id', isAuthenticated, 
+    [// validations
+    ],
+    async (req, res) => {
+        console.log("In put removePet");
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            console.log(errors);
+            for (const error of errors.array()) {
+                req.flash('error_msg','\n'+ error.msg + '\n');
+            }
+            return res.redirect('/home');
+        }
+        await Pet.findByIdAndUpdate(req.params.id, {'status':'inactive'});
+        req.flash('success_msg', 'Mascota eliminada con éxito'); 
         res.redirect('/home');
     }
 );
