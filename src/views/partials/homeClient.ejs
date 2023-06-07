@@ -47,9 +47,15 @@
                         <p>Servicios extra: <span><%= reservation.cares %></span></p>
                     </div>
                     <div class="p-5 pb-2">
-                        <a href="/reservations/editReservation" class="btn btn-outline-dark w-100 mb-2"><i class="bi bi-pencil-square"></i> Editar reserva</a>
+                        <% if (reservation.checkin < new Date()) { %>
+                            <a href="/reservations/editReservation/<%= reservation.id %>" class="btn btn-outline-dark w-100 mb-2 disabled"><i class="bi bi-pencil-square"></i> Editar reserva</a>
+                            <a href="/reservations/removeReservation/<%= reservation.id %>" class="btn btn-outline-danger w-100 mb-2 disabled"><i class="bi bi-trash"></i> Eliminar reserva</a>
+                        <% } else {%>
+                            <a href="/reservations/editReservation/<%= reservation.id %>" class="btn btn-outline-dark w-100 mb-2"><i class="bi bi-pencil-square"></i> Editar reserva</a>
+                            <a href="/reservations/removeReservation/<%= reservation.id %>" class="btn btn-outline-danger w-100 mb-2"><i class="bi bi-trash"></i> Eliminar reserva</a>
+                        <% } %>
+                        
                         <a href="/reservations/addReservation" class="btn btn-outline-success w-100 mb-2"><i class="bi bi-plus-circle"></i> Añadir nueva reserva</a>
-                        <a href="/reservations/removeReservation" class="btn btn-outline-danger w-100 mb-2"><i class="bi bi-trash"></i> Eliminar reserva</a>
                     </div>
                 </div>
             </div>

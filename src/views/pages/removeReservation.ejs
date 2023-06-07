@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head'); %>
+
+<body>
+    <div class="container">
+        <%- include('../partials/header'); %>
+        <div class="bg-image p-5">
+            <form class="d-flex flex-wrap bg-dark bg-opacity-75 w-75 mx-auto p-5 text-light" action="/reservations/removeReservation/<%= reservation.id %>?_method=DELETE" method="POST">
+                <input type="hidden" value="_method" value="DELETE">
+                <h1 class="text-center">¿Deseas eliminar esta reserva?</h1>
+                <hr class="h-line bg-blue w-50 mx-auto mb-5">
+                <div>
+                    <p><strong>Referencia de la reserva: <span><%= reservation.id %></span></strong></p>
+                    <p><strong>Del <%= new Date(reservation.checkin).toLocaleDateString() %> al <%= new Date(reservation.checkout).toLocaleDateString() %> (<%= (Math.ceil(reservation.checkout - reservation.checkin) / (1000 * 60 * 60 * 24)) %> día/s)</strong></p>
+                    <p>Nº de huéspedes: <span><%= reservation.pets.length %></span></p>
+                    <p>Tipo de habitación: <span><%= reservation.room.type %></span></p>
+                    <p>Observaciones: <span><%= reservation.observations %></span></p>
+                    <p>Servicios extra: <span><%= reservation.cares %></span></p>
+                </div>
+                <h3 class="mx-auto mt-4 h5">También puedes modificarla si lo deseas. <a href="/reservations/editReservation/<%= reservation.id %>" class="text-light">Modificar reserva</a></h3>
+                <div class="text-center w-100 my-4">
+                    <a href="/home" class="btn btn-secondary">
+                        <i class="bi bi-x-lg"></i> 
+                        Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-success bg-blue text-light">
+                        <i class="bi bi-check-lg"></i> 
+                        Eliminar reserva
+                    </button>
+                </div>
+            </form>
+        </div>
+        <%- include('../partials/footer'); %>
+    </div>
+</body>
+</html>

@@ -13,17 +13,20 @@ router.get('/', function(req, res, next) {
 
 /* GET home page */
 router.get('/home', async (req, res) => {
-  const userLogged = req.user;
-
-  if(isAuthenticated && userLogged.role === 'client') {
-    const petsList = await Pet.find({'caregiver': userLogged.username});
-    const reservationsList = await Reservation.find({'client': userLogged.username});
-    res.render('./pages/home',{
-      petsList,
-      reservationsList
-    });
-  } else{
-    res.render('./pages/home');
+  try {
+    const userLogged = req.user;
+    if(isAuthenticated && userLogged.role === 'client') {
+      const petsList = await Pet.find({'caregiver': userLogged.username});
+      const reservationsList = await Reservation.find({'client': userLogged.username});
+      res.render('./pages/home',{
+        petsList,
+        reservationsList
+      });
+    } else{
+      res.render('./pages/');
+    }
+  } catch (error) {
+    res.render('./pages/');
   }
 });
 
@@ -40,7 +43,7 @@ router.get('/reservations', async (req, res) => {
   console.log(userLogged);
   if(isAuthenticated){
     const petsList = await Pet.find({'caregiver': userLogged.username});
-    const reservationsList = await Reservation.find({'client': userLogged.username});
+    const reservationsList = await Reservation.find({'client': userLogged.username}).sort('-checkin');
     res.render('./pages/reservations',{
       petsList,
       reservationsList
@@ -48,7 +51,6 @@ router.get('/reservations', async (req, res) => {
   } else{
     res.render('./pages/reservations');
   } 
-  
 });
 
 /* GET rooms page */

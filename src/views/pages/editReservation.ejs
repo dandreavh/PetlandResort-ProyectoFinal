@@ -5,25 +5,29 @@
 <body>
     <div class="container">
         <%- include('../partials/header'); %>
-            <form action="/reservations/addReservation" method="POST" class="d-flex flex-wrap">
+            <form class="d-flex flex-wrap" action="/reservations/editReservation/<%= reservation.id %>?_method=PUT" method="POST">
+                <input type="hidden" value="_method" value="PUT">
                 <div class="bg-blue p-5 w-50">
-                    <h1 class="font-brand text-center text-light mb-4">Nueva reserva</h1>
+                    <h1 class="font-brand text-center text-light mb-4">Modificar reserva</h1>
+                    <div class="form-group mb-3">
+                        <p class="text-light"><strong>Nº de referencia:</strong>  <%= reservation.id %></p>
+                    </div>
                     <div class="d-flex justify-content-between">
                         <div class="form-floating mb-3">
-                            <input type="date" class="form-control" name="checkin" placeholder="Fecha de entrada"
-                                autofocus required>
+                            <input type="date" class="form-control" name="checkin" placeholder="" value="<%= reservation.checkin.toISOString().split('T')[0] %>" required>
                             <label for="checkin">Fecha de entrada</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="date" class="form-control" name="checkout" placeholder="Fecha de salida"
+                            <input type="date" class="form-control" name="checkout" placeholder="" value="<%= reservation.checkout.toISOString().split('T')[0] %>"
                                 required>
                             <label for="checkout">Fecha de salida</label>
                         </div>
                     </div>
                     <div class="form-floating mb-3">
-                        <select class="form-select" name="room[type]" id="room[type]">
+                        <select class="form-select" name="room[type]" id="room[type]" >
                             <!-- 'suite', 'pack suite', 'deluxe suite', 'deluxe pack suite' -->
-                            <option disabled selected>Seleccionar </option>
+                            <option value="<%= reservation.room.type %>" selected><%= reservation.room.type %></option>
+                            <option disabled>- Seleccionar -</option>
                             <option value="suite">Suite</option>
                             <option value="pack suite">Suite familiar</option>
                             <option value="deluxe suite">Deluxe suite</option>
@@ -33,29 +37,24 @@
                     </div>
                     <% if (user.role == "admin" || user.role == "staff") { %>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="client" placeholder="Nombre del cliente titular"
-                            required>
+                            <input type="text" class="form-control" name="client" placeholder="<%= reservation.client %>" value="<%= reservation.client %>"
+                            readonly required>
                             <label for="client">Nombre del cliente titular de la reserva</label>
                         </div>
                     <% } else {%>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="client" value="<%= user.username %>" placeholder="<%= user.username %>" readonly required>
+                            <input type="text" class="form-control" name="client"  placeholder="<%= reservation.client %>" value="<%= reservation.client %>" readonly required>
                             <label for="client">Nombre del cliente titular de la reserva</label>
                         </div>
                     <% } %>
                     <div class="form-floating mb-3">
-                        <textarea class="form-control" name="observations" placeholder="Observaciones"></textarea>
+                        <textarea class="form-control" name="observations" placeholder="Observaciones"><%= reservation.observations %></textarea>
                         <label for="observations">Observaciones</label>
-                    </div>
-                    <div class="form-check my-3">
-                        <input class="form-check-input" type="checkbox" value="true" id="policies" name="policies"
-                            checked>
-                        <label class="form-check-label text-light" for="policies">Acepto las políticas de privacidad</label>
                     </div>
                     <div class="form-check my-3">
                         <div class="d-flex justify-content-between">
                             <h2 class="text-light">Total a pagar: </h2>
-                            <input class="form-control text-danger w-25" type="number" id="price" name="price" readonly>
+                            <input class="form-control text-danger w-25" type="number" id="price" name="price" value="<%= reservation.price %>" readonly>
                             <p class="h2 text-light">€</p>
                         </div>
                         <p class="text-light" id="price_info"></p>
@@ -80,7 +79,11 @@
                                     <tr>
                                         <td>
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" role="switch" id="<%= pet.id %>" value="<%= pet.id %>" name="pets">
+                                                <% if (reservation.pets.includes(pet.id)) { %>
+                                                    <input class="form-check-input" type="checkbox" role="switch" id="<%= pet.id %>" value="<%= pet.id %>" name="pets" checked>
+                                                <% } else {%>
+                                                    <input class="form-check-input" type="checkbox" role="switch" id="<%= pet.id %>" value="<%= pet.id %>" name="pets">
+                                                <% } %>
                                             </div>
                                         </td>
                                         <td><%= pet.name %></td>
@@ -92,14 +95,18 @@
                         <div class="mt-5">
                             <h3 class="text-blue font-brand">Añadir cuidados deluxe...</h3>
                             <p class="text-secondary">Veterinaria, belleza, entrenamiento y personalizado</p>
-                            <textarea class="form-control" name="cares" placeholder="Describe los cuidados que desees dar a tus mascotas (indica para quién)"></textarea>
+                            <textarea class="form-control" name="cares" placeholder="Describe los cuidados que desees dar a tus mascotas (indica para quién)"><%= reservation.cares %></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="text-center w-100 my-4">
-                    <button type="reset" class="btn btn-secondary"><i class="bi bi-x-lg"></i> Cancelar</button>
-                    <button type="submit" class="btn btn-success bg-blue text-light"><i class="bi bi-check-lg"></i>
-                        Reservar
+                    <a href="/home" class="btn btn-secondary">
+                        <i class="bi bi-x-lg"></i> 
+                        Mantener reserva original
+                    </a>
+                    <button type="submit" class="btn btn-success bg-blue text-light">
+                        <i class="bi bi-check-lg"></i> 
+                        Guardar cambios de la reserva
                     </button>
                 </div>
             </form>
