@@ -23,12 +23,13 @@ router.get('/', isAuthenticated, async (req, res) =>{
     res.send(pets);
 });
 
+// --------------------- REGISTER PETS -----------------------------
 router.get('/addPet', isAuthenticated, async (req, res) => {
     res.render('./pages/addPet');
 })
 
 // POST to create a new pet (General) <REVISAR>
-router.post('/addPet', async function(req, res) {
+router.post('/addPet', async (req, res) => {
     console.log("In addPet");
     const caregiver = req.user.username;
     const checkPet = await Pet.find({'chip': req.body.chip});
@@ -47,5 +48,45 @@ router.post('/addPet', async function(req, res) {
         res.redirect('/addPet');
     }
 });
+
+// --------------------- EDIT PETS -----------------------------
+// GET to redirect to editPet post
+router.get('/editPet/:id', isAuthenticated, 
+    async (req, res) => {
+        console.log("In get editPet");
+        const pet = await Pet.findById(req.params.id);
+        if (!pet) {
+            req.flash('error_msg', 'Ha habido un error al encontrar tu mascota');
+        } else{
+            if (pet.status === "active") {
+                res.render('./pages/editPet', {pet});
+            } else{
+                req.flash('error_msg', 'Esta mascota ya no se puede modificar');
+                res.redirect('/home');
+            }
+        }
+    }
+);
+
+// PUT to update pets and redirect back to home page with message
+router.put('/editPet/:id', isAuthenticated, 
+    [// validations
+    ],
+    async (req, res) => {
+        console.log("In put editPet");
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            console.log(errors);
+            for (const error of errors.array()) {
+                req.flash('error_msg','\n'+ error.msg + '\n');
+            }
+            return res.redirect('/home');
+        }
+
+        await Pet.findByIdAndUpdate(req.params.id, req.body);
+        req.flash('success_msg', 'Mascota modificada con éxito'); 
+        res.redirect('/home');
+    }
+);
 
 module.exports = router;

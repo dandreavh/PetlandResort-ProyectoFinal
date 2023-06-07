@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head'); %>
+
+<body>
+    <div class="container">
+        <%- include('../partials/header'); %>
+            <form class="d-flex flex-wrap" action="/pets/editPet<%= pet.id %>?_method=PUT" method="POST">
+                <input type="hidden" value="_method" value="PUT">
+                <div class="bg-blue p-5 w-50">
+                    <h1 class="font-brand text-center text-light mb-5">Mi mascota</h1>
+                    <div class="form-group mb-4 text-light">
+                        <p>
+                            <i class="bi bi-bookmark-heart"></i> <strong>Identificador:</strong>  <%= pet.id %> 
+                        </p>
+                        <p>
+                            <i class="bi bi-person-hearts"></i> </i><strong>Familiar:</strong>  <%= pet.caregiver %> 
+                        </p>
+                        <p>
+                            <strong>Nº de Chip:</strong>  <%= pet.chip %>
+                        </p>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" value="<%= pet.name %>" required>
+                        <label for="name">Nombre</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Fecha de nacimiento" value="<%= pet.birthday.toISOString().split('T')[0] %>" required>
+                        <label for="birthday">Fecha de nacimiento</label>
+                    </div>
+                    <div class="d-md-flex flex-wrap justify-content-between">
+                        <div class="form-floating mb-3">
+                            <select class="form-select" name="specie">
+                                <!-- 'dog', 'cat', 'bird', 'rodent', 'fish', 'other' -->
+                                <option selected value="<%= pet.specie %>"><%= pet.specie %></option>
+                                <option disabled> - Seleccionar - </option>
+                                <option value="dog">Perro</option>
+                                <option value="cat">Gato</option>
+                                <option value="bird">Ave</option>
+                                <option value="rodent">Roedor</option>
+                                <option value="fish">Pez</option>
+                                <option value="other">Otro</option>
+                            </select>
+                            <label for="specie">Tipo de mascota</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="breed" name="breed" placeholder="Raza" value="<%= pet.breed %>" required>
+                            <label for="breed">Raza</label>
+                        </div>
+                    </div>
+                    <div class="d-md-flex flex-wrap justify-content-between">
+                        <div class="form-floating mb-3">
+                            <select class="form-select" name="size">
+                                <!-- 'small', 'medium', 'large' -->
+                                <option selected value="<%= pet.size %>"><%= pet.size %></option>
+                                <option disabled> - Seleccionar - </option>
+                                <option value="small">Pequeño</option>
+                                <option value="medium">Mediano</option>
+                                <option value="large">Grande</option>
+                            </select>
+                            <label for="size">Tamaño</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="color" name="color" placeholder="Color" value="<%= pet.color %>" required>
+                            <label for="color">Color</label>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" name="comments" placeholder="Comentarios"><%= pet.comments %></textarea>
+                        <label for="color">Comentarios</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" name="medical_info" placeholder="Datos médicos"><%= pet.medical_info %></textarea>
+                        <label for="medical_info">Datos médicos</label>
+                    </div>
+                    <div class="d-md-flex flex-wrap justify-content-between text-light">
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" role="switch" id="friendly" value="<%= pet.friendly %>" checked="<%= pet.friendly %>">
+                            <label class="form-check-label h4" for="friendly">¿Sociable?</label>
+                        </div>
+                        <div>
+                            <a href="" class="btn btn-dark"><i class="bi bi-card-list"></i> Ver informes</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-50 p-5">
+                    <div>
+                        <img src="<%= pet.avatar %>" alt="Mascota" class="cover" />
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="avatar"><i class="bi bi-cloud-arrow-up"></i></label>
+                        <input type="file" class="form-control" name="avatar" id="avatar" value="<%= pet.avatar %>">
+                    </div>
+                </div>
+                <div class="text-center w-100 my-4">
+                    <a href="/home" class="btn btn-secondary">
+                        <i class="bi bi-x-lg"></i> 
+                        Cancelar cambios
+                    </a>
+                    <button type="submit" class="btn btn-success bg-blue text-light">
+                        <i class="bi bi-check-lg"></i> 
+                        Guardar cambios
+                    </button>
+                </div>
+            </form>
+        <%- include('../partials/footer'); %>
+    </div>
+</body>
+</html>
