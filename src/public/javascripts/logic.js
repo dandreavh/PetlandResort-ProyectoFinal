@@ -82,50 +82,85 @@ function addStaffInputs(){
     role_inputs.appendChild(div_reports);
 }
 
-// price
+// addReservation functionalities
 if(window.location.pathname === "/reservations/addReservation"){
     document.addEventListener('DOMContentLoaded', function() {
-        let room_type = document.getElementById("room[type]");
-        const price = document.getElementById("price");
-        const price_info = document.getElementById("price_info");
+        setPrice();
+        setPolicies();
+        setMinimumCheckinDate();
+        setMinimumCheckoutDate();
+    });
+}
 
-        room_type.addEventListener('change', function() {
-            const checkin = new Date(document.getElementsByName("checkin")[0].value);
-            const checkout = new Date(document.getElementsByName("checkout")[0].value);
-            // get the difference between the dates in miliseconds
-            const difference = Math.abs(checkout - checkin);
-            // change miliseconds into days
-            const days = Math.ceil(difference / (1000 * 60 * 60 * 24));
-            const selectedOption = room_type.value;
-            // variables for values
-            const suite = 50;
-            const pack_suite = 80;
-            const deluxe_suite = 90;
-            const deluxe_pack_suite = 150;
-            // set price depending on the selected option (room)
-            switch (selectedOption) {
-            case "suite":
-                //precio.innerHTML = "100";
-                price.value = suite*days;
-                price_info.innerHTML = "* "+suite+" €/día x "+days+" días";
-                break;
-            case "pack suite":
-                //precio.innerHTML = "150";
-                price.value = pack_suite*days;
-                price_info.innerHTML = "* "+pack_suite+" €/día x "+days+" días";
-                break;
-            case "deluxe suite":
-                //precio.innerHTML = "200";
-                price.value = deluxe_suite*days;
-                price_info.innerHTML = "* "+deluxe_suite+" €/día x "+days+" días";
-                break;
-            case "deluxe pack suite":
-                //precio.innerHTML = "200";
-                price.value = deluxe_pack_suite*days;
-                price_info.innerHTML = "* "+deluxe_pack_suite+" €/día x "+days+" días";
-                break;
-            };
-        });
+function setPrice(){
+    let room_type = document.getElementById("room[type]");
+    const price = document.getElementById("price");
+    const price_info = document.getElementById("price_info");
+
+    room_type.addEventListener('change', function() {
+        const checkin = new Date(document.getElementsByName("checkin")[0].value);
+        const checkout = new Date(document.getElementsByName("checkout")[0].value);
+        // get the difference between the dates in miliseconds
+        const difference = Math.abs(checkout - checkin);
+        // change miliseconds into days
+        const days = Math.ceil(difference / (1000 * 60 * 60 * 24));
+        const selectedOption = room_type.value;
+        // variables for values
+        const suite = 50;
+        const pack_suite = 80;
+        const deluxe_suite = 90;
+        const deluxe_pack_suite = 150;
+        // set price depending on the selected option (room)
+        switch (selectedOption) {
+        case "suite":
+            //precio.innerHTML = "100";
+            price.value = suite*days;
+            price_info.innerHTML = "* "+suite+" €/día x "+days+" días";
+            break;
+        case "pack suite":
+            //precio.innerHTML = "150";
+            price.value = pack_suite*days;
+            price_info.innerHTML = "* "+pack_suite+" €/día x "+days+" días";
+            break;
+        case "deluxe suite":
+            //precio.innerHTML = "200";
+            price.value = deluxe_suite*days;
+            price_info.innerHTML = "* "+deluxe_suite+" €/día x "+days+" días";
+            break;
+        case "deluxe pack suite":
+            //precio.innerHTML = "200";
+            price.value = deluxe_pack_suite*days;
+            price_info.innerHTML = "* "+deluxe_pack_suite+" €/día x "+days+" días";
+            break;
+        };
+    });
+}
+
+function setPolicies(){
+    const policiesCheckbox = document.getElementById("policies");
+    policiesCheckbox.addEventListener('change', function() {
+        if (!policiesCheckbox.checked) {
+            policiesCheckbox.setCustomValidity("Debe aceptar las políticas de privacidad para continuar");
+        } else {
+            policiesCheckbox.setCustomValidity("");
+        }
+    });
+}
+
+function setMinimumCheckinDate() {
+    const checkoutInput = document.getElementById("checkin");
+    checkoutInput.addEventListener("change", () => {
+        checkoutInput.min = new Date().toISOString().split('T')[0];
+    });
+}
+
+function setMinimumCheckoutDate() {
+    const checkoutInput = document.getElementById("checkout");
+    checkoutInput.addEventListener("change", () => {
+        const currentDate = new Date();
+        currentDate.setDate(currentDate.getDate() + 1);
+        const minimumDate = currentDate.toISOString().split('T')[0];
+        checkoutInput.min = minimumDate;
     });
 }
 
