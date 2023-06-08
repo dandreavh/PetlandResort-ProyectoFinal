@@ -114,14 +114,14 @@ router.put('/removePet/:id', isAuthenticated,
     ],
     async (req, res) => {
         console.log("In put removePet");
-        const errors = validationResult(req);
+/*         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             console.log(errors);
             for (const error of errors.array()) {
                 req.flash('error_msg','\n'+ error.msg + '\n');
             }
             return res.redirect('/home');
-        }
+        } */
         await Pet.findByIdAndUpdate(req.params.id, {'status':'inactive'});
         req.flash('success_msg', 'Mascota eliminada con éxito'); 
         res.redirect('/home');

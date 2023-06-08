@@ -6,14 +6,29 @@
     <div class="container">
         <%- include('../partials/header'); %>
         <div class="bg-image p-5">
-            <form class="d-flex flex-wrap bg-dark bg-opacity-75 w-75 mx-auto p-5 text-light" action="/pets/removePet/<%= pet.id %>?_method=PUT" method="POST">
+            <form class="bg-dark bg-opacity-75 w-75 mx-auto p-5 text-light" action="/pets/removePet/<%= pet.id %>?_method=PUT" method="POST">
                 <input type="hidden" value="_method" value="PUT">
-                <h1 class="text-center">¿Deseas eliminar esta mascota?</h1>
+                <h1 class="text-center">¿Deseas quitar esta mascota de tu lista?</h1>
                 <hr class="h-line bg-blue w-50 mx-auto mb-5">
                 <div>
                     <!-- datos mascota -->
+                    <p><strong>Nombre: </strong><span><%= pet.name %></span></p>
+                    <p><strong>Tipo: </strong><span><%= pet.specie %> - <%= pet.breed %> </span></p>
+                    <p><strong>Características: </strong><span><%= pet.size %> - <%= pet.color %> </span></p>
+                    <p>
+                        <strong>Fecha de nacimiento: </strong>
+                        <span><%= new Date(pet.birthday).toLocaleDateString() %> </span> 
+                        <span>
+                            <%
+                                const currentDate = new Date();
+                                const petBirthday = new Date(pet.birthday);
+                                const years = currentDate.getFullYear() - petBirthday.getFullYear();
+                                %>
+                                ( <%= years %> años)
+                        </span>
+                    </p>
                 </div>
-                <h3 class="mx-auto mt-4 h5">Ya no podrás tener acceso a esta mascota</h3>
+                <h3 class="mx-auto mt-4 h5 text-center">Ya no podrás tener acceso a esta mascota</h3>
                 <div class="text-center w-100 my-4">
                     <a href="/home" class="btn btn-secondary">
                         <i class="bi bi-x-lg"></i> 

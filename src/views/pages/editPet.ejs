@@ -24,9 +24,19 @@
                         <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" value="<%= pet.name %>" required>
                         <label for="name">Nombre</label>
                     </div>
-                    <div class="form-floating mb-3">
-                        <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Fecha de nacimiento" value="<%= pet.birthday.toISOString().split('T')[0] %>" required>
-                        <label for="birthday">Fecha de nacimiento</label>
+                    <div class="d-md-flex flex-wrap justify-content-between">
+                        <div class="form-floating mb-3 w-75">
+                            <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Fecha de nacimiento" value="<%= pet.birthday.toISOString().split('T')[0] %>" required>
+                            <label for="birthday">Fecha de nacimiento</label>
+                        </div>
+                        <span class="text-light">
+                            <%
+                                const currentDate = new Date();
+                                const petBirthday = new Date(pet.birthday);
+                                const years = currentDate.getFullYear() - petBirthday.getFullYear();
+                            %>
+                            ( <%= years %> años)
+                        </span>
                     </div>
                     <div class="d-md-flex flex-wrap justify-content-between">
                         <div class="form-floating mb-3">

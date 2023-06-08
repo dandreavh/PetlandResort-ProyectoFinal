@@ -13,7 +13,7 @@ const PetSchema = new mongoose.Schema({
     size: {type: String, enum: ['small', 'medium', 'large'], default: 'medium'},
     color: {type: String},
     friendly: {type: Boolean, required: true, default: true},
-    avatar: {type: String, default:'./images/2.png'},
+    avatar: {type: String, default:'/images/2.png'},
     comments: {type: String},
     status: {type: String, enum: ['active', 'inactive'], default: 'active'},
     medical_info: {type: String},

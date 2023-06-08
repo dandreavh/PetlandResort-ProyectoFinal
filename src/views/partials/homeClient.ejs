@@ -71,6 +71,7 @@
             <a href="/pets/addPet" class="btn btn-dark btn-lg my-3 rounded-0 border-0 shadow">Añadir ahora</a>
         </div>
     <% } else {%>
+        <% let quantityInactive = 0 %>
         <% petsList.forEach(pet => { %>
             <!-- card -->
             <% if (pet.status == "active") { %>
@@ -92,7 +93,15 @@
                         </div>
                     </div>
                 </div>
+            <% } else {%>
+                <% quantityInactive++ %>
             <% } %>
         <% }); %>
+        <% if (quantityInactive == petsList.length) { %>
+            <div class="text-center mx-auto">
+                <p>No tiene registrada ninguna mascota</p>
+                <a href="/pets/addPet" class="btn btn-dark btn-lg my-3 rounded-0 border-0 shadow">Añadir ahora</a>
+            </div>
+        <% } %>
     <% } %>
 </div>
