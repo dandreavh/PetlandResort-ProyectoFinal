@@ -14,23 +14,124 @@ const Reservation = require('../models/Reservation');
 /* 
 ______________________________________________________________________
 
------------------------ API for graphics --------------------------
+----------------------- Graphics --------------------------
 ______________________________________________________________________
 */
 
+// GET for graphics - Reservation prices
 router.get('/economy', isAuthenticated, 
     async (req, res) => {
-        console.log("In get removePet");
-        const pet = await Pet.findById(req.params.id);
-        if (!pet) {
-            req.flash('error_msg', 'Ha habido un error al encontrar tu mascota');
-        } else{
-            if (pet.status === "active") {
-                res.render('./pages/removePet', {pet});
-            } else{
-                req.flash('error_msg', 'Esta mascota ya no se puede eliminar');
-                res.redirect('/home');
+        console.log("In get economy");
+        // Calculates amount per month in each reservation
+        const results = await Reservation.aggregate([
+            {
+                $group: {
+                    _id: { $month: "$checkin" },
+                    total: { $sum: "$price" }
+                }
+            },
+            {
+                $project: {
+                    _id: 0,
+                    month: "$_id",
+                    total: 1
+                }
+            },
+            {
+                $sort: {
+                    month: 1
+                }
             }
+        ]).exec();
+        console.log(results);
+        if (!results) {
+            req.flash('error_msg', 'Ha habido un error al encontrar datos');
+        } else{
+            res.json({ results });
+        }
+    }
+);
+
+// GET for graphics - Room type
+router.get('/roomType', isAuthenticated, 
+    async (req, res) => {
+        console.log("In get roomType");
+        const results = await Reservation.aggregate([
+            {
+                $group: {
+                    _id: "$room.type",
+                    count: { $sum: 1 }
+                }
+            },
+            {
+                $project: {
+                    _id: 0,
+                    type: "$_id",
+                    count: 1
+                }
+            }
+        ]).exec();
+        console.log(results);
+        if (!results) {
+            req.flash('error_msg', 'Ha habido un error al encontrar datos');
+        } else{
+            res.json({ results });
+        }
+    }
+);
+
+// GET for graphics - Reservations
+router.get('/reservations', isAuthenticated, 
+    async (req, res) => {
+        console.log("In get reservations");
+        const results = await Reservation.aggregate([
+            {
+                $group: {
+                    _id: { $month: "$checkin" },
+                    total: { $sum: 1 }
+                }
+            },
+            {
+                $project: {
+                    _id: 0,
+                    month: "$_id",
+                    total: 1
+                }
+            }
+        ]).exec();
+        console.log(results);
+        if (!results) {
+            req.flash('error_msg', 'Ha habido un error al encontrar datos');
+        } else{
+            res.json({ results });
+        }
+    }
+);
+
+// GET for graphics - Pet specie
+router.get('/petSpecie', isAuthenticated, 
+    async (req, res) => {
+        console.log("In get petSpecie");
+        const results = await Pet.aggregate([
+            {
+                $group: {
+                    _id: "$specie",
+                    count: { $sum: 1 }
+                }
+            },
+            {
+                $project: {
+                    _id: 0,
+                    type: "$_id",
+                    count: 1
+                }
+            }
+        ]).exec();
+        console.log(results);
+        if (!results) {
+            req.flash('error_msg', 'Ha habido un error al encontrar datos');
+        } else{
+            res.json({ results });
         }
     }
 );
