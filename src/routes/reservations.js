@@ -5,11 +5,14 @@ const mongoose = require('mongoose');
 const db = mongoose.connection;
 const { check, validationResult } = require('express-validator');
 const {isAuthenticated} = require('../controller/authenticate');
+const PDFDocument = require('pdfkit');
+const fs = require('fs');
+const nodemailer = require('nodemailer');
+const path = require('path');
 // models to use
 const User = require('../models/User'); 
 const Pet = require('../models/Pet');
 const Reservation = require('../models/Reservation');
-
 
 /* 
 ______________________________________________________________________
@@ -62,13 +65,10 @@ router.post('/addReservation', isAuthenticated,
                 }
                 return true;
             }),
-        /*  check('room.type')
-            .notEmpty().withMessage('El campo "tipo de habitación" es obligatorio')
-            .isIn(['suite', 'pack suite', 'deluxe suite', 'deluxe pack suite']).withMessage('El campo "tipo de habitación" debe ser uno de los valores permitidos'), */
         check('client')
             .notEmpty().withMessage('El campo "Nombre del titular de la reserva" es obligatorio'),
-        check('pets')
-            .isArray({ min: 1 }).withMessage('Debes seleccionar al menos una mascota'),
+/*         check('pets')
+            .isArray({ min: 1 }).withMessage('Debes seleccionar al menos una mascota'), */
     ], 
     async (req, res) => {
         console.log("In post addReservation");
@@ -84,7 +84,55 @@ router.post('/addReservation', isAuthenticated,
         if(isAuthenticated){
             const userLogged = req.user;
             const newReservation = await Reservation.create(req.body);
-            req.flash('success_msg', 'Reserva realizada con éxito'); 
+
+            // creates the pdf file
+            const doc = new PDFDocument();
+            doc.pipe(fs.createWriteStream(`reserva-${newReservation.id}.pdf`));
+            // add content in file
+            doc.image(path.join(__dirname, '../public/images/1.png'), {
+                fit: [250, 250],
+            });
+            doc.fontSize(30).text('Gracias por elegirnos');
+            doc.fontSize(20).text('Detalles de la reserva', { underline: true });
+            doc.text(`Id de la reserva: ${newReservation.id}`);
+            doc.text(`Titular de la reserva: ${req.body.client}`);
+            doc.text(`Fecha de entrada: ${req.body.checkin}`);
+            doc.text(`Fecha de salida: ${req.body.checkout}`);
+            doc.text(`Tipo de habitación: ${newReservation.room.type}`);
+            doc.text(`Observaciones: ${req.body.observations}`);
+            doc.fontSize(15).text(`Precio: ${newReservation.price}`);
+            doc.end();
+
+            // mail configuration
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                user: process.env.EMAIL,
+                pass: process.env.PASSWORD,
+                },
+            });
+            // define email parameters
+            const mailOptions = {
+                from: process.env.EMAIL,
+                to: userLogged.email,
+                subject: 'Petland Resort - Reserva realizada',
+                text: 'Estimado/a cliente, adjunto dejamos PDF con los detalles de su reserva. Nos vemos pronto',
+                attachments: [
+                {
+                    filename: `reserva-${newReservation.id}.pdf`,
+                    path: `reserva-${newReservation.id}.pdf`,
+                },
+                ],
+            };
+            // send email
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.log('Error al enviar el correo:', error);
+                } else {
+                    console.log('Correo enviado:', info.response);
+                }
+            });
+            req.flash('success_msg', 'Reserva realizada con éxito');
         } else{
             req.flash('error_msg', 'Ha habido un error al realizar la reserva');
         }
