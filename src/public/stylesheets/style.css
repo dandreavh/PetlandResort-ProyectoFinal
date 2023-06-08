@@ -1,7 +1,7 @@
 /*____________________________________________________________________
   Project: Petland Resort - Proyecto final DAW
-  Version: 2.0
-  Last change: 25/04/2023
+  Version: 3.0
+  Last change: 08/06/2023
   Author: Andrea Vieira Hernández (dandreavh)
 ---------------------[TABLE OF CONTENTS]---------------------
 
@@ -34,10 +34,6 @@ body, .modal {
   color: rgba(3, 138, 162, 1);
 }
 
-/* .btn .bg-blue:hover{
-  background-color: rgb(2, 79, 93) !important;
-} */
-
 /* ----- Navbar -----*/
 .navbar-collapse a:hover, .active{
   border-bottom: 1px solid #000;
@@ -58,12 +54,36 @@ body, .modal {
   background-position: center;
 }
 
-/* Borders */
+/* ---------- Borders ------------ */
 .side-border{
   border-left: 25px solid rgba(3, 138, 162, 1);
 }
 
-/* Hr */
+/* ---------- Hr ----------- */
 .h-line{
   height: 5px !important;
+}
+
+/* ------------- Punctuation stars ---------------- */
+.rating {
+  display: inline-block;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  float: right;
+  cursor: pointer;
+  color: #ddd;
+}
+
+.rating label:before {
+  content: '\2605';
+  font-size: 25px;
+}
+
+.rating input:checked ~ label {
+  color: #f8ce0b;
 }
