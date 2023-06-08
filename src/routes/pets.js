@@ -2,12 +2,15 @@ const { json } = require('express');
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const Pet = require('../models/Pet');
+const db = mongoose.connection;
+const { check, validationResult } = require('express-validator');
+const {isAuthenticated} = require('../controller/authenticate');
+const Chart = require('chart.js');
 // model to use
+const Pet = require('../models/Pet');
 const User = require('../models/User'); 
 const Reservation = require('../models/Reservation');
-const {isAuthenticated} = require('../controller/authenticate');
-const db = mongoose.connection;
+
 
 /* 
 ______________________________________________________________________

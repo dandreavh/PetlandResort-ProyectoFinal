@@ -1,3 +1,4 @@
+/**@dandreavh */
 // add inputs into register form if page is register and if user is 'admin' or 'staff'
 if(window.location.pathname === "/register"){
     document.getElementById("role").addEventListener("change", () => {

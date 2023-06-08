@@ -16,6 +16,9 @@
                         <p>
                             <i class="bi bi-key"></i> ¿Quieres cambiar la contraseña? Pulsa <a href="" class="text-light">aquí</a>
                         </p>
+                        <p>
+                            <i class="bi bi-person-x"></i> ¿Quieres darte de baja? Pulsa <a href="" class="text-light">aquí</a>
+                        </p>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" value="<%= user.name %>" required minlength="2">
@@ -56,26 +59,28 @@
                         <label class="input-group-text" for="avatar"><i class="bi bi-cloud-arrow-up"></i></label>
                         <input type="file" class="form-control" name="avatar" id="avatar" value="<%= user.avatar %>">
                     </div>
-                    <table class="table table-hover mt-4">
-                        <thead>
-                            <tr>
-                                <th scope="col">Mascota</th>
-                                <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% petsList.forEach(pet => { %>
+                    <% if(user.role == "client") { %>
+                        <table class="table table-hover mt-4">
+                            <thead>
                                 <tr>
-                                    <td><%= pet.name %></td>
-                                    <td>
-                                        <a href="/pets/editPet/<%= pet.id %>" class="btn btn-secondary btn-sm"><i class="bi bi-pencil-square"></i> Editar</a>
-                                        <a href="/pets/addPet" class="btn btn-success btn-sm"><i class="bi bi-plus-circle"></i> Añadir</a>
-                                        <a href="/pets/removePet/<%= pet.id %>" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Eliminar</a>
-                                    </td>
+                                    <th scope="col">Mascota</th>
+                                    <th scope="col">Acciones</th>
                                 </tr>
-                            <% }); %>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <% petsList.forEach(pet => { %>
+                                    <tr>
+                                        <td><%= pet.name %></td>
+                                        <td>
+                                            <a href="/pets/editPet/<%= pet.id %>" class="btn btn-secondary btn-sm"><i class="bi bi-pencil-square"></i> Editar</a>
+                                            <a href="/pets/addPet" class="btn btn-success btn-sm"><i class="bi bi-plus-circle"></i> Añadir</a>
+                                            <a href="/pets/removePet/<%= pet.id %>" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Eliminar</a>
+                                        </td>
+                                    </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
+                    <% } %>
                 </div>
                 <div class="text-center w-100 my-4">
                     <a href="/home" class="btn btn-secondary">
