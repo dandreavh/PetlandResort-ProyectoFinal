@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const db = mongoose.connection;
 const { check, validationResult } = require('express-validator');
 const {isAuthenticated} = require('../controller/authenticate');
-const Chart = require('chart.js');
 // models to use
 const User = require('../models/User'); 
 const Pet = require('../models/Pet');
