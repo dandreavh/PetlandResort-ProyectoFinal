@@ -6,6 +6,7 @@
             <%- include('../partials/header'); %>
             <div class="bg-grey p-5">
                 <h1 class="font-brand text-center mb-4">Listado de usuarios</h1>
+                <hr class="h-line bg-blue w-50 mx-auto mb-5">
                 <% users.forEach(function(user) { %>
                     <!-- card -->
                     <div class="side-border mx-5 shadow ps-3 py-3 mb-4">
@@ -15,7 +16,7 @@
                                 <p>Identificador del usuario: <%= user.username %> <i class="bi bi-stickies"></i></p>
                             </div>
                             <div class="col-lg me-4">
-                                <p>Rol: <%= user.role%> <%= user.title %></p>
+                                <p>Rol: <%= user.role %> <%= user.position.title %></p>
                                 <a href="" class="btn btn-dark w-100">Ver perfil</a>
                             </div>
                         </div>

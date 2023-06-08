@@ -20,9 +20,9 @@ ______________________________________________________________________
 
 // GET all the users order by registration date
 router.get('/', isAuthenticated, async (req, res) =>{
-    const pets = await Pet.find().sort('-register_date');
-    if(!pets) res.status(500).json({success:false});
-    res.send(pets);
+    const petsList = await Pet.find().sort('-register_date');
+    if(!petsList) res.status(500).json({success:false});
+    res.render('./pages/allPets', {petsList});
 });
 
 // --------------------- REGISTER PETS -----------------------------

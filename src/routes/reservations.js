@@ -21,8 +21,8 @@ ______________________________________________________________________
 router.get('/listReservations', 
     async (req, res) =>{
         console.log("In get listReservations");
-        const reservations = await Reservation.find().sort('-checkin');;
-        res.send(reservations);
+        const reservationsList = await Reservation.find().sort('-checkin');;
+        res.render('./pages/allReservations', {reservationsList});
     }
 );
 

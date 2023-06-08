@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('../partials/head'); %>
+    <body>
+        <div class="container">
+            <%- include('../partials/header'); %>
+            <div class="bg-grey p-5">
+                <h1 class="font-brand text-center mb-4">Listado de mascotas</h1>
+                <hr class="h-line bg-blue w-50 mx-auto mb-5">
+                <% petsList.forEach(pet => { %>
+                    <!-- card -->
+                    <div class="mx-5 shadow p-3 bg-light mt-3">
+                        <div class="row">
+                            <div class="col-3">
+                                <img src="<%= pet.avatar %>" alt="Mascota-<%= pet.specie %>" class="cover">
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-wrap justify-content-between">
+                                    <h3 class="mb-3">Nombre: <%= pet.name %></h3>
+                                    <p>Estado: <%= pet.status %></p>
+                                </div>
+                                <p>Identificador: <%= pet.id %></p>
+                                <p>Tipo: <%= pet.specie %></p>
+                                <p>Raza: <%= pet.breed %></p>
+                                <div class="d-md-flex">
+                                    <a href="/pets/editPet/<%= pet.id %>" class="btn <%= pet.status === 'active' ? 'btn-dark' : 'btn-secondary disabled' %> w-100 me-1"><i class="bi bi-pencil-square"></i> Editar mascota</a>
+                                    <a href="/pets/removePet/<%= pet.id %>" class="btn <%= pet.status === 'active' ? 'btn-danger' : 'btn-secondary disabled' %> w-100"><i class="bi bi-trash"></i> Quitar mascota</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+            <%- include('../partials/footer'); %>
+        </div>
+    </body>
+</html>    
