@@ -176,6 +176,46 @@ router.put('/editUser', isAuthenticated,
   }
 );
 
+// --------------------- RESET USERS PASSWORD -----------------------------
+// GET to redirect to resetPassword post
+router.get('/resetPassword', 
+  async (req, res) => {
+    console.log("In get resetPassword");
+    try {
+      res.render('./pages/resetPassword');
+    } catch (error) {
+      req.flash('error_msg', error);
+      res.redirect('/home');
+    }
+  }
+);
+
+// PUT to update password
+router.put('/resetPassword', 
+  [// validations
+  ],
+  async (req, res) => {
+    console.log("In put resetPassword");
+/*     const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        console.log(errors);
+        for (const error of errors.array()) {
+            req.flash('error_msg','\n'+ error.msg + '\n');
+        }
+        return res.redirect('/users/editUser');
+    } */
+    const userLogged = req.user;
+    if(userLogged){
+      
+    } else {
+
+    }
+    await User.findOneAndUpdate({'username': userLogged.username}, req.body)
+    req.flash('success_msg', 'Tu perfil se ha modificado con éxito'); 
+    res.redirect('/home');
+  }
+);
+
 // --------------------- LOGIN/LOGOUT USERS -----------------------------
 // GET to log out user and redirect
 router.get('/logout', (req, res) => {

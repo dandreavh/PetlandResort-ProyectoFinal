@@ -192,6 +192,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// compare passwords
+if(window.location.pathname === "/users/resetPassword"){
+    const newPassword = document.getElementById("newPassword");
+    const password = document.getElementById("password");
+    const span = document.getElementById("error");
+    password.addEventListener("input", () => {
+        if(password.value !== newPassword.value){
+            span.innerHTML = "Las contraseñas no coinciden";
+        } else{
+            span.innerHTML = "";
+        }
+    })
+}
+
 // styles for menu items
 window.onload = function() {
     const nav = document.getElementById("myNavbar");
