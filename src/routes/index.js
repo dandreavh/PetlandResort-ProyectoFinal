@@ -24,7 +24,7 @@ router.get('/home', async (req, res) => {
           reservationsList
         });
       }
-      res.render('./pages/home', {userLogged: user});
+      res.render('./pages/home', {userLogged});
     } else{
       res.render('./pages/');
     }

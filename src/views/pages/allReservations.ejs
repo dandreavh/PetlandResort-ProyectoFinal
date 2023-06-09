@@ -30,7 +30,7 @@
                                         <p>Servicios extra: <span><%= reservation.cares %></span></p>
                                     </div>
                                     <div class="px-5 pb-2">
-                                        <div class="mb-3 mx-auto">
+                                        <div class="d-md-flex flex-wrap mb-3 mx-auto">
                                             <p class="h3">
                                                 <i class="bi bi-tags"></i> 
                                                 <% if (reservation.checkin < new Date()) { %>
@@ -40,7 +40,7 @@
                                                 <% } %> 
                                                 <span> <strong> <%= reservation.price %> €</strong></span>
                                             </p>
-                                            <p class="h4"></p>
+                                            <a href="/reservations/generatePDF/<%= reservation.id %>" target="_blank" class="text-dark text-decoration-none ms-4"><i class="bi bi-filetype-pdf"></i> Ver PDF</a>
                                         </div>
                                         <a href="/reservations/editReservation/<%= reservation.id %>" 
                                             class="btn btn-outline-dark w-100 mb-2 <%= (reservation.checkin < new Date()) ? 'disabled' : '' %>">

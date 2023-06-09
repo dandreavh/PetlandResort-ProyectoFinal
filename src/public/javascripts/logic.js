@@ -179,6 +179,19 @@ if(window.location.pathname === "/register" || window.location.pathname === "/us
     });
 }
 
+// copy id
+document.addEventListener('DOMContentLoaded', function() {
+    const idSpans = document.getElementsByClassName("id_span");
+    if (idSpans.length > 0){
+        for (const span of idSpans) {
+            span.addEventListener('click', () => {
+                const reference = span.id.split('-')[1];
+                navigator.clipboard.writeText(reference);
+            });
+        }
+    }
+});
+
 // styles for menu items
 window.onload = function() {
     const nav = document.getElementById("myNavbar");

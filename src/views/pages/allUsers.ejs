@@ -13,7 +13,7 @@
                         <div class="row">
                             <div class="col-lg-9">
                                 <h3 class="mb-3"><%= user.name%> <%= user.surnames %></h3>
-                                <p>Identificador del usuario: <%= user.username %> <i class="bi bi-stickies"></i></p>
+                                <p>Identificador del usuario: <%= user.username %> <span class="id_span" id="user-<%= user.username %>"><i class="bi bi-stickies"></i></span></p>
                             </div>
                             <div class="col-lg me-4">
                                 <p>Rol: <%= user.role %> <%= user.position.title %></p>

@@ -85,25 +85,7 @@ router.post('/addReservation', isAuthenticated,
             const userLogged = req.user;
             const newReservation = await Reservation.create(req.body);
 
-            // creates the pdf file
-            const doc = new PDFDocument();
-            doc.pipe(fs.createWriteStream(`reserva-${newReservation.id}.pdf`));
-            // add content in file
-            doc.image(path.join(__dirname, '../public/images/1.png'), {
-                fit: [250, 250],
-            });
-            doc.fontSize(30).text('Gracias por elegirnos');
-            doc.fontSize(20).text('Detalles de la reserva', { underline: true });
-            doc.text(`Id de la reserva: ${newReservation.id}`);
-            doc.text(`Titular de la reserva: ${req.body.client}`);
-            doc.text(`Fecha de entrada: ${req.body.checkin}`);
-            doc.text(`Fecha de salida: ${req.body.checkout}`);
-            doc.text(`Tipo de habitación: ${newReservation.room.type}`);
-            doc.text(`Observaciones: ${req.body.observations}`);
-            doc.fontSize(15).text(`Precio: ${newReservation.price}`);
-            doc.end();
-
-            // mail configuration
+            /* // mail configuration
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
@@ -131,7 +113,7 @@ router.post('/addReservation', isAuthenticated,
                 } else {
                     console.log('Correo enviado:', info.response);
                 }
-            });
+            }); */
             req.flash('success_msg', 'Reserva realizada con éxito');
         } else{
             req.flash('error_msg', 'Ha habido un error al realizar la reserva');
@@ -139,6 +121,50 @@ router.post('/addReservation', isAuthenticated,
         res.redirect('../home');
     }
 );
+
+// GET to open pdf file in browser
+router.get('/generatePDF/:id', isAuthenticated, 
+    async (req, res) => {
+    if(isAuthenticated){
+        const userLogged = req.user;
+        const reservation = await Reservation.findById(req.params.id);
+        if(reservation){
+            const doc = new PDFDocument();
+            // Hearders sets
+            res.setHeader('Content-Type', 'application/pdf');
+            res.setHeader('Content-Disposition', `inline; filename=pr-${reservation.id}.pdf`);
+        
+            // Escribe el contenido del PDF en la respuesta HTTP
+            doc.pipe(res);
+        
+            // Agrega el contenido del PDF
+            doc.image(path.join(__dirname, '../public/images/1.png'), {
+                fit: [150, 150],
+            });
+            doc.lineGap(30);
+            doc.fontSize(30).text('Gracias por elegirnos');
+            doc.fontSize(25).text('Detalles de la reserva', { underline: true });
+            doc.lineGap(15);
+            doc.fontSize(15);
+            doc.text(`Id de la reserva: ${reservation.id}`);
+            doc.text(`Titular de la reserva: ${userLogged.name} ${userLogged.surnames}`);
+            doc.text(`Fecha de entrada: ${reservation.checkin.toLocaleDateString()}`);
+            doc.text(`Fecha de salida: ${reservation.checkout.toLocaleDateString()}`);
+            doc.text(`Tipo de habitación: ${reservation.room.type}`);
+            doc.text(`Observaciones: ${reservation.observations}`);
+            doc.text(`Precio: ${reservation.price} €`);
+            doc.lineGap(5);
+            doc.fontSize(10).font('Helvetica-Oblique').fillColor('gray').text(`* El importe se abonará en el centro al realizar el checkin`);
+        
+            // Finaliza y envía el PDF al navegador
+            doc.end();
+        }
+        req.flash('success_msg', 'PDF generado con éxito');
+    } else{
+        req.flash('error_msg', 'Ha habido un error al generar el PDF');
+        res.redirect('../home');
+    }
+});
 
 // --------------------- EDIT RESERVATIONS -----------------------------
 // GET to render to editReservation form with parameters
