@@ -164,13 +164,13 @@ router.put('/editUser', isAuthenticated,
   async (req, res) => {
     console.log("In put editUser");
     const errors = validationResult(req);
-    if (!errors.isEmpty()) {
+/*     if (!errors.isEmpty()) {
         console.log(errors);
         for (const error of errors.array()) {
             req.flash('error_msg','\n'+ error.msg + '\n');
         }
         return res.redirect('/users/editUser');
-    }
+    } */
     const userLogged = req.user;
     console.log(userLogged);
     await User.findOneAndUpdate({'username': userLogged.username}, req.body)
