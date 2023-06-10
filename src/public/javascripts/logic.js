@@ -94,7 +94,7 @@ if(window.location.pathname === "/reservations/addReservation" || window.locatio
 
 // set price depending on the room type
 function setPrice(){
-    let room_type = document.getElementById("room[type]");
+    let room_type = document.getElementById("roomType");
     const price = document.getElementById("price");
     const price_info = document.getElementById("price_info");
 

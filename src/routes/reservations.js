@@ -82,8 +82,23 @@ router.post('/addReservation', isAuthenticated,
         }
 
         if(isAuthenticated){
-            const userLogged = req.user;
-            const newReservation = await Reservation.create(req.body);
+            //const userLogged = req.user;
+            const {checkin, checkout, client, pets, cares, observations, price} = req.body;
+            const roomType = req.body.roomType;
+            const reservation  = {
+                checkin: checkin,
+                checkout: checkout,
+                room: {
+                    type: roomType,  
+                },
+                client: client,
+                pets: pets,
+                cares: cares,
+                observations: observations,
+                price: price,
+            }
+            const newReservation = await Reservation.create(reservation);
+            console.log(newReservation);
 
             /* // mail configuration
             const transporter = nodemailer.createTransport({

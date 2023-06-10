@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="form-floating mb-3">
-                        <select class="form-select" name="room[type]" id="room[type]">
+                        <select class="form-select" name="roomType" id="roomType">
                             <!-- 'suite', 'pack suite', 'deluxe suite', 'deluxe pack suite' -->
                             <option disabled selected>Seleccionar </option>
                             <option value="suite">Suite</option>
@@ -29,7 +29,7 @@
                             <option value="deluxe suite">Deluxe suite</option>
                             <option value="deluxe pack suite">Deluxe suite familiar</option>
                         </select>
-                        <label for="room[type]">Tipo de habitación</label>
+                        <label for="roomType">Tipo de habitación</label>
                     </div>
                     <% if (user.role == "admin" || user.role == "staff") { %>
                         <div class="form-floating mb-3">

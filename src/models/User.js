@@ -22,7 +22,7 @@ const UserSchema = new mongoose.Schema({
     status: {type: String, enum: ['inactive', 'active'], default: 'active'}, 
     role: {type: String, enum: ['client', 'staff', 'admin'], default: 'client'}, 
     // —------------- if role is client: —---------------------------
-    pets: [{type: String, ref: Pet, default: null}], 
+    pets: [{type: Schema.Types.ObjectId, ref: Pet, default: null}], 
     // —------------- if role is staff: —---------------------------
     position: {
         start_date: {type: Date, default: Date.now}, 

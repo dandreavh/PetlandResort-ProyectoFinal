@@ -30,24 +30,28 @@ router.get('/addPet', isAuthenticated, async (req, res) => {
     res.render('./pages/addPet');
 })
 
-// POST to create a new pet (General) <REVISAR>
+// POST to create a new pet
 router.post('/addPet', async (req, res) => {
     console.log("In addPet");
     const caregiver = req.user.username;
-    const checkPet = await Pet.find({'chip': req.body.chip});
-    if(checkPet !== null){
-        const newPet = await Pet.create(req.body);
-        await Pet.findByIdAndUpdate(
-            {'_id': newPet.id}, 
-            {'caregiver' : caregiver});
-        await User.findOneAndUpdate(
-            {'username': caregiver}, 
-            {$push:{pets:newPet}});
-        req.flash('success_msg', 'Mascota añadida con éxito');
-        res.redirect('../home');
-    } else{
+    const checkPet = await Pet.findOne({'chip': req.body.chip});
+    if(checkPet){
         req.flash('error_msg', 'La mascota con ese chip ya existe');
-        res.redirect('/addPet');
+        res.redirect('/pets/addPet');
+    } else{
+        const newPet = await Pet.create(req.body);  
+        if(newPet){
+            const foundNewPet = await Pet.findByIdAndUpdate(
+                newPet.id,
+                {$set: {caregiver: caregiver}}).exec();;
+            if(foundNewPet){
+                const userUpdated = await User.findOneAndUpdate(
+                    {'username': caregiver}, 
+                    {$push:{pets:foundNewPet}}).exec();;
+            }
+        }
+        req.flash('success_msg', 'Mascota añadida con éxito');
+        res.redirect('/home');
     }
 });
 
