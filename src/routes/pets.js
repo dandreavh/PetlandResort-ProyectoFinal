@@ -33,22 +33,37 @@ router.get('/addPet', isAuthenticated, async (req, res) => {
 // POST to create a new pet
 router.post('/addPet', async (req, res) => {
     console.log("In addPet");
-    const caregiver = req.user.username;
+    let caregiver;
+    if(req.user.role === "client"){
+        caregiver = req.user.username;
+    } else{
+        caregiver = req.body.username;
+    }
+    
     const checkPet = await Pet.findOne({'chip': req.body.chip});
     if(checkPet){
         req.flash('error_msg', 'La mascota con ese chip ya existe');
         res.redirect('/pets/addPet');
     } else{
-        const newPet = await Pet.create(req.body);  
+        const pet = {
+            name: req.body.name,
+            birthday: req.body.birthday,
+            specie: req.body.specie,
+            breed: req.body.breed,
+            size: req.body.size,
+            color: req.body.color,
+            chip: req.body.chip,
+            friendly: req.body.friendly,
+            medical_info: req.body.medical_info,
+            comments: req.body.comments,
+            caregiver: caregiver,
+        }
+        console.log(req.body);
+        const newPet = await Pet.create(pet);  
         if(newPet){
-            const foundNewPet = await Pet.findByIdAndUpdate(
-                newPet.id,
-                {$set: {caregiver: caregiver}}).exec();;
-            if(foundNewPet){
-                const userUpdated = await User.findOneAndUpdate(
-                    {'username': caregiver}, 
-                    {$push:{pets:foundNewPet}}).exec();;
-            }
+            const userUpdated = await User.findOneAndUpdate(
+                {'username': caregiver}, 
+                {$push:{pets:newPet}}).exec();;
         }
         req.flash('success_msg', 'Mascota añadida con éxito');
         res.redirect('/home');

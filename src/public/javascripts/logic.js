@@ -179,6 +179,15 @@ if(window.location.pathname === "/register" || window.location.pathname === "/us
     });
 }
 
+// set value of friendly
+if(window.location.pathname === "/pets/addPet" || window.location.pathname === "/pets/editPet"){
+    const friendly = document.getElementById("friendly");
+    friendly.addEventListener("change", () => {
+        friendly.checked ? friendly.value = true : friendly.value = false;
+        console.log(friendly.value);
+    })
+}
+
 // copy id
 document.addEventListener('DOMContentLoaded', function() {
     const idSpans = document.getElementsByClassName("id_span");
