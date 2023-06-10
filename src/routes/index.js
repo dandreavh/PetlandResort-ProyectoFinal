@@ -71,4 +71,26 @@ router.get('/aboutus', function(req, res, next) {
   res.render('./pages/aboutus');
 });
 
+/* GET statistics page */
+router.get('/statistics', isAuthenticated, async (req, res) => {
+  try {
+    const userLogged = req.user;
+    if(isAuthenticated) {
+      if(userLogged.role === 'admin'){
+        const petsList = await Pet.find({'caregiver': userLogged.username});
+        const reservationsList = await Reservation.find({'client': userLogged.username});
+        res.render('./pages/statistics',{
+          petsList,
+          reservationsList
+        });
+      }
+      res.render('./pages/home', {userLogged});
+    } else{
+      res.render('./pages/');
+    }
+  } catch (error) {
+    res.render('./pages/');
+  }
+});
+
 module.exports = router;
