@@ -6,6 +6,9 @@ const db = mongoose.connection;
 const passport = require('passport');
 const {isAuthenticated} = require('../controller/authenticate');
 const { check, validationResult } = require('express-validator');
+// To encrypt password
+const bcrypt = require('bcryptjs');
+const SALT_WORK_FACTOR = 10;
 // models to use
 const User = require('../models/User'); 
 const Pet = require('../models/Pet');
@@ -193,26 +196,85 @@ router.get('/resetPassword',
 // PUT to update password
 router.put('/resetPassword', 
   [// validations
+  check('newPassword')
+  .notEmpty().withMessage('La contraseña es obligatoria')
+  .isLength({ min: 6 }).withMessage('La contraseña debe tener, al menos, 6 caracteres'),
+  //.matches(/^(?:\d{8}[A-Z]|[A-Z]\d{7}[A-Z0-9])$/).withMessage('La contraseña debe contener al menos una letra mayúscula, una letra minúscula, un número y un caracter especial' + '\n'),
+  check('password')
+    .notEmpty().withMessage('La contraseña es obligatoria')
+    .isLength({ min: 6 }).withMessage('La contraseña debe tener, al menos, 6 caracteres')
+    //.matches(/^(?:\d{8}[A-Z]|[A-Z]\d{7}[A-Z0-9])$/).withMessage('La contraseña debe contener al menos una letra mayúscula, una letra minúscula, un número y un caracter especial'),
   ],
   async (req, res) => {
     console.log("In put resetPassword");
-/*     const errors = validationResult(req);
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
         console.log(errors);
         for (const error of errors.array()) {
             req.flash('error_msg','\n'+ error.msg + '\n');
         }
-        return res.redirect('/users/editUser');
-    } */
-    const userLogged = req.user;
-    if(userLogged){
-      
-    } else {
-
+        return res.redirect('/users/resetPassword');
     }
-    await User.findOneAndUpdate({'username': userLogged.username}, req.body)
-    req.flash('success_msg', 'Tu perfil se ha modificado con éxito'); 
-    res.redirect('/home');
+    const userLogged = req.user;
+    if(req.body.newPassword !== req.body.password){
+      req.flash('error_msg','No coinciden la contraseña nueva y la confirmación de la misma');
+      res.redirect('/users/resetPassword');
+    } else {
+      if(userLogged){
+        const currentUser = await User.findOne({'username': userLogged.username});
+        try {
+          const passwordChecked = await currentUser.comparePassword(req.body.oldPassword, async function(err, isMatch){
+            if (isMatch){
+              try {
+                const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
+                const hash = await bcrypt.hash(req.body.password, salt);
+                const updatedUser = await User.findOneAndUpdate(
+                  {'username': userLogged.username},
+                  {$set: { 'password': hash}}
+                ).exec();
+                req.flash('success_msg', 'Tu contraseña se ha modificado con éxito');
+                res.redirect('/home');
+              } catch (err) {
+                console.error('Error al actualizar el usuario:', err);
+                res.redirect('/users/resetPassword');
+              }
+            } else{
+              req.flash('error_msg','Error al introducir la contraseña actual');
+              res.redirect('/users/resetPassword');
+              return done(null, false);
+            }
+          });
+        } catch (error) {
+          req.flash('error_msg','\n'+ error + '\n');
+          res.redirect('/home');
+        }
+      } else {
+        const foundUser = await User.findOne({'username': req.body.username});
+        if (!foundUser) {
+          req.flash('error_msg','Error al encontrar el usuario');
+          res.redirect('/users/resetPassword');
+        } else{
+          if (foundUser.email !== req.body.email){
+            req.flash('error_msg','Error, el correo no coincide con el registrado para este usuario');
+            res.redirect('/users/resetPassword');
+          } else{
+            try {
+              const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
+              const hash = await bcrypt.hash(req.body.password, salt);
+              const updatedUser = await User.findOneAndUpdate(
+                {'username': foundUser.username},
+                {$set: { 'password': hash}}
+              ).exec();
+              req.flash('success_msg', 'Tu contraseña se ha modificado con éxito');
+              res.redirect('/home');
+            } catch (err) {
+              console.error('Error al actualizar el usuario:', err);
+              res.redirect('/users/resetPassword');
+            }
+          }
+        }
+      }
+    }
   }
 );
 
