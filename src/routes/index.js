@@ -53,7 +53,7 @@ router.get('/reservations', async (req, res) => {
       reservationsList
     });
   } else{
-    res.render('./pages/reservations');
+    res.render('./pages/');
   } 
 });
 
