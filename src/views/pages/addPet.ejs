@@ -61,6 +61,12 @@
                             <textarea class="form-control" name="medical_info" placeholder="Datos médicos"></textarea>
                             <label for="medical_info">Datos médicos</label>
                         </div>
+                        <% if (user.role == "admin" || user.role == "staff") { %>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="caregiver" placeholder="Nombre de usuario del cliente" required>
+                                <label for="caregiver">Cliente titular</label>
+                            </div>
+                        <% } %>
                         <div class="form-floating mb-3">
                             <textarea class="form-control" name="comments" placeholder="Comentarios"></textarea>
                             <label for="comments">Comentarios</label>
@@ -70,7 +76,10 @@
                             <label class="form-check-label" for="friendly">¿Sociable?</label>
                         </div>
                         <div class="text-center">
-                            <button type="reset" class="btn btn-secondary"><i class="bi bi-x-lg"></i> Cancelar</button>
+                            <a href="/home" class="btn btn-secondary">
+                                <i class="bi bi-x-lg"></i> 
+                                Cancelar
+                            </a>
                             <button type="submit" class="btn btn-success bg-blue text-light"><i class="bi bi-check-lg"></i> Añadir</button>
                         </div>
                     </form>

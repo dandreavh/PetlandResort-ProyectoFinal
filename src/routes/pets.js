@@ -1,3 +1,4 @@
+/**@dandreavh */
 const { json } = require('express');
 const express = require('express');
 const router = express.Router();
@@ -37,9 +38,8 @@ router.post('/addPet', async (req, res) => {
     if(req.user.role === "client"){
         caregiver = req.user.username;
     } else{
-        caregiver = req.body.username;
+        caregiver = req.body.caregiver;
     }
-    
     const checkPet = await Pet.findOne({'chip': req.body.chip});
     if(checkPet){
         req.flash('error_msg', 'La mascota con ese chip ya existe');
@@ -95,14 +95,14 @@ router.put('/editPet/:id', isAuthenticated,
     ],
     async (req, res) => {
         console.log("In put editPet");
-        const errors = validationResult(req);
+        /*const errors = validationResult(req);
         if (!errors.isEmpty()) {
             console.log(errors);
             for (const error of errors.array()) {
                 req.flash('error_msg','\n'+ error.msg + '\n');
             }
             return res.redirect('/home');
-        }
+        } */
 
         await Pet.findByIdAndUpdate(req.params.id, req.body);
         req.flash('success_msg', 'Mascota modificada con éxito'); 

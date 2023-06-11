@@ -1,3 +1,4 @@
+/**@dandreavh */
 const auth = {};
 
 // check if the user is authenticated

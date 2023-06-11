@@ -9,10 +9,17 @@
                     <h1>RESERVAS</h1>
                 <%} else { %>
                     <% if (reservationsList.length == 0) { %>
-                        <div class="text-center mx-auto p-3">
-                            <p>No tiene ninguna reserva activa en estos momentos</p>
-                            <a href="/reservations/addReservation" class="btn btn-secondary btn-lg bg-blue my-3 rounded-0 border-0 shadow">Reservar ahora</a>
-                        </div>
+                        <% if (user.role == "admin" || user.role == "staff") { %>
+                            <div class="text-center mx-auto p-3">
+                                <p>¿Deseas ver el listado de todas las reservas?</p>
+                                <a href="/reservations/listReservations" class="btn btn-secondary btn-lg bg-blue my-3 rounded-0 border-0 shadow"><i class="bi bi-card-list"></i> Listar reservas</a>
+                            </div>
+                        <%} else { %>
+                            <div class="text-center mx-auto p-3">
+                                <p>No tiene ninguna reserva activa en estos momentos</p>
+                                <a href="/reservations/addReservation" class="btn btn-secondary btn-lg bg-blue my-3 rounded-0 border-0 shadow">Reservar ahora</a>
+                            </div>
+                        <% } %>
                     <%} else { %>
                         <h1 class="font-brand text-center">Mis reservas</h1>
                         <hr class="h-line bg-blue w-50 mx-auto mb-5">
