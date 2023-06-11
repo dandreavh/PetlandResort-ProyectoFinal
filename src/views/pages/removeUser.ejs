@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head'); %>
+
+<body>
+    <div class="container">
+        <%- include('../partials/header'); %>
+        <div class="bg-image p-5">
+            <form class="bg-dark bg-opacity-75 w-75 mx-auto p-5 text-light" action="/users/removeUser/?_method=PUT" method="POST">
+                <input type="hidden" value="_method" value="PUT">
+                <h1 class="text-center">¿Deseas eliminar este usuario del sistema?</h1>
+                <hr class="h-line bg-blue w-50 mx-auto mb-5">
+                <div>
+                    <!-- user data -->
+                    <p><strong>Nombre de usuario: </strong><span><%= userLogged.username %></span></p>
+                    <p><strong>Nombre completo: </strong><span><%= userLogged.name %> <%= userLogged.surnames %></span></p>
+                    <p><strong>Email: </strong><span><%= userLogged.email %></span></p>
+                    <p><strong>DNI: </strong><span><%= userLogged.idnumber %></span></p>
+                    <p><strong>Fecha de nacimiento: </strong><span><%= userLogged.birthday.toLocaleDateString() %></span></p>
+                    <p><strong>Dirección: </strong><span><%= userLogged.address %></span></p>
+                    <p>
+                        <strong>Mascotas asociadas:</strong> (<%= petsList.length %>)
+                        <span>
+                            <ul class="bg-transparent list-group list-group-flush px-5">
+                                <% if (petsList.length > 0) { %>
+                                    <% petsList.forEach(pet => { %>
+                                        <li class="bg-transparent text-light list-group-item">
+                                            <%= pet.name %>
+                                            (<%= pet.id %> 
+                                            <span class="id_span" id="pet-<%= pet.id %>">
+                                                <i class="bi bi-stickies"></i>
+                                            </span>) 
+                                        </li>
+                                    <% }); %>
+                                <% } else { %>
+                                    No hay mascotas asociadas a este usuario
+                                <% } %>
+                            </ul>
+                        </span>
+                    </p>
+                    <p>
+                        <strong>Reservas realizadas:</strong> (<%= reservationsList.length %>)
+                        <span>
+                            <ul class="bg-transparent list-group list-group-flush px-5">
+                                <% if (reservationsList.length > 0) { %>
+                                    <% reservationsList.forEach(reservation => { %>
+                                        <li class="bg-transparent text-light list-group-item">
+                                            <%= reservation.checkin.toLocaleDateString() %> - <%= reservation.checkout.toLocaleDateString() %> 
+                                            (<%= reservation.id %> 
+                                            <span class="id_span" id="reservation-<%= reservation.id %>">
+                                                <i class="bi bi-stickies"></i>
+                                            </span>) 
+                                        </li>
+                                    <% }); %>
+                                <% } else { %>
+                                    No hay reservas asociadas a este usuario
+                                <% } %>
+                            </ul>
+                        </span>
+                    </p>
+                </div>
+                <h3 class="mx-auto mt-4 h5 text-center">Ya no podrás tener acceso con este usuario</h3>
+                <div class="text-center w-100 my-4">
+                    <a href="/home" class="btn btn-secondary">
+                        <i class="bi bi-x-lg"></i> 
+                        Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-success bg-blue text-light">
+                        <i class="bi bi-check-lg"></i> 
+                        Eliminar usuario
+                    </button>
+                </div>
+            </form>
+        </div>
+        <%- include('../partials/footer'); %>
+    </div>
+</body>
+</html>

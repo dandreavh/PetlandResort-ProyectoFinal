@@ -15,7 +15,7 @@
                         <% reservationsList.forEach(reservation => { %>
                             <!-- card -->
                             <div class="mx-5 shadow pb-3 mb-4">
-                                <h3 class="<%= (reservation.checkin < new Date()) ? 'bg-dark' : 'bg-blue' %>  text-light text-center p-4">
+                                <h3 class="<%= (reservation.status == 'checked' || reservation.status == 'removed') ? 'bg-dark' : 'bg-blue' %>  text-light text-center p-4">
                                     <i class="bi bi-calendar2-week"></i> Del 
                                     <strong><%= new Date(reservation.checkin).toLocaleDateString() %></strong> al 
                                     <strong><%= new Date(reservation.checkout).toLocaleDateString() %></strong> (<%= (Math.ceil(reservation.checkout - reservation.checkin) / (1000 * 60 * 60 * 24)) %> día/s)

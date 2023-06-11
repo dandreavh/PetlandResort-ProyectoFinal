@@ -22,7 +22,7 @@ ______________________________________________________________________
 ______________________________________________________________________
 */
 // GET all the reservations ordered by checkin date descending
-router.get('/listReservations', 
+router.get('/listReservations', isAuthenticated, 
     async (req, res) =>{
         console.log("In get listReservations");
         const reservationsList = await Reservation.find().sort('-checkin');;
@@ -68,8 +68,8 @@ router.post('/addReservation', isAuthenticated,
             }),
         check('client')
             .notEmpty().withMessage('El campo "Nombre del titular de la reserva" es obligatorio'),
-/*         check('pets')
-            .isArray({ min: 1 }).withMessage('Debes seleccionar al menos una mascota'), */
+        check('pets')
+            .notEmpty().withMessage('Debes seleccionar al menos una mascota'),
     ], 
     async (req, res) => {
         console.log("In post addReservation");
@@ -230,13 +230,13 @@ router.put('/editReservation/:id', isAuthenticated,
         }
         return true;
     }),
-    check('room.type')
+    /* check('room.type')
     .notEmpty().withMessage('El campo "tipo de habitación" es obligatorio')
     .isIn(['suite', 'pack suite', 'deluxe suite', 'deluxe pack suite']).withMessage('El campo "tipo de habitación" debe ser uno de los valores permitidos'),
-    check('client')
+     */check('client')
     .notEmpty().withMessage('El campo "Nombre del titular de la reserva" es obligatorio'),
     check('pets')
-    .isArray({ min: 1 }).withMessage('Debes seleccionar al menos una mascota'),
+    .notEmpty().withMessage('Debes seleccionar al menos una mascota'),
     ],
     async (req, res) => {
         console.log("In put editReservation");

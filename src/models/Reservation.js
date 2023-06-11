@@ -20,7 +20,7 @@ const ReservationSchema = new mongoose.Schema({
     petsitter: [{type: mongoose.Schema.Types.ObjectId}], 
     observations: {type: String}, 
     price: {type: Number},
-    status: {type: String, enum: ['pending', 'checked'], default: 'pending', required: true}, 
+    status: {type: String, enum: ['pending', 'checked', 'removed'], default: 'pending', required: true}, 
 })
 
 module.exports = mongoose.model('Reservation', ReservationSchema);

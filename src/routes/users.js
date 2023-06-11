@@ -13,6 +13,7 @@ const SALT_WORK_FACTOR = 10;
 // models to use
 const User = require('../models/User'); 
 const Pet = require('../models/Pet');
+const Reservation = require('../models/Reservation');
 
 
 /* 
@@ -57,8 +58,8 @@ router.post('/register',
       .isLength({ min: 6 }).withMessage('La contraseña debe tener, al menos, 6 caracteres')
       .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/).withMessage('La contraseña debe contener al menos una letra mayúscula, una letra minúscula, un número y un caracter especial'),
     check('idnumber')
-      .notEmpty().withMessage('El dni, nie o pasaporte es obligatorio')
-      .matches(/^(?:\d{8}[A-Z]|[A-Z]\d{7}[A-Z0-9])$/).withMessage('El dni, nie o pasaporte debe tener un formato válido'),
+      .notEmpty().withMessage('El dni, nie o pasaporte es obligatorio'),
+      //.matches(/^(?:\d{8}[A-Z]|[A-Z]\d{7}[A-Z0-9])$/).withMessage('El dni, nie o pasaporte debe tener un formato válido'),
     check('email')
       .notEmpty().withMessage('El correo electrónico es obligatorio')
       .isEmail().withMessage('El correo electrónico no es válido'),
@@ -94,8 +95,12 @@ router.post('/register',
     }
     const checkUser = await User.find({'username': req.body.username});
     if(checkUser !== null){
-      await User.create(req.body);
-      req.flash('success_msg', 'Usuario registrado con éxito');
+      try {
+        await User.create(req.body);
+        req.flash('success_msg', 'Usuario registrado con éxito');
+      } catch (error) {
+        req.flash('error_msg', 'Error al intentar crear el usuario');
+      }
       res.redirect('../');
     } else{
       req.flash('error_msg', 'Nombre de identificación del usuario ya registrado');
@@ -275,6 +280,57 @@ router.put('/resetPassword',
           }
         }
       }
+    }
+  }
+);
+
+// --------------------- REMOVE USER -----------------------------
+// GET to redirect to removeUser post
+router.get('/removeUser', isAuthenticated,
+  async (req, res) => {
+    console.log("In get removeUser");
+    const userLogged = req.user;
+    if(userLogged){
+      const petsList = await Pet.find({'caregiver': userLogged.username});
+      const reservationsList = await Reservation.find({'client': userLogged.username});
+      if(petsList.length > 0 && reservationsList.length > 0) {
+        res.render('./pages/removeUser', {userLogged, petsList, reservationsList});
+      }
+    } else{
+      req.flash('error_msg', 'Error al intentar eliminar el usuario');
+      res.redirect('/home');
+    }
+  }
+);
+
+// PUT simulating user remove (change status and password)
+router.put('/removeUser', isAuthenticated,
+  async (req, res) => {
+    console.log("In put removeUser");
+    const userLogged = req.user;
+    if(userLogged){
+      await User.findOneAndUpdate({ 'username': userLogged.username }, {
+        $set: {
+          'status': 'inactive',
+          'password': '1234-Eliminado'
+        }
+      });
+      
+      const userPets = await Pet.find({ 'username': userLogged.username });
+      const petIds = userPets.map(pet => pet.id);
+      await Pet.updateMany({ '_id': { $in: petIds } }, { $set: { 'status': 'inactive' } });
+
+      const userReservations = await Reservation.find({ 'client': userLogged.username });
+      const reservationIds = userReservations.map(reservation => reservation.id);
+      await Reservation.updateMany({ '_id': { $in: reservationIds } }, { $set: { 'status': 'removed' } });
+      req.logout(function(err) {
+        if (err) { return next(err); }
+        req.flash('success_msg', 'Usuario eliminado con éxito');
+        res.redirect('/');
+      });
+    } else{
+      req.flash('error_msg', 'Error al intentar eliminar el usuario');
+      res.redirect('/home');
     }
   }
 );
