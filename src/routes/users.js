@@ -37,6 +37,24 @@ router.get('/', isAuthenticated,
   }
 );
 
+// POST to find a unique user by username
+router.post('/findUser', isAuthenticated, 
+  async (req, res) =>{
+    console.log("In get findUser");
+    if(req.user.role === "staff"){
+      try {
+        const userFound = await User.findOne({'username': req.body.user});
+        const userPets = await Pet.find({'caregiver': req.body.user});
+        const userReservations = await Reservation.find({'client': req.body.user});
+        res.render('./pages/findUser', {userFound, userPets, userReservations});
+      } catch (error) {
+        req.flash('error_msg', error);
+        res.redirect('/home');
+      }
+    }
+  }
+);
+
 // --------------------- REGISTER USERS -----------------------------
 // GET to redirect to register post
 router.get('/register', (req, res) => {

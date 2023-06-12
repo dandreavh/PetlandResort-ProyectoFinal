@@ -30,6 +30,22 @@ router.get('/listReservations', isAuthenticated,
     }
 );
 
+// POST to find a unique reservation by id
+router.post('/findReservation', isAuthenticated, 
+    async (req, res) =>{
+        console.log("In get findReservation");
+        if(req.user.role === "staff"){
+            try {
+                const foundReservation = await Reservation.findById(req.body.reservation);
+                res.render('./pages/findReservation', {foundReservation});
+            } catch (error) {
+                req.flash('error_msg', error);
+                res.redirect('/home');
+            }
+        }
+    }
+);
+
 // --------------------- ADD RESERVATIONS -----------------------------
 // GET to render to addReservation (post) with all the pets related to the client
 router.get('/addReservation', isAuthenticated, 

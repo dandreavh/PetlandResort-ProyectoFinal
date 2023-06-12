@@ -15,5 +15,79 @@
 <!-- main -->
 <div class="bg-grey">
     <h2 class="font-brand text-center py-5">Panel de control</h2>
-
+    <div class="row">
+        <div class="col-md-4 bg-blue p-5">
+            <form action="/reservations/findReservation" class="mb-5" method="POST">
+                <h3 class="form-label h5 text-light">Buscar reserva</h3>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control p-3" placeholder="Nº de referencia" aria-label="Buscar reserva" name="reservation">
+                    <button class="btn btn-dark" type="submit"><i class="bi bi-search"></i></button>
+                </div>
+            </form>
+            <form action="/users/findUser" class="mb-5" method="POST">
+                <h3 class="form-label h5 text-light">Buscar usuario</h3>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control p-3" placeholder="Nombre de usuario" aria-label="Buscar usuario" name="user">
+                    <button class="btn btn-dark" type="submit"><i class="bi bi-search"></i></button>
+                </div>
+            </form>
+            <form action="/pets/findPet" class="mb-2" method="POST">
+                <h3 class="form-label h5 text-light">Buscar mascota</h3>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control p-3" placeholder="Nº de identificación" aria-label="Buscar mascota" name="pet">
+                    <button class="btn btn-dark" type="submit"><i class="bi bi-search"></i></button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md">
+            <!-- card -->
+            <div class="side-border mx-5 shadow ps-3 py-4 mb-4">
+                <!-- title -->
+                <div class="mb-4">
+                    <h3><i class="bi bi-journal-bookmark"></i> Reservas</h3>
+                </div>
+                <!-- options -->
+                <div class="row mb-3 me-2 gx-0">
+                    <div class="col-lg px-1">
+                        <a href="/reservations/addReservation" class="btn btn-success w-100"><i class="bi bi-plus-circle"></i> Añadir reserva</a>
+                    </div>
+                    <div class="col-lg px-1">
+                        <a href="/reservations/listReservations" class="btn btn-dark w-100"><i class="bi bi-card-list"></i> Listar reservas</a>
+                    </div>
+                </div>
+            </div>
+            <!-- card -->
+            <div class="side-border mx-5 shadow ps-3 py-4 mb-4">
+                <!-- title -->
+                <div class="mb-4">
+                    <h3><i class="bi bi-people"></i> Usuarios</h3>
+                </div>
+                <!-- options -->
+                <div class="row mb-3 me-2 gx-0">
+                    <div class="col-lg px-1">
+                        <a href="/register" class="btn btn-success w-100"><i class="bi bi-plus-circle"></i> Añadir usuario</a>
+                    </div>
+                    <div class="col-lg px-1">
+                        <a href="../users" class="btn btn-dark w-100"><i class="bi bi-card-list"></i> Listar usuarios</a>
+                    </div>
+                </div>
+            </div>
+            <!-- card -->
+            <div class="side-border mx-5 shadow ps-3 py-4 mb-4">
+                <!-- title -->
+                <div class="mb-4">
+                    <h3><i class="bi bi-hearts"></i> Mascotas</h3>
+                </div>
+                <!-- options -->
+                <div class="row mb-3 me-2 gx-0">
+                    <div class="col-lg px-1">
+                        <a href="/pets/addPet" class="btn btn-success w-100"><i class="bi bi-plus-circle"></i> Añadir mascota</a>
+                    </div>
+                    <div class="col-lg px-1">
+                        <a href="/pets" class="btn btn-dark w-100"><i class="bi bi-card-list"></i> Listar mascotas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

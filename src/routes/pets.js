@@ -28,6 +28,22 @@ router.get('/', isAuthenticated, async (req, res) =>{
     res.render('./pages/allPets', {petsList});
 });
 
+// POST to find a unique reservation by id
+router.post('/findPet', isAuthenticated, 
+    async (req, res) =>{
+        console.log("In get findPet");
+        if(req.user.role === "staff"){
+            try {
+                const pet = await Pet.findById(req.body.pet);
+                res.render('./pages/findPet', {pet});
+            } catch (error) {
+                req.flash('error_msg', error);
+                res.redirect('/home');
+            }
+        }
+    }
+);
+
 // --------------------- REGISTER PETS -----------------------------
 router.get('/addPet', isAuthenticated, async (req, res) => {
     res.render('./pages/addPet');

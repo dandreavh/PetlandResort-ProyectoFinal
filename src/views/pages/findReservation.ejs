@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head'); %>
+
+<body>
+    <div class="container">
+        <%- include('../partials/header'); %>
+        <div class="bg-image p-5">
+            <div class="bg-dark bg-opacity-75 w-75 mx-auto p-5 text-light">
+                <h1 class="text-center">Datos de la reserva</h1>
+                <hr class="h-line bg-blue w-50 mx-auto mb-5">
+                <div>
+                    <p><strong>Referencia de la reserva: <span><%= foundReservation.id %></span></strong></p>
+                    <p><strong>Titular de la reserva: <span><%= foundReservation.client %></span></strong></p>
+                    <p><strong>Del <%= new Date(foundReservation.checkin).toLocaleDateString() %> al <%= new Date(foundReservation.checkout).toLocaleDateString() %> (<%= (Math.ceil(foundReservation.checkout - foundReservation.checkin) / (1000 * 60 * 60 * 24)) %> día/s)</strong></p>
+                    <p>Nº de huéspedes: <span><%= foundReservation.pets.length %></span></p>
+                    <p>Tipo de habitación: <span><%= foundReservation.room.type %></span></p>
+                    <p>Observaciones: <span><%= foundReservation.observations %></span></p>
+                    <p>Servicios extra: <span><%= foundReservation.cares %></span></p>
+                </div>
+            </div>
+        </div>
+        <%- include('../partials/footer'); %>
+    </div>
+</body>
+</html>

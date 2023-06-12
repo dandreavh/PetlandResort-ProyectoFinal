@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head'); %>
+
+<body>
+    <div class="container">
+        <%- include('../partials/header'); %>
+        <div class="bg-image p-5">
+            <div class="bg-dark bg-opacity-75 w-75 mx-auto p-5 text-light">
+                <h1 class="text-center">Datos del usuario</h1>
+                <hr class="h-line bg-blue w-50 mx-auto mb-5">
+                <div>
+                    <!-- user data -->
+                    <p><strong>Nombre de usuario: </strong><span><%= userFound.username %></span></p>
+                    <p><strong>Nombre completo: </strong><span><%= userFound.name %> <%= userFound.surnames %></span></p>
+                    <p><strong>Email: </strong><span><%= userFound.email %></span></p>
+                    <p><strong>DNI: </strong><span><%= userFound.idnumber %></span></p>
+                    <p><strong>Fecha de nacimiento: </strong><span><%= userFound.birthday.toLocaleDateString() %></span></p>
+                    <p><strong>Dirección: </strong><span><%= userFound.address %></span></p>
+                    <p>
+                        <strong>Mascotas asociadas:</strong> (<%= userPets.length %>)
+                        <span>
+                            <ul class="bg-transparent list-group list-group-flush px-5">
+                                <% if (userPets.length > 0) { %>
+                                    <% userPets.forEach(pet => { %>
+                                        <li class="bg-transparent text-light list-group-item">
+                                            <%= pet.name %>
+                                            (<%= pet.id %> 
+                                            <span class="id_span" id="pet-<%= pet.id %>">
+                                                <i class="bi bi-stickies"></i>
+                                            </span>) 
+                                        </li>
+                                    <% }); %>
+                                <% } else { %>
+                                    No hay mascotas asociadas a este usuario
+                                <% } %>
+                            </ul>
+                        </span>
+                    </p>
+                    <p>
+                        <strong>Reservas realizadas:</strong> (<%= userReservations.length %>)
+                        <span>
+                            <ul class="bg-transparent list-group list-group-flush px-5">
+                                <% if (userReservations.length > 0) { %>
+                                    <% userReservations.forEach(reservation => { %>
+                                        <li class="bg-transparent text-light list-group-item">
+                                            <%= reservation.checkin.toLocaleDateString() %> - <%= reservation.checkout.toLocaleDateString() %> 
+                                            (<%= reservation.id %> 
+                                            <span class="id_span" id="reservation-<%= reservation.id %>">
+                                                <i class="bi bi-stickies"></i>
+                                            </span>) 
+                                        </li>
+                                    <% }); %>
+                                <% } else { %>
+                                    No hay reservas asociadas a este usuario
+                                <% } %>
+                            </ul>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <%- include('../partials/footer'); %>
+    </div>
+</body>
+</html>
