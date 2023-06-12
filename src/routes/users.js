@@ -7,6 +7,8 @@ const db = mongoose.connection;
 const passport = require('passport');
 const {isAuthenticated} = require('../controller/authenticate');
 const { check, validationResult } = require('express-validator');
+// to upload files
+const multer = require('multer');
 // To encrypt password
 const bcrypt = require('bcryptjs');
 const SALT_WORK_FACTOR = 10;
