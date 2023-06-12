@@ -17,7 +17,7 @@ const ReservationSchema = new mongoose.Schema({
 	client: {type: String, required: true}, 
     pets: [{type: mongoose.Schema.Types.ObjectId, required: true}], 
     cares: {type: String},
-    petsitter: [{type: mongoose.Schema.Types.ObjectId}], 
+    petsitter: [{type: String}], 
     observations: {type: String}, 
     price: {type: Number},
     status: {type: String, enum: ['pending', 'checked', 'removed'], default: 'pending', required: true}, 

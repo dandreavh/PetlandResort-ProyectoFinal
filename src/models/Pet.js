@@ -21,7 +21,7 @@ const PetSchema = new mongoose.Schema({
     caregiver: {type: String},
     informs:  [{
         timestamp:  {type: Date, default: Date.now},
-        author: {type: mongoose.Schema.Types.ObjectId},
+        author: {type: String},
         shift: {type: String, enum: ['morning', 'afternoon', 'night']},
         description: {type: String}
     }]
