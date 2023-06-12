@@ -69,7 +69,7 @@ router.get('/services', function(req, res, next) {
 
 /* GET about us page */
 router.get('/aboutus', function(req, res, next) {
-  res.render('/pages/aboutus');
+  res.render('./pages/aboutUs');
 });
 
 /* GET statistics page */
