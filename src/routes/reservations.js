@@ -170,7 +170,7 @@ router.get('/generatePDF/:id', isAuthenticated,
             doc.text(`Observaciones: ${reservation.observations}`);
             doc.text(`Precio: ${reservation.price} €`);
             doc.lineGap(5);
-            doc.fontSize(10).font('Helvetica-Oblique').fillColor('gray').text(`* El importe se abonará en el centro al realizar el checkin`);
+            doc.fontSize(10).font('Helvetica-Oblique').fillColor('gray').text(`* El importe se abonará en el centro al realizar el checkin y puede variar en función de los servicios extra y de si son mascotas más pequeñas`);
         
             // Finaliza y envía el PDF al navegador
             doc.end();
