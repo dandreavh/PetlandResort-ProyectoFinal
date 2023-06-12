@@ -128,7 +128,8 @@ router.get('/editUser', isAuthenticated,
 );
 
 // PUT to update a reservation and redirect back to home page with message
-router.put('/editUser', isAuthenticated, 
+const upload = multer({dest: 'uploads/'});
+router.put('/editUser', isAuthenticated, upload.single('avatar'),
   [// validations
 /*     check('username')
       .notEmpty().withMessage('El nombre de usuario es obligatorio')
@@ -181,7 +182,13 @@ router.put('/editUser', isAuthenticated,
     } */
     const userLogged = req.user;
     console.log(userLogged);
-    await User.findOneAndUpdate({'username': userLogged.username}, req.body)
+    // shallow copy 
+    const updatedUser = {...req.body};
+    if (req.file) {
+      const avatarPath = req.file.path;
+      updatedUser.avatar = avatarPath.replace('\\', '/');
+    }
+    await User.findOneAndUpdate({ 'username': userLogged.username }, updatedUser);
     req.flash('success_msg', 'Tu perfil se ha modificado con éxito'); 
     res.redirect('/home');
   }

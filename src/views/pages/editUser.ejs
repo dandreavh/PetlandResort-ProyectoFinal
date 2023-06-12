@@ -53,11 +53,11 @@
                 </div>
                 <div class="w-50 p-5">
                     <div>
-                        <img src="<%= user.avatar %>" alt="Persona" class="cover" />
+                        <img src="<%= user.avatar.replace('\\', '/') %>" alt="Persona" class="cover" />
                     </div>
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="avatar"><i class="bi bi-cloud-arrow-up"></i></label>
-                        <input type="file" class="form-control" name="avatar" id="avatar" value="<%= user.avatar %>">
+                        <input type="file" class="form-control" name="avatar" id="avatar">
                     </div>
                     <% if(user.role == "client") { %>
                         <table class="table table-hover mt-4">

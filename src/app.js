@@ -37,6 +37,7 @@ app.set('view engine', 'ejs');
 
 // static files placement
 app.use(express.static(path.join(__dirname, '/public')));
+app.use('/uploads', express.static('uploads'));
 
 // dependencies call (middlewares)
 app.use(logger('dev'));
