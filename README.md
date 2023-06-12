@@ -4,7 +4,7 @@
 #### Autora: [Dalieska Andrea Vieira Hernández](https://github.com/dandreavh)
 #### Tutor: [Antonio Gabriel González Casado](https://github.com/antonio-gabriel-gonzalez-casado)
 #### Fecha de Inicio: 15-03-2023
-#### Fecha de Finalización: DD-MM-YYYY
+#### Fecha de Finalización: 14-06-2023
 
 ## Breve descripción del proyecto
 El proyecto pretende aunar en una aplicación todos los conocimientos adquiridos, respondiendo a una necesidad del mundo real, en este caso, la de un complejo hostelero, Petland Resort, que se encarga de alojar mascotas y ofrecer una serie de servicios durante la estancia de estas.
@@ -36,10 +36,13 @@ En el mercado no existe una aplicación para centros donde se alojan animales, p
 │   │   ├───javascripts/<br>
 │   │   ├───stylesheets/<br>
 │   ├───routes/<br>
+│   ├───uploads/<br>
 │   ├───views/<br>
 │   │   ├───partials/<br>
 │   │   ├───pages/<br>
 │   ├───app.js<br>
 │   ├───package-lock.json<br>
 │   ├───package.json<br>
+│   ├───railway.yml<br>
+│   ├───start.sh<br>
 └───README.md
