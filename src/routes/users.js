@@ -181,7 +181,6 @@ router.put('/editUser', isAuthenticated, upload.single('avatar'),
         return res.redirect('/users/editUser');
     } */
     const userLogged = req.user;
-    console.log(userLogged);
     // shallow copy 
     const updatedUser = {...req.body};
     if (req.file) {

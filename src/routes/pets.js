@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const db = mongoose.connection;
 const { check, validationResult } = require('express-validator');
 const {isAuthenticated} = require('../controller/authenticate');
+// to upload files
+const multer = require('multer');
 // model to use
 const Pet = require('../models/Pet');
 const User = require('../models/User'); 
@@ -90,7 +92,8 @@ router.get('/editPet/:id', isAuthenticated,
 );
 
 // PUT to update pets and redirect back to home page with message
-router.put('/editPet/:id', isAuthenticated, 
+const upload = multer({dest: 'uploads/'});
+router.put('/editPet/:id', isAuthenticated, upload.single('avatar'),
     [// validations
     ],
     async (req, res) => {
@@ -103,8 +106,13 @@ router.put('/editPet/:id', isAuthenticated,
             }
             return res.redirect('/home');
         } */
-
-        await Pet.findByIdAndUpdate(req.params.id, req.body);
+        // shallow copy 
+        const updatedPet = {...req.body};
+        if (req.file) {
+            const avatarPath = req.file.path;
+            updatedPet.avatar = avatarPath.replace('\\', '/');
+        }
+        await Pet.findByIdAndUpdate(req.params.id, updatedPet);
         req.flash('success_msg', 'Mascota modificada con éxito'); 
         res.redirect('/home');
     }

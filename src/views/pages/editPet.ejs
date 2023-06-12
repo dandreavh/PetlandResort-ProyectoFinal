@@ -5,7 +5,7 @@
 <body>
     <div class="container">
         <%- include('../partials/header'); %>
-            <form class="d-flex flex-wrap" action="/pets/editPet<%= pet.id %>?_method=PUT" method="POST">
+            <form class="d-flex flex-wrap" action="/pets/editPet/<%= pet.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
                 <input type="hidden" value="_method" value="PUT">
                 <div class="bg-blue p-5 w-50">
                     <h1 class="font-brand text-center text-light mb-5">Mi mascota</h1>
