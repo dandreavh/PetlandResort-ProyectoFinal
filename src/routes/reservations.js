@@ -52,8 +52,12 @@ router.get('/addReservation', isAuthenticated,
     async (req, res) => {
         console.log("In get addReservation");
         const userLogged = req.user;
-        const petsList = await Pet.find({'caregiver': userLogged.username});
-        res.render('./pages/addReservation', {petsList});
+        if(userLogged){
+            const petsList = await Pet.find({'caregiver': userLogged.username});
+            res.render('./pages/addReservation', {petsList});
+        } else{
+            res.redirect('/home');
+        }
     }
 );
 
