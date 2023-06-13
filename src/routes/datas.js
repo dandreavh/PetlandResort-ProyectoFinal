@@ -98,6 +98,11 @@ router.get('/reservations', isAuthenticated,
                     month: "$_id",
                     total: 1
                 }
+            },
+            {
+                $sort: {
+                    month: 1
+                }
             }
         ]).exec();
         console.log(results);
