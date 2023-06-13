@@ -17,10 +17,7 @@
                             </div>
                             <div class="col-lg me-4">
                                 <p>Rol: <%= user.role %> <%= user.position.title %></p>
-                                <form action="/users/findUser" method="POST">
-                                    <input type="text" hidden value="<%= user.username %>" name="user">
-                                    <button type="submit" class="btn btn-dark w-100">Ver perfil</button>
-                                </form>
+                                <a href="" class="btn btn-dark w-100">Ver perfil</a>
                             </div>
                         </div>
                     </div>
