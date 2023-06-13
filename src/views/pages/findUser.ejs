@@ -17,46 +17,51 @@
                     <p><strong>DNI: </strong><span><%= userFound.idnumber %></span></p>
                     <p><strong>Fecha de nacimiento: </strong><span><%= userFound.birthday.toLocaleDateString() %></span></p>
                     <p><strong>Dirección: </strong><span><%= userFound.address %></span></p>
-                    <p>
-                        <strong>Mascotas asociadas:</strong> (<%= userPets.length %>)
-                        <span>
-                            <ul class="bg-transparent list-group list-group-flush px-5">
-                                <% if (userPets.length > 0) { %>
-                                    <% userPets.forEach(pet => { %>
-                                        <li class="bg-transparent text-light list-group-item">
-                                            <%= pet.name %>
-                                            (<%= pet.id %> 
-                                            <span class="id_span" id="pet-<%= pet.id %>">
-                                                <i class="bi bi-stickies"></i>
-                                            </span>) 
-                                        </li>
-                                    <% }); %>
-                                <% } else { %>
-                                    No hay mascotas asociadas a este usuario
-                                <% } %>
-                            </ul>
-                        </span>
-                    </p>
-                    <p>
-                        <strong>Reservas realizadas:</strong> (<%= userReservations.length %>)
-                        <span>
-                            <ul class="bg-transparent list-group list-group-flush px-5">
-                                <% if (userReservations.length > 0) { %>
-                                    <% userReservations.forEach(reservation => { %>
-                                        <li class="bg-transparent text-light list-group-item">
-                                            <%= reservation.checkin.toLocaleDateString() %> - <%= reservation.checkout.toLocaleDateString() %> 
-                                            (<%= reservation.id %> 
-                                            <span class="id_span" id="reservation-<%= reservation.id %>">
-                                                <i class="bi bi-stickies"></i>
-                                            </span>) 
-                                        </li>
-                                    <% }); %>
-                                <% } else { %>
-                                    No hay reservas asociadas a este usuario
-                                <% } %>
-                            </ul>
-                        </span>
-                    </p>
+                    <% if (userFound.role == "client") { %>
+                        <p>
+                            <strong>Mascotas asociadas:</strong> (<%= userPets.length %>)
+                            <span>
+                                <ul class="bg-transparent list-group list-group-flush px-5">
+                                    <% if (userPets.length > 0) { %>
+                                        <% userPets.forEach(pet => { %>
+                                            <li class="bg-transparent text-light list-group-item">
+                                                <%= pet.name %>
+                                                (<%= pet.id %> 
+                                                <span class="id_span" id="pet-<%= pet.id %>">
+                                                    <i class="bi bi-stickies"></i>
+                                                </span>) 
+                                            </li>
+                                        <% }); %>
+                                    <% } else { %>
+                                        No hay mascotas asociadas a este usuario
+                                    <% } %>
+                                </ul>
+                            </span>
+                        </p>
+                        <p>
+                            <strong>Reservas realizadas:</strong> (<%= userReservations.length %>)
+                            <span>
+                                <ul class="bg-transparent list-group list-group-flush px-5">
+                                    <% if (userReservations.length > 0) { %>
+                                        <% userReservations.forEach(reservation => { %>
+                                            <li class="bg-transparent text-light list-group-item">
+                                                <%= reservation.checkin.toLocaleDateString() %> - <%= reservation.checkout.toLocaleDateString() %> 
+                                                (<%= reservation.id %> 
+                                                <span class="id_span" id="reservation-<%= reservation.id %>">
+                                                    <i class="bi bi-stickies"></i>
+                                                </span>) 
+                                            </li>
+                                        <% }); %>
+                                    <% } else { %>
+                                        No hay reservas asociadas a este usuario
+                                    <% } %>
+                                </ul>
+                            </span>
+                        </p>
+                    <% } else { %>
+                        <p><strong>Rol: </strong><span><%= userFound.role %></span></p>
+                        <p><strong>Puesto: </strong><span><%= userFound.position.title %></span></p>
+                    <% } %>
                 </div>
             </div>
         </div>
