@@ -25,7 +25,7 @@ ______________________________________________________________________
 router.get('/listReservations', isAuthenticated, 
     async (req, res) =>{
         console.log("In get listReservations");
-        const reservationsList = await Reservation.find().sort('-checkin');
+        const reservationsList = await Reservation.find().sort({ checkin: -1, status: 1 });
         res.render('./pages/allReservations', {reservationsList});
     }
 );
