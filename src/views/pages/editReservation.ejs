@@ -5,14 +5,14 @@
 <body>
     <div class="container">
         <%- include('../partials/header'); %>
-            <form class="d-flex flex-wrap" action="/reservations/editReservation/<%= reservation.id %>?_method=PUT" method="POST">
+            <form class="d-md-flex flex-wrap" action="/reservations/editReservation/<%= reservation.id %>?_method=PUT" method="POST">
                 <input type="hidden" value="_method" value="PUT">
-                <div class="bg-blue p-5 w-50">
+                <div class="bg-blue p-5">
                     <h1 class="font-brand text-center text-light mb-4">Modificar reserva</h1>
                     <div class="form-group mb-3">
                         <p class="text-light"><strong>Nº de referencia:</strong>  <%= reservation.id %></p>
                     </div>
-                    <div class="d-flex justify-content-between">
+                    <div class="d-sm-flex justify-content-between">
                         <div class="form-floating mb-3">
                             <input type="date" class="form-control" name="checkin" placeholder="" value="<%= reservation.checkin.toISOString().split('T')[0] %>" required>
                             <label for="checkin">Fecha de entrada</label>
@@ -60,7 +60,7 @@
                         <p class="text-light" id="price_info"></p>
                     </div>
                 </div>
-                <div class="w-50 p-5">
+                <div class="p-5">
                     <div id="pets" class="">
                         <% if (petsList.length == 0) { %>
                         <p><b>Para realizar una reserva debe tener registradas mascotas.
