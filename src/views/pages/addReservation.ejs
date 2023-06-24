@@ -6,7 +6,7 @@
     <div class="container">
         <%- include('../partials/header'); %>
             <form action="/reservations/addReservation" method="POST" class="d-md-flex flex-wrap">
-                <div class="bg-blue p-5 w-50">
+                <div class="bg-blue p-5">
                     <h1 class="font-brand text-center text-light mb-4">Nueva reserva</h1>
                     <div class="d-md-flex justify-content-between">
                         <div class="form-floating mb-3">
@@ -61,7 +61,7 @@
                         <p class="text-light" id="price_info"></p>
                     </div>
                 </div>
-                <div class="w-50 p-5">
+                <div class="p-5">
                     <div id="pets" class="">
                         <% if (petsList.length == 0) { %>
                         <p><b>Para realizar una reserva debe tener registradas mascotas.
