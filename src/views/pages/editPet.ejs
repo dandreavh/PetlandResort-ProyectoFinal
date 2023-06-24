@@ -5,9 +5,9 @@
 <body>
     <div class="container">
         <%- include('../partials/header'); %>
-            <form class="d-flex flex-wrap" action="/pets/editPet/<%= pet.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+            <form class="d-md-flex flex-wrap" action="/pets/editPet/<%= pet.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
                 <input type="hidden" value="_method" value="PUT">
-                <div class="bg-blue p-5 w-50">
+                <div class="bg-blue p-5">
                     <h1 class="font-brand text-center text-light mb-5">Mi mascota</h1>
                     <div class="form-group mb-4 text-light">
                         <p>
@@ -93,7 +93,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-50 p-5">
+                <div class="p-5">
                     <div>
                         <img src="/<%= pet.avatar %>" alt="Mascota" class="cover" />
                     </div>
