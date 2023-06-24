@@ -5,9 +5,9 @@
 <body>
     <div class="container">
         <%- include('../partials/header'); %>
-            <form class="d-flex flex-wrap" action="/users/editUser?_method=PUT" method="POST" enctype="multipart/form-data">
+            <form class="d-md-flex flex-wrap" action="/users/editUser?_method=PUT" method="POST" enctype="multipart/form-data">
                 <input type="hidden" value="_method" value="PUT">
-                <div class="bg-blue p-5 w-50">
+                <div class="bg-blue p-5">
                     <h1 class="font-brand text-center text-light mb-5">Mi perfil</h1>
                     <div class="form-group mb-5 text-light">
                         <p>
@@ -51,7 +51,7 @@
                         <label for="email">Correo electrónico</label>
                     </div>
                 </div>
-                <div class="w-50 p-5">
+                <div class="p-5">
                     <div>
                         <img src="/<%= user.avatar %>" alt="Persona" class="cover" />
                     </div>
